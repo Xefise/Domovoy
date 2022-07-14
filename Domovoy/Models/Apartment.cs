@@ -6,17 +6,20 @@ public class Apartment
     
     public int ApartmentNumber { get; set; }
     public int Floor { get; set; }
+    public int RoomCount { get; set; }
     /// <summary>
     /// В кв.м.
     /// </summary>
     public int Area { get; set; }
     
+    public bool IsSelling { get; set; }
+    public int? Cost { get; set; }
+    public string? Description { get; set; }
+    
     public List<ApplicationUser> Tenants { get; set; }
     public ApplicationUser? Owner { get; set; }
     
     public List<ApplicationUser> TenantsWhoMainThis { get; set; }
-
-    public int? Cost { get; set; }
 
     public HouseEntrance HouseEntrance { get; set; }
 }

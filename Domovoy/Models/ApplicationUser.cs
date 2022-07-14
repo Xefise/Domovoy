@@ -33,7 +33,8 @@ public enum ApplicationUserType
 {
     Tenant,
     ConstructionCompanyAdmin,
-    ServiceProvider
+    ServiceProvider,
+    Agent
 }
 
 public class ApplicationUserViewModel {

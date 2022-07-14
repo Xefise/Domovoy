@@ -9,13 +9,16 @@ export type Apartment = {
     id?: number;
     apartmentNumber?: number;
     floor?: number;
+    roomCount?: number;
     /**
      * В кв.м.
      */
     area?: number;
+    isSelling?: boolean;
+    cost?: number | null;
+    description?: string | null;
     tenants?: Array<ApplicationUser> | null;
     owner?: ApplicationUser;
     tenantsWhoMainThis?: Array<ApplicationUser> | null;
-    cost?: number | null;
     houseEntrance?: HouseEntrance;
 };

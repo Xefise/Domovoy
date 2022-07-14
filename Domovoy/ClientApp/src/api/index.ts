@@ -21,6 +21,8 @@ export type { HouseEntranceViewModel } from './models/HouseEntranceViewModel';
 export type { JwtData } from './models/JwtData';
 export type { LoginModel } from './models/LoginModel';
 export type { RegisterModel } from './models/RegisterModel';
+export type { ResidentialComplex } from './models/ResidentialComplex';
+export type { ResidentialComplexViewModel } from './models/ResidentialComplexViewModel';
 export type { Response } from './models/Response';
 
 export { AuthService } from './services/AuthService';

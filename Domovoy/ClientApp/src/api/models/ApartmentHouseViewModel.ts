@@ -3,10 +3,10 @@
 /* eslint-disable */
 
 import type { Address } from './Address';
-import type { ConstructionCompanyViewModel } from './ConstructionCompanyViewModel';
+import type { ResidentialComplexViewModel } from './ResidentialComplexViewModel';
 
 export type ApartmentHouseViewModel = {
     id?: number;
     address?: Address;
-    constructionCompany?: ConstructionCompanyViewModel;
+    residentialComplex?: ResidentialComplexViewModel;
 };

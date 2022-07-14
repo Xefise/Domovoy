@@ -6,4 +6,5 @@ export enum ApplicationUserType {
     TENANT = 'Tenant',
     CONSTRUCTION_COMPANY_ADMIN = 'ConstructionCompanyAdmin',
     SERVICE_PROVIDER = 'ServiceProvider',
+    AGENT = 'Agent',
 }

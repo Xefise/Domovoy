@@ -7,7 +7,7 @@ public class ApartmentHouse
     public Address Address { get; set; }
     
     public List<HouseEntrance> HouseEntrances { get; set; }
-    public ConstructionCompany ConstructionCompany { get; set; }
+    public ResidentialComplex ResidentialComplex { get; set; }
 }
 
 public class ApartmentHouseViewModel
@@ -16,5 +16,5 @@ public class ApartmentHouseViewModel
     
     public Address Address { get; set; }
     
-    public ConstructionCompanyViewModel ConstructionCompany { get; set; }
+    public ResidentialComplexViewModel ResidentialComplex { get; set; }
 }

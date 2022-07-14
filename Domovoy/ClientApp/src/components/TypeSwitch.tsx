@@ -6,6 +6,7 @@ export interface Props {
     tenant: ReactElement,
     constructionCompanyAdmin: ReactElement,
     serviceProvider: ReactElement,
+    agent: ReactElement,
     nonAuntificated: ReactElement
 }
 
@@ -25,6 +26,9 @@ function TypeSwitch(props: Props) {
                 break
             case ApplicationUserType.SERVICE_PROVIDER:
                 element = props.constructionCompanyAdmin
+                break
+            case ApplicationUserType.AGENT:
+                element = props.agent
                 break
             default:
                 element = props.nonAuntificated

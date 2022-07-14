@@ -23,6 +23,7 @@ function App() {
                             tenant={<TenantIndexPage/>}
                             constructionCompanyAdmin={<></>}
                             serviceProvider={<></>}
+                            agent={<></>}
                             nonAuntificated={<Navigate to={'login'}/>}/>}
                     />
                     <Route path="login" element={<LoginPage/>}/>

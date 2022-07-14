@@ -12,5 +12,6 @@ public class AppMappingProfile : Profile
         CreateMap<HouseEntrance, HouseEntranceViewModel>();
         CreateMap<ConstructionCompany, ConstructionCompanyViewModel>();
         CreateMap<ApartmentHouse, ApartmentHouseViewModel>();
+        CreateMap<ResidentialComplex, ResidentialComplexViewModel>();
     }
 }

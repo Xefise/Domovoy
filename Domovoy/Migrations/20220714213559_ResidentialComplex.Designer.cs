@@ -3,6 +3,7 @@ using System;
 using Domovoy.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Domovoy.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220714213559_ResidentialComplex")]
+    partial class ResidentialComplex
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.7");
@@ -84,10 +86,15 @@ namespace Domovoy.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<int?>("ConstructionCompanyId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("ResidentialComplexId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ConstructionCompanyId");
 
                     b.HasIndex("ResidentialComplexId");
 
@@ -386,6 +393,10 @@ namespace Domovoy.Migrations
 
             modelBuilder.Entity("Domovoy.Models.ApartmentHouse", b =>
                 {
+                    b.HasOne("Domovoy.Models.ConstructionCompany", null)
+                        .WithMany("ApartmentHouses")
+                        .HasForeignKey("ConstructionCompanyId");
+
                     b.HasOne("Domovoy.Models.ResidentialComplex", "ResidentialComplex")
                         .WithMany("ApartmentHouses")
                         .HasForeignKey("ResidentialComplexId")
@@ -424,7 +435,7 @@ namespace Domovoy.Migrations
             modelBuilder.Entity("Domovoy.Models.ResidentialComplex", b =>
                 {
                     b.HasOne("Domovoy.Models.ConstructionCompany", "ConstructionCompany")
-                        .WithMany("ResidentialComplexes")
+                        .WithMany()
                         .HasForeignKey("ConstructionCompanyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -500,9 +511,9 @@ namespace Domovoy.Migrations
 
             modelBuilder.Entity("Domovoy.Models.ConstructionCompany", b =>
                 {
-                    b.Navigation("Employees");
+                    b.Navigation("ApartmentHouses");
 
-                    b.Navigation("ResidentialComplexes");
+                    b.Navigation("Employees");
                 });
 
             modelBuilder.Entity("Domovoy.Models.HouseEntrance", b =>
