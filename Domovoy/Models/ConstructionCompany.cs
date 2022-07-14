@@ -10,3 +10,10 @@ public class ConstructionCompany
     /// </summary>
     public List<ApartmentHouse> ApartmentHouses { get; set; }
 }
+
+
+public class ConstructionCompanyViewModel
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+}

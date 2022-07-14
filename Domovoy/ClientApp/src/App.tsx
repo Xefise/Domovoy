@@ -3,12 +3,13 @@ import {useState} from 'react'
 import {Link, Navigate, Outlet, Route, Routes, useLocation} from "react-router-dom";
 
 import {AnimatePresence} from "framer-motion";
-import IndexPage from "./pages/IndexPage";
+import TenantIndexPage from "./pages/TenantIndexPage";
 import AuthProvider from "./components/AuthProvider";
 import LoginPage from "./pages/LoginPage";
 import AuthSwitch from "./components/AuthSwitch";
 import LogoutPage from "./pages/LogoutPage";
 import GoogleOAuthCallback from "./pages/GoogleOAuthCallback";
+import TypeSwitch from "./components/TypeSwitch";
 
 function App() {
     const location = useLocation();
@@ -18,8 +19,10 @@ function App() {
             <AnimatePresence exitBeforeEnter>
                 <Routes key={location.pathname} location={location}>
                     <Route path="/" element={
-                        <AuthSwitch
-                            auntificated={<IndexPage/>}
+                        <TypeSwitch
+                            tenant={<TenantIndexPage/>}
+                            constructionCompanyAdmin={<></>}
+                            serviceProvider={<></>}
                             nonAuntificated={<Navigate to={'login'}/>}/>}
                     />
                     <Route path="login" element={<LoginPage/>}/>

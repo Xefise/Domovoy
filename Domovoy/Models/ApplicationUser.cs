@@ -35,3 +35,11 @@ public enum ApplicationUserType
     ConstructionCompanyAdmin,
     ServiceProvider
 }
+
+public class ApplicationUserViewModel {
+    public int Id { get; set; }
+    public string UserName { get; set; }
+    public string Email { get; set; }
+    [Required]
+    public ApplicationUserType Type { get; set; }
+}
