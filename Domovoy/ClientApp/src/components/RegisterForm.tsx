@@ -19,7 +19,7 @@ export interface Props {
 function LoginForm(props: Props) {
     const auth = useAuth()
     const navigate = useNavigate()
-    const [registerModel, setRegisterModel] = useState<RegisterModel>({email: "", password: "", username: ""});
+    const [registerModel, setRegisterModel] = useState<RegisterModel>({email: "", password: "", username: "", fio: "", rePassword: ""});
     const [errors, setErrors] = useState<ValidationProblemDetails>();
 
     useEffect(() => {
@@ -27,7 +27,7 @@ function LoginForm(props: Props) {
     }, [auth.isAuthenticated])
 
     const setName = (event: ChangeEvent<HTMLInputElement>) => {
-        setRegisterModel({...registerModel, username: event.target.value});
+        setRegisterModel({...registerModel, fio: event.target.value});
     }
     
     const setUsername = (event: ChangeEvent<HTMLInputElement>) => {
@@ -43,7 +43,7 @@ function LoginForm(props: Props) {
     }
 
     const setRePassword = (event: ChangeEvent<HTMLInputElement>) => {
-        setRegisterModel({...registerModel, password: event.target.value});
+        setRegisterModel({...registerModel, rePassword: event.target.value});
     }
     
     const register = (event: FormEvent) => {
@@ -63,7 +63,7 @@ function LoginForm(props: Props) {
     return <form onSubmit={register}>
         {errors && <div>{Object.entries(errors.errors).map((([f, e]) => e.map(e => <p>{e}</p>)))}</div>}
         <Container> 
-            <input className="inputData" onChange={setName} value={registerModel.username} placeholder={"Имя"} name="name" required/>
+            <input className="inputData" onChange={setName} value={registerModel.fio} placeholder={"ФИО"} name="name" required/>
             <img src={loginIcon} className="inputIcons"/>
             <br/>
             <input className="inputData" onChange={setUsername} value={registerModel.username} placeholder={"Логин"} name="username" required/>
@@ -75,7 +75,7 @@ function LoginForm(props: Props) {
             <input className="inputData" onChange={setPassword} value={registerModel.password} placeholder={"Пароль"} type={"password"} required autoComplete={"new-password"}/>
             <img src={passwordIcon} className="inputIcons"/>
             <br/>
-            <input className="inputData" onChange={setRePassword} value={registerModel.password} placeholder={"Повторите пароль"} type={"password"} required autoComplete={"new-password"}/>
+            <input className="inputData" onChange={setRePassword} value={registerModel.rePassword} placeholder={"Повторите пароль"} type={"password"} required autoComplete={"new-password"}/>
             <img src={passwordIcon} className="inputIcons"/>
             <br/>
             <button type={"submit"} className="loginAccount">Зарегистрироваться</button>
