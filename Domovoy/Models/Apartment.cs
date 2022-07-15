@@ -21,6 +21,9 @@ public class Apartment
     
     public List<ApplicationUser> TenantsWhoMainThis { get; set; }
 
+    public List<ServiceApartment> ServiceApartments { get; set; }
+    public List<Informer> Informers { get; set; }
+
     public HouseEntrance HouseEntrance { get; set; }
     public int HouseEntranceId { get; set; }
 }
@@ -51,8 +54,6 @@ public class ApartmentViewModel
     public ApplicationUserViewModel? Owner { get; set; }
     
     public List<ApplicationUserViewModel> TenantsWhoMainThis { get; set; }
-    public List<Service> Services { get; set; }
-    public List<Informer> Informers { get; set; }
     
     public HouseEntranceViewModel HouseEntrance { get; set; }
 }
