@@ -16,6 +16,10 @@ import CreateApartmentHouse from "./pages/CreateApartmentHouse";
 import CreateEntrancePage from "./pages/CreateEntrancePage";
 import CreateApartmentPage from "./pages/CreateApartmentPage";
 import ApartamentDetails from "./pages/ApartamentDetails";
+import TenantLayout from "./pages/TenantLayout";
+import CompanyAdminLayout from "./pages/CompanyAdminLayout";
+
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 function App() {
     const location = useLocation();
@@ -26,12 +30,21 @@ function App() {
                 <Routes key={location.pathname.split("create")[0].split("details")[0]} location={location}>
                     <Route path="/" element={
                         <TypeSwitch
-                            tenant={<TenantIndexPage/>}
-                            constructionCompanyAdmin={<CompanyAdminIndexPage/>}
+                            tenant={<TenantLayout/>}
+                            constructionCompanyAdmin={<CompanyAdminLayout/>}
                             serviceProvider={<></>}
                             agent={<></>}
                             nonAuntificated={<Navigate to={'login'}/>}/>}
                     >
+                        <Route path={""} element={
+                            <TypeSwitch
+                                tenant={<TenantIndexPage/>}
+                                constructionCompanyAdmin={<CompanyAdminIndexPage/>}
+                                serviceProvider={<></>}
+                                agent={<></>}
+                                nonAuntificated={<Navigate to={'login'}/>}/>
+                        }/>
+                        
                         <Route path={"create/complex"} element={<CreateComplexPage/>}/>
                         <Route path={"create/house/:complex"} element={<CreateApartmentHouse/>}/>
                         <Route path={"create/entrance/:house"} element={<CreateEntrancePage/>}/>

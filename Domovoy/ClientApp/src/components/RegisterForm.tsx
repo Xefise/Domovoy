@@ -8,7 +8,6 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import '../styles/LoginForm.css';
-import { PersonOutline } from 'react-ionicons'
 import loginIcon from '../images/loginIcon.svg';
 import passwordIcon from '../images/passwordIcon.svg';
 import emailIcon from '../images/emailIcon.svg';
@@ -20,7 +19,7 @@ export interface Props {
 function LoginForm(props: Props) {
     const auth = useAuth()
     const navigate = useNavigate()
-    const [registerModel, setRegisterModel] = useState<RegisterModel>({email: "", password: "", username: "", name: "", repassword: ""});
+    const [registerModel, setRegisterModel] = useState<RegisterModel>({email: "", password: "", username: ""});
     const [errors, setErrors] = useState<ValidationProblemDetails>();
 
     useEffect(() => {
@@ -51,7 +50,7 @@ function LoginForm(props: Props) {
         event.preventDefault()
         if (auth.token) auth.setToken(null)
         AuthService.postApiAuthRegister(registerModel).then(() => {
-            AuthService.postApiAuthLogin({name: registerModel.name, username: registerModel.username, password: registerModel.password, email: registerModel.email}).then(response => {
+            AuthService.postApiAuthLogin(registerModel).then(response => {
                 auth.setToken(response.token);
             }).catch(error => {
                 setErrors(JSON.parse(error.body));
@@ -64,7 +63,7 @@ function LoginForm(props: Props) {
     return <form onSubmit={register}>
         {errors && <div>{Object.entries(errors.errors).map((([f, e]) => e.map(e => <p>{e}</p>)))}</div>}
         <Container> 
-            <input className="inputData" onChange={setName} value={registerModel.name} placeholder={"Имя"} name="name" required/>
+            <input className="inputData" onChange={setName} value={registerModel.username} placeholder={"Имя"} name="name" required/>
             <img src={loginIcon} className="inputIcons"/>
             <br/>
             <input className="inputData" onChange={setUsername} value={registerModel.username} placeholder={"Логин"} name="username" required/>
@@ -76,7 +75,7 @@ function LoginForm(props: Props) {
             <input className="inputData" onChange={setPassword} value={registerModel.password} placeholder={"Пароль"} type={"password"} required autoComplete={"new-password"}/>
             <img src={passwordIcon} className="inputIcons"/>
             <br/>
-            <input className="inputData" onChange={setRePassword} value={registerModel.repassword} placeholder={"Повторите пароль"} type={"password"} required autoComplete={"new-password"}/>
+            <input className="inputData" onChange={setRePassword} value={registerModel.password} placeholder={"Повторите пароль"} type={"password"} required autoComplete={"new-password"}/>
             <img src={passwordIcon} className="inputIcons"/>
             <br/>
             <button type={"submit"} className="loginAccount">Зарегистрироваться</button>

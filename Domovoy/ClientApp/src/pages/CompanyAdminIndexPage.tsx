@@ -73,7 +73,7 @@ function CompanyAdminIndexPage(props: Props) {
     }
 
     return <StorageContext.Provider value={{comapny, entances, reload, reloadHouse}}>
-        <motion.div variants={upVariants} initial={'init'} animate={'show'} exit={'hide'} className={'layout'}>
+        <motion.div variants={upVariants} initial={'init'} animate={'show'} exit={'hide'}>
             <h1>Админка наша любимая</h1>
             <ul>
                 {comapny?.residentialComplexes?.map(c => <li key={c.id}>

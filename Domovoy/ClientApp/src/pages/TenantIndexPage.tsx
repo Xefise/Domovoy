@@ -16,7 +16,7 @@ function TenantIndexPage() {
         TenantAppartamentsService.getApiTenantappartaments().then(d => setApartaments(d)).finally(() => setApartamentsLoading(false))
     }, [])
     
-    return <motion.div variants={upVariants} initial={'init'} animate={'show'} exit={'hide'} className={'layout'}>
+    return <motion.div variants={upVariants} initial={'init'} animate={'show'} exit={'hide'}>
         Привет, {auth.user?.userName}! <br/>
         Ваши квартиры:
         <ul>

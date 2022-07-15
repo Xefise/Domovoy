@@ -8,7 +8,6 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import '../styles/LoginForm.css';
-import { PersonOutline } from 'react-ionicons'
 import loginIcon from '../images/loginIcon.svg';
 import passwordIcon from '../images/passwordIcon.svg';
 
