@@ -3,9 +3,8 @@
 /* eslint-disable */
 
 import type { ApplicationUserViewModel } from './ApplicationUserViewModel';
-import type { HouseEntranceViewModel } from './HouseEntranceViewModel';
 
-export type ApartmentViewModel = {
+export type ApartmentDetails = {
     id?: number;
     apartmentNumber?: number;
     floor?: number;
@@ -19,5 +18,4 @@ export type ApartmentViewModel = {
     tenants?: Array<ApplicationUserViewModel> | null;
     owner?: ApplicationUserViewModel;
     tenantsWhoMainThis?: Array<ApplicationUserViewModel> | null;
-    houseEntrance?: HouseEntranceViewModel;
 };

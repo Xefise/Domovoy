@@ -21,4 +21,5 @@ export type Apartment = {
     owner?: ApplicationUser;
     tenantsWhoMainThis?: Array<ApplicationUser> | null;
     houseEntrance?: HouseEntrance;
+    houseEntranceId?: number;
 };

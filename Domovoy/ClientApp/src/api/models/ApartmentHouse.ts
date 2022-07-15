@@ -11,4 +11,5 @@ export type ApartmentHouse = {
     address?: Address;
     houseEntrances?: Array<HouseEntrance> | null;
     residentialComplex?: ResidentialComplex;
+    residentialComplexId?: number;
 };

@@ -9,5 +9,6 @@ export type HouseEntrance = {
     id?: number;
     enranceNumber?: number;
     apartmentHouse?: ApartmentHouse;
+    apartmentHouseId?: number;
     apartments?: Array<Apartment> | null;
 };

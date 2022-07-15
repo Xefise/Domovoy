@@ -24,32 +24,42 @@ public class ConstructionCompanyController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<ConstructionCompanyDetails>> GetCompany()
     {
-        return _mapper.Map<ConstructionCompanyDetails>(await _db.ConstructionCompanies.Include("ResidentialComplexes.ApartmentHouses").FirstAsync(c => c.Employees.Contains(HttpContext.GetUser())));
+        return _mapper.Map<ConstructionCompanyDetails>(await _db.ConstructionCompanies
+            .Include("ResidentialComplexes.ApartmentHouses")
+            .FirstAsync(c => c.Employees.Contains(HttpContext.GetUser())));
     }
 
-    [HttpGet("/houses/{id}/")]
-    public async Task<ActionResult<List<HouseEntranceDetails>>> GetApartaments(int id)
+    [HttpGet("houses/{id}")]
+    public async Task<ActionResult<List<HouseEntranceDetails>>> GetApartaments(int id, [FromQuery] string? search)
     {
-        return await _mapper.ProjectTo<HouseEntranceDetails>(
+        return _mapper.Map<List<HouseEntranceDetails>>(
             _db.HouseEntrances
-                .Include(e => e.Apartments)
                 .Where(e =>
-                    e.ApartmentHouse.ResidentialComplex.Id == id && 
+                    e.ApartmentHouse.ResidentialComplex.Id == id &&
                     e.ApartmentHouse.ResidentialComplex.ConstructionCompany.Employees.Contains(HttpContext.GetUser()))
-            ).ToListAsync();
+                .Select(b => new
+                {
+                    b,
+                    Apartments = b.Apartments.Where(a => search != null ? a.ApartmentNumber.ToString().Contains(search) : true)
+                })
+                .AsEnumerable()
+                .Select(x => x.b)
+                .ToList()
+        );
     }
 
     [HttpPost("complexes")]
     public async Task<ActionResult> CreateResidentialComplex(ResidentialComplexCreate residentialComplexCreate)
     {
         var complex = _mapper.Map<ResidentialComplex>(residentialComplexCreate);
-        complex.ConstructionCompany = await _db.ConstructionCompanies.FirstAsync(c => c.Employees.Contains(HttpContext.GetUser()));
+        complex.ConstructionCompany =
+            await _db.ConstructionCompanies.FirstAsync(c => c.Employees.Contains(HttpContext.GetUser()));
         _db.ResidentialComplexes.Add(complex);
         await _db.SaveChangesAsync();
 
         return Ok();
     }
-    
+
     [HttpPost("houses")]
     public async Task<ActionResult> CreateApartmentHouse(ApartmentHouseCreate apartmentHouseCreate)
     {
@@ -61,13 +71,13 @@ public class ConstructionCompanyController : ControllerBase
                     c.Id == house.ResidentialComplexId)
                 .Count() == 0)
             return BadRequest();
-        
+
         _db.ApartmentHouses.Add(house);
         await _db.SaveChangesAsync();
 
         return Ok();
     }
-    
+
     [HttpPost("entrances")]
     public async Task<ActionResult> CreateEntrance(HouseEntranceCreate houseEntranceCreate)
     {
@@ -79,13 +89,13 @@ public class ConstructionCompanyController : ControllerBase
                     c.Id == entrance.ApartmentHouseId)
                 .Count() == 0)
             return BadRequest();
-        
+
         _db.HouseEntrances.Add(entrance);
         await _db.SaveChangesAsync();
 
         return Ok();
     }
-    
+
     [HttpPost("apartaments")]
     public async Task<ActionResult> CreateApartament(ApartmentCreate houseEntranceCreate)
     {
@@ -97,7 +107,7 @@ public class ConstructionCompanyController : ControllerBase
                     c.Id == apartment.HouseEntranceId)
                 .Count() == 0)
             return BadRequest();
-        
+
         _db.Apartments.Add(apartment);
         await _db.SaveChangesAsync();
 
