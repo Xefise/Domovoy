@@ -21,6 +21,8 @@ import CompanyAdminLayout from "./pages/CompanyAdminLayout";
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import TenantSearchPage from "./pages/TenantSearchPage";
+import TenantProfilePage from "./pages/TenantProfilePage";
+import TenantChatPage from "./pages/TenantChatPage";
 
 function App() {
     const location = useLocation();
@@ -51,9 +53,9 @@ function App() {
                             <Route path={"create/apartment/:house/:entrance"} element={<CreateApartmentPage/>}/>
                             <Route path={"details/apartment/:apartment"} element={<ApartamentDetails/>}/>
                         </Route>
-                        <Route path={"search"} element={<TenantSearchPage/>}>
-                            
-                        </Route>
+                        <Route path={"search"} element={<TenantSearchPage/>}/>
+                        <Route path={"profile"} element={<TenantProfilePage/>}/>
+                        <Route path={"chat"} element={<TenantChatPage/>}/>
                     </Route>
                     <Route path="login" element={<LoginPage/>}/>
                     <Route path="logout" element={<LogoutPage/>}/>
