@@ -60,6 +60,16 @@ public class ConstructionCompanyController : ControllerBase
         return Ok();
     }
 
+    [HttpDelete("complexes/{id}")]
+    public async Task<ActionResult> DeleteComplex(int id)
+    {
+        _db.ResidentialComplexes.RemoveRange(_db.ResidentialComplexes.Where(c => c.Id == id && c.ConstructionCompany.Employees.Contains(HttpContext.GetUser())));
+
+        await _db.SaveChangesAsync();
+
+        return Ok();
+    }
+
     [HttpPost("houses")]
     public async Task<ActionResult> CreateApartmentHouse(ApartmentHouseCreate apartmentHouseCreate)
     {
@@ -73,6 +83,16 @@ public class ConstructionCompanyController : ControllerBase
             return BadRequest();
 
         _db.ApartmentHouses.Add(house);
+        await _db.SaveChangesAsync();
+
+        return Ok();
+    }
+    
+    [HttpDelete("houses/{id}")]
+    public async Task<ActionResult> DeleteHouse(int id)
+    {
+        _db.ApartmentHouses.RemoveRange(_db.ApartmentHouses.Where(c => c.Id == id && c.ResidentialComplex.ConstructionCompany.Employees.Contains(HttpContext.GetUser())));
+
         await _db.SaveChangesAsync();
 
         return Ok();
@@ -95,8 +115,18 @@ public class ConstructionCompanyController : ControllerBase
 
         return Ok();
     }
+    
+    [HttpDelete("entrances/{id}")]
+    public async Task<ActionResult> DeleteEntrance(int id)
+    {
+        _db.HouseEntrances.RemoveRange(_db.HouseEntrances.Where(c => c.Id == id && c.ApartmentHouse.ResidentialComplex.ConstructionCompany.Employees.Contains(HttpContext.GetUser())));
 
-    [HttpPost("apartaments")]
+        await _db.SaveChangesAsync();
+
+        return Ok();
+    }
+
+    [HttpPost("apartments")]
     public async Task<ActionResult> CreateApartament(ApartmentCreate houseEntranceCreate)
     {
         var apartment = _mapper.Map<Apartment>(houseEntranceCreate);
@@ -109,6 +139,16 @@ public class ConstructionCompanyController : ControllerBase
             return BadRequest();
 
         _db.Apartments.Add(apartment);
+        await _db.SaveChangesAsync();
+
+        return Ok();
+    }
+    
+    [HttpDelete("apartments/{id}")]
+    public async Task<ActionResult> DeleteApartment(int id)
+    {
+        _db.Apartments.RemoveRange(_db.Apartments.Where(c => c.Id == id && c.HouseEntrance.ApartmentHouse.ResidentialComplex.ConstructionCompany.Employees.Contains(HttpContext.GetUser())));
+
         await _db.SaveChangesAsync();
 
         return Ok();

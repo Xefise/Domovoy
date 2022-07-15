@@ -35,3 +35,34 @@ export const upVariants: Variants = {
         }
     }
 }
+
+export const initialHorizontal: Target = {
+    x: -300,
+    opacity: 0,
+}
+
+export const enterHorizontal: Target = {
+    x: 0,
+    opacity: 1
+}
+
+export const exitHorizontal: Target = {
+    x: 300,
+    opacity: 0
+}
+
+export const horizontalVariants: Variants = {
+    "init": initialHorizontal,
+    "show": {
+        ...enterHorizontal, transition: {
+            duration: 0.7,
+            ...translition
+        }
+    },
+    "hide": {
+        ...exitHorizontal, transition: {
+            duration: 0.3,
+            ...translition
+        }
+    }
+}

@@ -48,6 +48,23 @@ search?: string,
     }
 
     /**
+     * @param id 
+     * @returns any Success
+     * @throws ApiError
+     */
+    public static deleteApiConstructioncompanyHouses(
+id: number,
+): CancelablePromise<any> {
+        return __request(OpenAPI, {
+            method: 'DELETE',
+            url: '/api/constructioncompany/houses/{id}',
+            path: {
+                'id': id,
+            },
+        });
+    }
+
+    /**
      * @param requestBody 
      * @returns any Success
      * @throws ApiError
@@ -60,6 +77,23 @@ requestBody?: ResidentialComplexCreate,
             url: '/api/constructioncompany/complexes',
             body: requestBody,
             mediaType: 'application/json-patch+json',
+        });
+    }
+
+    /**
+     * @param id 
+     * @returns any Success
+     * @throws ApiError
+     */
+    public static deleteApiConstructioncompanyComplexes(
+id: number,
+): CancelablePromise<any> {
+        return __request(OpenAPI, {
+            method: 'DELETE',
+            url: '/api/constructioncompany/complexes/{id}',
+            path: {
+                'id': id,
+            },
         });
     }
 
@@ -96,18 +130,52 @@ requestBody?: HouseEntranceCreate,
     }
 
     /**
+     * @param id 
+     * @returns any Success
+     * @throws ApiError
+     */
+    public static deleteApiConstructioncompanyEntrances(
+id: number,
+): CancelablePromise<any> {
+        return __request(OpenAPI, {
+            method: 'DELETE',
+            url: '/api/constructioncompany/entrances/{id}',
+            path: {
+                'id': id,
+            },
+        });
+    }
+
+    /**
      * @param requestBody 
      * @returns any Success
      * @throws ApiError
      */
-    public static postApiConstructioncompanyApartaments(
+    public static postApiConstructioncompanyApartments(
 requestBody?: ApartmentCreate,
 ): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: '/api/constructioncompany/apartaments',
+            url: '/api/constructioncompany/apartments',
             body: requestBody,
             mediaType: 'application/json-patch+json',
+        });
+    }
+
+    /**
+     * @param id 
+     * @returns any Success
+     * @throws ApiError
+     */
+    public static deleteApiConstructioncompanyApartments(
+id: number,
+): CancelablePromise<any> {
+        return __request(OpenAPI, {
+            method: 'DELETE',
+            url: '/api/constructioncompany/apartments/{id}',
+            path: {
+                'id': id,
+            },
         });
     }
 

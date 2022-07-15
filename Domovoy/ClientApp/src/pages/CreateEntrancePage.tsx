@@ -1,6 +1,6 @@
 ﻿import {useStorage} from "./CompanyAdminIndexPage";
 import {useState} from "react";
-import {upVariants} from "../animations";
+import {horizontalVariants, upVariants} from "../animations";
 import { motion } from "framer-motion";
 import {Address, ConstructionCompanyService} from "../api";
 import {useParams} from "react-router-dom";
@@ -16,7 +16,7 @@ function CreateEntrancePage(props: Props) {
     const {house} = useParams()
     const [enranceNumber, setNumber] = useState(1)
     
-    return  <motion.div variants={upVariants} initial={'init'} animate={'show'} exit={'hide'} className={'layout'}>
+    return  <motion.div variants={horizontalVariants} initial={'init'} animate={'show'} exit={'hide'} className={'layout'}>
         Создание подъезда
         <input value={enranceNumber} onChange={e => setNumber(parseInt(e.target.value))} type={"number"} placeholder={"Номер подъезда"}/>
         <button onClick={() => {

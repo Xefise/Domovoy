@@ -1,6 +1,6 @@
 ﻿import {useStorage} from "./CompanyAdminIndexPage";
 import {useState} from "react";
-import {upVariants} from "../animations";
+import {horizontalVariants, upVariants} from "../animations";
 import { motion } from "framer-motion";
 import {Address, ConstructionCompanyService} from "../api";
 import {useParams} from "react-router-dom";
@@ -16,7 +16,7 @@ function CreateComplexPage(props: Props) {
     const {complex} = useParams()
     const [address, setAddress] = useState<Address>({})
     
-    return  <motion.div variants={upVariants} initial={'init'} animate={'show'} exit={'hide'} className={'layout'}>
+    return  <motion.div variants={horizontalVariants} initial={'init'} animate={'show'} exit={'hide'} className={'layout'}>
         Создание дома
         <input value={address.city || ''} onChange={e => setAddress({...address, city: e.target.value})} placeholder={"Город"}/>
         <input value={address.street || ''} onChange={e => setAddress({...address, street: e.target.value})} placeholder={"Улица"}/>

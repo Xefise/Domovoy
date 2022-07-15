@@ -78,18 +78,39 @@ function CompanyAdminIndexPage(props: Props) {
             <ul>
                 {comapny?.residentialComplexes?.map(c => <li key={c.id}>
                     ЖК {c.name}
+                    <button onClick={() => {
+                        ConstructionCompanyService
+                            .deleteApiConstructioncompanyComplexes(c.id!)
+                            .then(() => reload())
+                    }}>Удалить</button>
                     <ul>
                         {c.apartmentHouses?.map(h => <li key={h.id}>
-                            Дом {addressToString(h.address)} <br/>
+                            Дом {addressToString(h.address)}
+                            <button onClick={() => {
+                                ConstructionCompanyService
+                                    .deleteApiConstructioncompanyHouses(h.id!)
+                                    .then(() => reload())
+                            }}>Удалить</button>
+                            <br/>
                             <input value={searches[h.id!] || ''} onChange={e => searchChange(e, h)}
                                    placeholder={"Номер квартиры"}/>
                             <button onClick={() => load(h)}>Загрузить квартиры</button>
                             <ul>
                                 {h.id! in entances && entances[h.id!].map(e => <li key={e.id}>
                                     Подъезд {e.enranceNumber}
+                                    <button onClick={() => {
+                                        ConstructionCompanyService
+                                            .deleteApiConstructioncompanyEntrances(e.id!)
+                                            .then(() => reloadHouse(h.id!))
+                                    }}>Удалить</button>
                                     <ul>
                                         {e.apartments?.map(a => <li key={a.id}>
                                             Квартира №{a.apartmentNumber}
+                                            <button onClick={() => {
+                                                ConstructionCompanyService
+                                                    .deleteApiConstructioncompanyApartments(a.id!)
+                                                    .then(() => reloadHouse(h.id!))
+                                            }}>Удалить</button>
                                         </li>)}
                                     </ul>
                                     <Link to={`create/apartment/${h.id}/${e.id}`}>Создать квартиру</Link>
