@@ -12,7 +12,7 @@ public class Apartment
     /// </summary>
     public int Area { get; set; }
     
-    public bool IsSelling { get; set; }
+    public AparmentState AparmentState { get; set; }
     public int? Cost { get; set; }
     public string? Description { get; set; }
     
@@ -23,6 +23,13 @@ public class Apartment
 
     public HouseEntrance HouseEntrance { get; set; }
     public int HouseEntranceId { get; set; }
+}
+
+public enum AparmentState
+{
+    NotForSell,
+    ForSell,
+    ForRent
 }
 
 public class ApartmentViewModel
@@ -36,7 +43,7 @@ public class ApartmentViewModel
     /// </summary>
     public int Area { get; set; }
     
-    public bool IsSelling { get; set; }
+    public AparmentState AparmentState { get; set; }
     public int? Cost { get; set; }
     public string? Description { get; set; }
     
@@ -59,7 +66,7 @@ public class ApartmentDetails
     /// </summary>
     public int Area { get; set; }
     
-    public bool IsSelling { get; set; }
+    public AparmentState AparmentState { get; set; }
     public int? Cost { get; set; }
     public string? Description { get; set; }
     
@@ -78,7 +85,7 @@ public class ApartmentCreate
     /// </summary>
     public int Area { get; set; }
     
-    public bool IsSelling { get; set; }
+    public AparmentState AparmentState { get; set; }
     public int? Cost { get; set; }
     public string? Description { get; set; }
     
@@ -95,7 +102,7 @@ public class ApartmentPut
     /// </summary>
     public int Area { get; set; }
     
-    public bool IsSelling { get; set; }
+    public AparmentState AparmentState { get; set; }
     public int? Cost { get; set; }
     public string? Description { get; set; }
 }
