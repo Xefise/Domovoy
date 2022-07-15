@@ -34,6 +34,7 @@ export type Apartment = {
     tenants?: Array<ApplicationUser> | null;
     owner?: ApplicationUser;
     tenantsWhoMainThis?: Array<ApplicationUser> | null;
+    tenantsWhoAddThisToCart?: Array<ApplicationUser> | null;
     inviteCodes?: Array<InviteCode> | null;
     serviceApartments?: Array<ServiceApartment> | null;
     informers?: Array<Informer> | null;

@@ -52,4 +52,5 @@ export type { ServiceUser } from './models/ServiceUser';
 export { AuthService } from './services/AuthService';
 export { ConstructionCompanyService } from './services/ConstructionCompanyService';
 export { TenantAppartamentsService } from './services/TenantAppartamentsService';
+export { TenantCartService } from './services/TenantCartService';
 export { TenantSearchService } from './services/TenantSearchService';

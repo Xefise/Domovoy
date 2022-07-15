@@ -26,7 +26,10 @@ function TenantLayout(props: Props) {
 
     console.log(location.pathname)
     
-    return <motion.div variants={upVariants} initial={'init'} animate={'show'} exit={'hide'}>
+    return <motion.div variants={upVariants} initial={'init'} animate={'show'} exit={'hide'} style={{
+        width: '100%',
+        minHeight: '100vh'
+    }}>
         <AnimatePresence exitBeforeEnter>
             {Outlet && React.cloneElement(Outlet, {key: location.pathname})}
         </AnimatePresence>

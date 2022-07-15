@@ -23,6 +23,7 @@ export type ApplicationUser = {
      */
     owndedApartments?: Array<Apartment> | null;
     mainApartment?: Apartment;
+    cart?: Array<Apartment> | null;
     constructionCompany?: ConstructionCompany;
     serviceUsers?: Array<ServiceUser> | null;
     id?: number;
