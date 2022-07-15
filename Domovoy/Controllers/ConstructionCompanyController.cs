@@ -35,6 +35,7 @@ public class ConstructionCompanyController : ControllerBase
     {
         return _mapper.Map<List<HouseEntranceDetails>>(
             _db.HouseEntrances
+                .Include("Apartments.InviteCodes")
                 .Where(e =>
                     e.ApartmentHouse.ResidentialComplex.Id == id &&
                     e.ApartmentHouse.ResidentialComplex.ConstructionCompany.Employees.Contains(HttpContext.GetUser()))
@@ -207,5 +208,47 @@ public class ConstructionCompanyController : ControllerBase
         _db.SaveChangesAsync();
     
         return Ok(_mapper.Map<ApartmentViewModel>(entity));
+    }
+    
+    [HttpPost("codes")]
+    public async Task<ActionResult> CreateCode(int apartmentId)
+    {
+        var apartment = await _db.Apartments.FirstOrDefaultAsync(a => a.Id == apartmentId && a.HouseEntrance.ApartmentHouse.ResidentialComplex.ConstructionCompany.Employees.Contains(HttpContext.GetUser()));
+
+        if (apartment == null)
+            return BadRequest();
+
+        var uniqueCode = Guid.NewGuid().ToString()[0..6];
+        while (_db.InviteCodes.Where(i => i.Code == uniqueCode).Count() > 0)
+        {
+            uniqueCode = Guid.NewGuid().ToString()[0..6];
+        }
+
+        var newCode = new InviteCode()
+        {
+            Apartment = apartment,
+            Code = uniqueCode
+        };
+
+        _db.InviteCodes.Add(newCode);
+          
+        await _db.SaveChangesAsync();
+
+        return Ok();
+    }
+    
+    [HttpDelete("codes/{id}")]
+    public async Task<ActionResult> DeleteCode(int id)
+    {
+        var code = await _db.InviteCodes.FirstOrDefaultAsync(a => a.Id == id && a.Apartment.HouseEntrance.ApartmentHouse.ResidentialComplex.ConstructionCompany.Employees.Contains(HttpContext.GetUser()));
+
+        if (code == null)
+            return BadRequest();
+        
+        _db.InviteCodes.Remove(code);
+          
+        await _db.SaveChangesAsync();
+
+        return Ok();
     }
 }

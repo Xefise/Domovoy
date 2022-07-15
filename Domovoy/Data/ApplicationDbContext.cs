@@ -13,6 +13,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityR
     public DbSet<Apartment> Apartments { get; set; } = null!;
     public DbSet<ConstructionCompany> ConstructionCompanies { get; set; } = null!;
     public DbSet<ResidentialComplex> ResidentialComplexes { get; set; } = null!;
+    public DbSet<InviteCode> InviteCodes { get; set; } = null!;
 
     public DbSet<Service> Services { get; set; } = null!;
     public DbSet<PermanentService> PermanentServices { get; set; } = null!;

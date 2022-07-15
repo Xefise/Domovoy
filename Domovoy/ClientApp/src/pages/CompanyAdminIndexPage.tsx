@@ -111,6 +111,22 @@ function CompanyAdminIndexPage(props: Props) {
                                                     .deleteApiConstructioncompanyApartments(a.id!)
                                                     .then(() => reloadHouse(h.id!))
                                             }}>Удалить</button>
+                                            <br/>
+                                            Коды приглашений:
+                                            <ul>
+                                                {a.inviteCodes?.map(i => <li>
+                                                    {i.code} <button onClick={() => {
+                                                    ConstructionCompanyService.deleteApiConstructioncompanyCodes(i.id!).then(() => {
+                                                        reloadHouse(h.id!)
+                                                    })
+                                                }}>Удалить</button>
+                                                </li>)}
+                                            </ul>
+                                            <button onClick={() => {
+                                                ConstructionCompanyService.postApiConstructioncompanyCodes(a.id!).then(() => {
+                                                    reloadHouse(h.id!)
+                                                })
+                                            }}>Добавить код</button>
                                         </li>)}
                                     </ul>
                                     <Link to={`create/apartment/${h.id}/${e.id}`}>Создать квартиру</Link>

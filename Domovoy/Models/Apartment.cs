@@ -20,6 +20,7 @@ public class Apartment
     public ApplicationUser? Owner { get; set; }
     
     public List<ApplicationUser> TenantsWhoMainThis { get; set; }
+    public List<InviteCode> InviteCodes { get; set; }
 
     public HouseEntrance HouseEntrance { get; set; }
     public int HouseEntranceId { get; set; }
@@ -53,7 +54,7 @@ public class ApartmentViewModel
     public List<ApplicationUserViewModel> TenantsWhoMainThis { get; set; }
     public List<Service> Services { get; set; }
     public List<Informer> Informers { get; set; }
-    
+
     public HouseEntranceViewModel HouseEntrance { get; set; }
 }
 
@@ -73,6 +74,7 @@ public class ApartmentDetails
     public string? Description { get; set; }
     
     public List<ApplicationUserViewModel> Tenants { get; set; }
+    public List<InviteCodeViewModel> InviteCodes { get; set; }
     public ApplicationUserViewModel? Owner { get; set; }
     
     public List<ApplicationUserViewModel> TenantsWhoMainThis { get; set; }

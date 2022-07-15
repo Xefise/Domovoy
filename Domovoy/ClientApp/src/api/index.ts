@@ -27,6 +27,8 @@ export type { HouseEntrance } from './models/HouseEntrance';
 export type { HouseEntranceCreate } from './models/HouseEntranceCreate';
 export type { HouseEntranceDetails } from './models/HouseEntranceDetails';
 export type { HouseEntranceViewModel } from './models/HouseEntranceViewModel';
+export type { InviteCode } from './models/InviteCode';
+export type { InviteCodeViewModel } from './models/InviteCodeViewModel';
 export type { JwtData } from './models/JwtData';
 export type { LoginModel } from './models/LoginModel';
 export type { RegisterModel } from './models/RegisterModel';

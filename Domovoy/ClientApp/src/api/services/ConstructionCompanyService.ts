@@ -219,4 +219,38 @@ requestBody?: ApartmentPut,
         });
     }
 
+    /**
+     * @param apartmentId 
+     * @returns any Success
+     * @throws ApiError
+     */
+    public static postApiConstructioncompanyCodes(
+apartmentId?: number,
+): CancelablePromise<any> {
+        return __request(OpenAPI, {
+            method: 'POST',
+            url: '/api/constructioncompany/codes',
+            query: {
+                'apartmentId': apartmentId,
+            },
+        });
+    }
+
+    /**
+     * @param id 
+     * @returns any Success
+     * @throws ApiError
+     */
+    public static deleteApiConstructioncompanyCodes(
+id: number,
+): CancelablePromise<any> {
+        return __request(OpenAPI, {
+            method: 'DELETE',
+            url: '/api/constructioncompany/codes/{id}',
+            path: {
+                'id': id,
+            },
+        });
+    }
+
 }

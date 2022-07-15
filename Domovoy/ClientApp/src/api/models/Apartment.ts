@@ -5,6 +5,7 @@
 import type { AparmentState } from './AparmentState';
 import type { ApplicationUser } from './ApplicationUser';
 import type { HouseEntrance } from './HouseEntrance';
+import type { InviteCode } from './InviteCode';
 
 export type Apartment = {
     id?: number;
@@ -21,6 +22,7 @@ export type Apartment = {
     tenants?: Array<ApplicationUser> | null;
     owner?: ApplicationUser;
     tenantsWhoMainThis?: Array<ApplicationUser> | null;
+    inviteCodes?: Array<InviteCode> | null;
     houseEntrance?: HouseEntrance;
     houseEntranceId?: number;
 };

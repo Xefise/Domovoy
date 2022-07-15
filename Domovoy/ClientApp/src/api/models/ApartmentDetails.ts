@@ -4,6 +4,7 @@
 
 import type { AparmentState } from './AparmentState';
 import type { ApplicationUserViewModel } from './ApplicationUserViewModel';
+import type { InviteCodeViewModel } from './InviteCodeViewModel';
 
 export type ApartmentDetails = {
     id?: number;
@@ -17,6 +18,7 @@ export type ApartmentDetails = {
     cost?: number | null;
     description?: string | null;
     tenants?: Array<ApplicationUserViewModel> | null;
+    inviteCodes?: Array<InviteCodeViewModel> | null;
     owner?: ApplicationUserViewModel;
     tenantsWhoMainThis?: Array<ApplicationUserViewModel> | null;
 };
