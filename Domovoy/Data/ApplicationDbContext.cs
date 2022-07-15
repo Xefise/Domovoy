@@ -17,6 +17,8 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityR
 
     public DbSet<Service> Services { get; set; } = null!;
     public DbSet<PermanentService> PermanentServices { get; set; } = null!;
+    public DbSet<ServiceApartment> ServiceApartments { get; set; } = null!;
+    public DbSet<ServiceUser> ServiceUsers { get; set; } = null!;
 
     public DbSet<Informer> Informers { get; set; } = null!;
     public DbSet<InformMeter> InformMeter { get; set; } = null!;
