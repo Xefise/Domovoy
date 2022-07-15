@@ -2,6 +2,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
+import type { AparmentState } from './AparmentState';
 import type { ApplicationUserViewModel } from './ApplicationUserViewModel';
 import type { HouseEntranceViewModel } from './HouseEntranceViewModel';
 
@@ -13,7 +14,7 @@ export type ApartmentViewModel = {
      * В кв.м.
      */
     area?: number;
-    isSelling?: boolean;
+    aparmentState?: AparmentState;
     cost?: number | null;
     description?: string | null;
     tenants?: Array<ApplicationUserViewModel> | null;

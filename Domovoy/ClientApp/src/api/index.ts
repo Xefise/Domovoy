@@ -7,6 +7,7 @@ export { OpenAPI } from './core/OpenAPI';
 export type { OpenAPIConfig } from './core/OpenAPI';
 
 export type { Address } from './models/Address';
+export { AparmentState } from './models/AparmentState';
 export type { Apartment } from './models/Apartment';
 export type { ApartmentCreate } from './models/ApartmentCreate';
 export type { ApartmentDetails } from './models/ApartmentDetails';

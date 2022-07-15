@@ -2,6 +2,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
+import type { AparmentState } from './AparmentState';
 import type { ApplicationUser } from './ApplicationUser';
 import type { HouseEntrance } from './HouseEntrance';
 
@@ -14,7 +15,7 @@ export type Apartment = {
      * В кв.м.
      */
     area?: number;
-    isSelling?: boolean;
+    aparmentState?: AparmentState;
     cost?: number | null;
     description?: string | null;
     tenants?: Array<ApplicationUser> | null;

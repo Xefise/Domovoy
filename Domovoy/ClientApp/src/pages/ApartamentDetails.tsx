@@ -44,6 +44,7 @@ function ApartamentDetails(props: Props) {
                 ? <>
                     <p>Площадь: {apartmentObject.area}</p>
                     <p>Этаж: {apartmentObject.floor}</p>
+                    <p>Статус: {apartmentObject.aparmentState}</p>
                 </>
                 : <>
                     <p>Номер квартиры: <input value={apartmentObject.apartmentNumber} type={"number"} onChange={e => setApartmentObject({...apartmentObject, apartmentNumber: parseInt(e.target.value)})}/></p>
