@@ -57,5 +57,9 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityR
         builder.Entity<EventInformer>()
             .HasOne(p => p.Informer)
             .WithOne(p => p.EventInformer);
+        builder.Entity<Service>()
+            .HasOne(p => p.PermanentService)
+            .WithOne(p => p.Service)
+            .HasForeignKey<PermanentService>(p => p.ServiceId);
     }
 }
