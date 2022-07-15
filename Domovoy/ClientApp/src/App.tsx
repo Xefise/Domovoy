@@ -20,6 +20,7 @@ import TenantLayout from "./pages/TenantLayout";
 import CompanyAdminLayout from "./pages/CompanyAdminLayout";
 
 import 'bootstrap/dist/css/bootstrap.min.css'
+import TenantSearchPage from "./pages/TenantSearchPage";
 
 function App() {
     const location = useLocation();
@@ -27,7 +28,7 @@ function App() {
     return (
         <AuthProvider>
             <AnimatePresence exitBeforeEnter>
-                <Routes key={location.pathname.split("create")[0].split("details")[0]} location={location}>
+                <Routes key={"test"} location={location}>
                     <Route path="/" element={
                         <TypeSwitch
                             tenant={<TenantLayout/>}
@@ -49,6 +50,9 @@ function App() {
                             <Route path={"create/entrance/:house"} element={<CreateEntrancePage/>}/>
                             <Route path={"create/apartment/:house/:entrance"} element={<CreateApartmentPage/>}/>
                             <Route path={"details/apartment/:apartment"} element={<ApartamentDetails/>}/>
+                        </Route>
+                        <Route path={"search"} element={<TenantSearchPage/>}>
+                            
                         </Route>
                     </Route>
                     <Route path="login" element={<LoginPage/>}/>
