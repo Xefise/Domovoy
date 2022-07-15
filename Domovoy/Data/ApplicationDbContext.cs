@@ -58,9 +58,23 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityR
         builder.Entity<EventInformer>()
             .HasOne(p => p.Informer)
             .WithOne(p => p.EventInformer);
+
+        //#region Service
         builder.Entity<Service>()
             .HasOne(p => p.PermanentService)
             .WithOne(p => p.Service)
             .HasForeignKey<PermanentService>(p => p.ServiceId);
+        builder.Entity<Service>()
+            .HasOne(p => p.ServiceUser)
+            .WithOne(p => p.Service)
+            .HasForeignKey<ServiceUser>(p => p.ServiceId);
+        builder.Entity<Service>()
+            .HasOne(p => p.ServiceApartment)
+            .WithOne(p => p.Service)
+            .HasForeignKey<ServiceApartment>(p => p.ServiceId);
+        builder.Entity<ServicePaymentInvoice>()
+            .HasOne(p => p.Service)
+            .WithMany(p => p.ServicePaymentInvoices);
+        //#endregion
     }
 }

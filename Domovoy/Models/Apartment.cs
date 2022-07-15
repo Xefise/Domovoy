@@ -19,7 +19,7 @@ public class Apartment
     /// В кв.м.
     /// </summary>
     public int AreaWithoutBalconies { get; set; }
-    
+
     public AparmentType AparmentType { get; set; }
     public AparmentState AparmentState { get; set; }
     public int? Cost { get; set; }
@@ -30,6 +30,9 @@ public class Apartment
     
     public List<ApplicationUser> TenantsWhoMainThis { get; set; }
     public List<InviteCode> InviteCodes { get; set; }
+
+    public List<ServiceApartment> ServiceApartments { get; set; }
+    public List<Informer> Informers { get; set; }
 
     public HouseEntrance HouseEntrance { get; set; }
     public int HouseEntranceId { get; set; }
@@ -67,9 +70,9 @@ public class ApartmentViewModel
     /// В кв.м.
     /// </summary>
     public int AreaWithoutBalconies { get; set; }
-    
+
     public AparmentType AparmentType { get; set; }
-    
+
     public AparmentState AparmentState { get; set; }
     public int? Cost { get; set; }
     public string? Description { get; set; }
@@ -78,8 +81,6 @@ public class ApartmentViewModel
     public ApplicationUserViewModel? Owner { get; set; }
     
     public List<ApplicationUserViewModel> TenantsWhoMainThis { get; set; }
-    public List<Service> Services { get; set; }
-    public List<Informer> Informers { get; set; }
 
     public HouseEntranceViewModel HouseEntrance { get; set; }
 }
@@ -102,9 +103,9 @@ public class ApartmentDetails
     /// В кв.м.
     /// </summary>
     public int AreaWithoutBalconies { get; set; }
-    
+
     public AparmentType AparmentType { get; set; }
-    
+
     public AparmentState AparmentState { get; set; }
     public int? Cost { get; set; }
     public string? Description { get; set; }
@@ -132,9 +133,9 @@ public class ApartmentCreate
     /// В кв.м.
     /// </summary>
     public int AreaWithoutBalconies { get; set; }
-    
+
     public AparmentType AparmentType { get; set; }
-    
+
     public AparmentState AparmentState { get; set; }
     public int? Cost { get; set; }
     public string? Description { get; set; }
@@ -159,9 +160,9 @@ public class ApartmentPut
     /// В кв.м.
     /// </summary>
     public int AreaWithoutBalconies { get; set; }
-    
+
     public AparmentType AparmentType { get; set; }
-    
+
     public AparmentState AparmentState { get; set; }
     public int? Cost { get; set; }
     public string? Description { get; set; }
