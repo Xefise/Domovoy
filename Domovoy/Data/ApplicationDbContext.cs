@@ -14,6 +14,14 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityR
     public DbSet<ConstructionCompany> ConstructionCompanies { get; set; } = null!;
     public DbSet<ResidentialComplex> ResidentialComplexes { get; set; } = null!;
 
+    public DbSet<Service> Services { get; set; } = null!;
+    public DbSet<PermanentService> PermanentServices { get; set; } = null!;
+
+    public DbSet<Informer> Informers { get; set; } = null!;
+    public DbSet<InformMeter> InformMeter { get; set; } = null!;
+    public DbSet<EventInformer> EventInformer { get; set; } = null!;
+    public DbSet<ActiveSession> ActiveSession { get; set; } = null!;
+
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
     {
     }
@@ -45,5 +53,13 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityR
         builder.Entity<ApplicationUser>()
             .HasOne(p => p.MainApartment)
             .WithMany(b => b.TenantsWhoMainThis);
+
+        builder.Entity<EventInformer>()
+            .HasOne(p => p.Informer)
+            .WithOne(p => p.EventInformer);
+        builder.Entity<Service>()
+            .HasOne(p => p.PermanentService)
+            .WithOne(p => p.Service)
+            .HasForeignKey<PermanentService>(p => p.ServiceId);
     }
 }

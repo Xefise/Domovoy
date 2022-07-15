@@ -51,6 +51,8 @@ public class ApartmentViewModel
     public ApplicationUserViewModel? Owner { get; set; }
     
     public List<ApplicationUserViewModel> TenantsWhoMainThis { get; set; }
+    public List<Service> Services { get; set; }
+    public List<Informer> Informers { get; set; }
     
     public HouseEntranceViewModel HouseEntrance { get; set; }
 }
