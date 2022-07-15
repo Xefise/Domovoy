@@ -43,13 +43,13 @@ function App() {
                                 serviceProvider={<></>}
                                 agent={<></>}
                                 nonAuntificated={<Navigate to={'login'}/>}/>
-                        }/>
-                        
-                        <Route path={"create/complex"} element={<CreateComplexPage/>}/>
-                        <Route path={"create/house/:complex"} element={<CreateApartmentHouse/>}/>
-                        <Route path={"create/entrance/:house"} element={<CreateEntrancePage/>}/>
-                        <Route path={"create/apartment/:house/:entrance"} element={<CreateApartmentPage/>}/>
-                        <Route path={"details/apartment/:apartment"} element={<ApartamentDetails/>}/>
+                        }>
+                            <Route path={"create/complex"} element={<CreateComplexPage/>}/>
+                            <Route path={"create/house/:complex"} element={<CreateApartmentHouse/>}/>
+                            <Route path={"create/entrance/:house"} element={<CreateEntrancePage/>}/>
+                            <Route path={"create/apartment/:house/:entrance"} element={<CreateApartmentPage/>}/>
+                            <Route path={"details/apartment/:apartment"} element={<ApartamentDetails/>}/>
+                        </Route>
                     </Route>
                     <Route path="login" element={<LoginPage/>}/>
                     <Route path="logout" element={<LogoutPage/>}/>

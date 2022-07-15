@@ -11,7 +11,7 @@ function CompanyAdminLayout(props: Props) {
     
     return <>
         <AnimatePresence exitBeforeEnter>
-            {Outlet && React.cloneElement(Outlet, {key: location.pathname})}
+            {Outlet && React.cloneElement(Outlet, {key: location.pathname.split("create")[0].split("details")[0]})}
         </AnimatePresence>
         
         <nav>Тут навбар</nav>

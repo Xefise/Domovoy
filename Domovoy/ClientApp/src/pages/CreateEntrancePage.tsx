@@ -16,7 +16,7 @@ function CreateEntrancePage(props: Props) {
     const {house} = useParams()
     const [enranceNumber, setNumber] = useState(1)
     
-    return  <motion.div variants={horizontalVariants} initial={'init'} animate={'show'} exit={'hide'} className={'layout'}>
+    return  <motion.div variants={horizontalVariants} initial={'init'} animate={'show'} exit={'hide'}>
         Создание подъезда
         <input value={enranceNumber} onChange={e => setNumber(parseInt(e.target.value))} type={"number"} placeholder={"Номер подъезда"}/>
         <button onClick={() => {

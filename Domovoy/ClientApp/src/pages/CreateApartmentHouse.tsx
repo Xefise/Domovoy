@@ -16,7 +16,7 @@ function CreateComplexPage(props: Props) {
     const {complex} = useParams()
     const [address, setAddress] = useState<Address>({})
     
-    return  <motion.div variants={horizontalVariants} initial={'init'} animate={'show'} exit={'hide'} className={'layout'}>
+    return  <motion.div variants={horizontalVariants} initial={'init'} animate={'show'} exit={'hide'}>
         Создание дома
         <input value={address.country || ''} onChange={e => setAddress({...address, country: e.target.value})} placeholder={"Страна"}/>
         <input value={address.city || ''} onChange={e => setAddress({...address, city: e.target.value})} placeholder={"Город"}/>

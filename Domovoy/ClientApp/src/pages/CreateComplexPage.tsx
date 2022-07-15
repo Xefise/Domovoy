@@ -14,7 +14,7 @@ function CreateComplexPage(props: Props) {
     
     const [name, setName] = useState("")
     
-    return  <motion.div variants={horizontalVariants} initial={'init'} animate={'show'} exit={'hide'} className={'layout'}>
+    return  <motion.div variants={horizontalVariants} initial={'init'} animate={'show'} exit={'hide'}>
         Создание комплекса
         <input value={name} onChange={e => setName(e.target.value)} placeholder={"Название"}/>
         <button onClick={() => {

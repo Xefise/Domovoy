@@ -16,7 +16,7 @@ function CreateApartmentPage(props: Props) {
     const {house, entrance} = useParams()
     const [apartmentNumber, setNumber] = useState(1)
     
-    return  <motion.div variants={horizontalVariants} initial={'init'} animate={'show'} exit={'hide'} className={'layout'}>
+    return  <motion.div variants={horizontalVariants} initial={'init'} animate={'show'} exit={'hide'}>
         Создание квартиры
         <input value={apartmentNumber} onChange={e => setNumber(parseInt(e.target.value))} type={"number"} placeholder={"Номер квартиры"}/>
         <button onClick={() => {

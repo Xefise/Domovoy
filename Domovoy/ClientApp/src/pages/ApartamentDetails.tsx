@@ -35,7 +35,7 @@ function ApartamentDetails(props: Props) {
             })
     }
     
-    return <motion.div variants={horizontalVariants} initial={'init'} animate={'show'} exit={'hide'} className={'layout'}>
+    return <motion.div variants={horizontalVariants} initial={'init'} animate={'show'} exit={'hide'}>
         {apartmentObject && <>
             <h3>Детали о {apartamentToAddressSting(apartmentObject)}</h3>
             {!isEditing && <button onClick={() => setIsEdinting(true)}>Редактировать</button>}
