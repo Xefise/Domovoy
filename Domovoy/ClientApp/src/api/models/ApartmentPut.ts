@@ -2,8 +2,8 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { AparmentState } from './AparmentState';
-import type { AparmentType } from './AparmentType';
+import type { ApartmentState } from './ApartmentState';
+import type { ApartmentType } from './ApartmentType';
 
 export type ApartmentPut = {
     id?: number;
@@ -21,8 +21,8 @@ export type ApartmentPut = {
      * В кв.м.
      */
     areaWithoutBalconies?: number;
-    aparmentType?: AparmentType;
-    aparmentState?: AparmentState;
+    apartmentType?: ApartmentType;
+    apartmentState?: ApartmentState;
     cost?: number | null;
     description?: string | null;
 };

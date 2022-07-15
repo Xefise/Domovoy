@@ -2,7 +2,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export enum AparmentType {
+export enum ApartmentType {
     LIVING = 'Living',
     COMMERCIAL = 'Commercial',
 }

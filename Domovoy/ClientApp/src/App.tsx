@@ -26,11 +26,17 @@ import TenantChatPage from "./pages/TenantChatPage";
 
 function App() {
     const location = useLocation();
+    
+    const key = location.pathname.includes("login")
+        ? "login" 
+        : location.pathname.includes("logout")
+            ? "logout"
+            : "main"
 
     return (
         <AuthProvider>
             <AnimatePresence exitBeforeEnter>
-                <Routes key={"test"} location={location}>
+                <Routes key={key} location={location}>
                     <Route path="/" element={
                         <TypeSwitch
                             tenant={<TenantLayout/>}

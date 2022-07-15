@@ -2,7 +2,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export enum AparmentState {
+export enum ApartmentState {
     NOT_FOR_SELL = 'NotForSell',
     FOR_SELL = 'ForSell',
     FOR_RENT = 'ForRent',

@@ -8,8 +8,6 @@ export type { OpenAPIConfig } from './core/OpenAPI';
 
 export type { ActiveSession } from './models/ActiveSession';
 export type { Address } from './models/Address';
-export { AparmentState } from './models/AparmentState';
-export { AparmentType } from './models/AparmentType';
 export type { Apartment } from './models/Apartment';
 export type { ApartmentCreate } from './models/ApartmentCreate';
 export type { ApartmentDetails } from './models/ApartmentDetails';
@@ -18,6 +16,8 @@ export type { ApartmentHouseCreate } from './models/ApartmentHouseCreate';
 export type { ApartmentHouseDetails } from './models/ApartmentHouseDetails';
 export type { ApartmentHouseViewModel } from './models/ApartmentHouseViewModel';
 export type { ApartmentPut } from './models/ApartmentPut';
+export { ApartmentState } from './models/ApartmentState';
+export { ApartmentType } from './models/ApartmentType';
 export type { ApartmentViewModel } from './models/ApartmentViewModel';
 export type { ApplicationUser } from './models/ApplicationUser';
 export { ApplicationUserType } from './models/ApplicationUserType';
@@ -43,8 +43,13 @@ export type { ResidentialComplexCreate } from './models/ResidentialComplexCreate
 export type { ResidentialComplexDetails } from './models/ResidentialComplexDetails';
 export type { ResidentialComplexViewModel } from './models/ResidentialComplexViewModel';
 export type { Response } from './models/Response';
+export type { SerachFilters } from './models/SerachFilters';
 export type { Service } from './models/Service';
+export type { ServiceApartment } from './models/ServiceApartment';
+export type { ServicePaymentInvoice } from './models/ServicePaymentInvoice';
+export type { ServiceUser } from './models/ServiceUser';
 
 export { AuthService } from './services/AuthService';
 export { ConstructionCompanyService } from './services/ConstructionCompanyService';
 export { TenantAppartamentsService } from './services/TenantAppartamentsService';
+export { TenantSearchService } from './services/TenantSearchService';

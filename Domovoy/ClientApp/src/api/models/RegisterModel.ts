@@ -3,9 +3,9 @@
 /* eslint-disable */
 
 export type RegisterModel = {
+    fio: string;
     username: string;
     email: string;
     password: string;
-    fio: string;
     rePassword: string;
 };

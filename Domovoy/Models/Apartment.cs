@@ -20,8 +20,8 @@ public class Apartment
     /// </summary>
     public int AreaWithoutBalconies { get; set; }
 
-    public AparmentType AparmentType { get; set; }
-    public AparmentState AparmentState { get; set; }
+    public ApartmentType ApartmentType { get; set; }
+    public ApartmentState ApartmentState { get; set; }
     public int? Cost { get; set; }
     public string? Description { get; set; }
     
@@ -38,13 +38,13 @@ public class Apartment
     public int HouseEntranceId { get; set; }
 }
 
-public enum AparmentType
+public enum ApartmentType
 {
     Living,
     Commercial
 }
 
-public enum AparmentState
+public enum ApartmentState
 {
     NotForSell,
     ForSell,
@@ -71,9 +71,9 @@ public class ApartmentViewModel
     /// </summary>
     public int AreaWithoutBalconies { get; set; }
 
-    public AparmentType AparmentType { get; set; }
+    public ApartmentType ApartmentType { get; set; }
 
-    public AparmentState AparmentState { get; set; }
+    public ApartmentState ApartmentState { get; set; }
     public int? Cost { get; set; }
     public string? Description { get; set; }
     
@@ -104,9 +104,9 @@ public class ApartmentDetails
     /// </summary>
     public int AreaWithoutBalconies { get; set; }
 
-    public AparmentType AparmentType { get; set; }
+    public ApartmentType ApartmentType { get; set; }
 
-    public AparmentState AparmentState { get; set; }
+    public ApartmentState ApartmentState { get; set; }
     public int? Cost { get; set; }
     public string? Description { get; set; }
     
@@ -134,9 +134,9 @@ public class ApartmentCreate
     /// </summary>
     public int AreaWithoutBalconies { get; set; }
 
-    public AparmentType AparmentType { get; set; }
+    public ApartmentType ApartmentType { get; set; }
 
-    public AparmentState AparmentState { get; set; }
+    public ApartmentState ApartmentState { get; set; }
     public int? Cost { get; set; }
     public string? Description { get; set; }
     
@@ -161,9 +161,9 @@ public class ApartmentPut
     /// </summary>
     public int AreaWithoutBalconies { get; set; }
 
-    public AparmentType AparmentType { get; set; }
+    public ApartmentType ApartmentType { get; set; }
 
-    public AparmentState AparmentState { get; set; }
+    public ApartmentState ApartmentState { get; set; }
     public int? Cost { get; set; }
     public string? Description { get; set; }
 }
