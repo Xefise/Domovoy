@@ -84,3 +84,18 @@ public class ApartmentCreate
     
     public int HouseEntranceId { get; set; }
 }
+
+public class ApartmentPut
+{
+    public int Id { get; set; }
+    public int ApartmentNumber { get; set; }
+    public int Floor { get; set; }
+    /// <summary>
+    /// В кв.м.
+    /// </summary>
+    public int Area { get; set; }
+    
+    public bool IsSelling { get; set; }
+    public int? Cost { get; set; }
+    public string? Description { get; set; }
+}

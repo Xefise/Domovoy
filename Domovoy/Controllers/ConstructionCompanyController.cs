@@ -2,6 +2,7 @@
 using Domovoy.Data;
 using Domovoy.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -40,7 +41,8 @@ public class ConstructionCompanyController : ControllerBase
                 .Select(b => new
                 {
                     b,
-                    Apartments = b.Apartments.Where(a => search != null ? a.ApartmentNumber.ToString().Contains(search) : true)
+                    Apartments = b.Apartments.Where(a =>
+                        search != null ? a.ApartmentNumber.ToString().Contains(search) : true)
                 })
                 .AsEnumerable()
                 .Select(x => x.b)
@@ -63,7 +65,8 @@ public class ConstructionCompanyController : ControllerBase
     [HttpDelete("complexes/{id}")]
     public async Task<ActionResult> DeleteComplex(int id)
     {
-        _db.ResidentialComplexes.RemoveRange(_db.ResidentialComplexes.Where(c => c.Id == id && c.ConstructionCompany.Employees.Contains(HttpContext.GetUser())));
+        _db.ResidentialComplexes.RemoveRange(_db.ResidentialComplexes.Where(c =>
+            c.Id == id && c.ConstructionCompany.Employees.Contains(HttpContext.GetUser())));
 
         await _db.SaveChangesAsync();
 
@@ -87,11 +90,12 @@ public class ConstructionCompanyController : ControllerBase
 
         return Ok();
     }
-    
+
     [HttpDelete("houses/{id}")]
     public async Task<ActionResult> DeleteHouse(int id)
     {
-        _db.ApartmentHouses.RemoveRange(_db.ApartmentHouses.Where(c => c.Id == id && c.ResidentialComplex.ConstructionCompany.Employees.Contains(HttpContext.GetUser())));
+        _db.ApartmentHouses.RemoveRange(_db.ApartmentHouses.Where(c =>
+            c.Id == id && c.ResidentialComplex.ConstructionCompany.Employees.Contains(HttpContext.GetUser())));
 
         await _db.SaveChangesAsync();
 
@@ -115,11 +119,13 @@ public class ConstructionCompanyController : ControllerBase
 
         return Ok();
     }
-    
+
     [HttpDelete("entrances/{id}")]
     public async Task<ActionResult> DeleteEntrance(int id)
     {
-        _db.HouseEntrances.RemoveRange(_db.HouseEntrances.Where(c => c.Id == id && c.ApartmentHouse.ResidentialComplex.ConstructionCompany.Employees.Contains(HttpContext.GetUser())));
+        _db.HouseEntrances.RemoveRange(_db.HouseEntrances.Where(c =>
+            c.Id == id &&
+            c.ApartmentHouse.ResidentialComplex.ConstructionCompany.Employees.Contains(HttpContext.GetUser())));
 
         await _db.SaveChangesAsync();
 
@@ -143,14 +149,63 @@ public class ConstructionCompanyController : ControllerBase
 
         return Ok();
     }
-    
+
     [HttpDelete("apartments/{id}")]
     public async Task<ActionResult> DeleteApartment(int id)
     {
-        _db.Apartments.RemoveRange(_db.Apartments.Where(c => c.Id == id && c.HouseEntrance.ApartmentHouse.ResidentialComplex.ConstructionCompany.Employees.Contains(HttpContext.GetUser())));
+        _db.Apartments.RemoveRange(_db.Apartments.Where(c =>
+            c.Id == id &&
+            c.HouseEntrance.ApartmentHouse.ResidentialComplex.ConstructionCompany.Employees.Contains(
+                HttpContext.GetUser())));
 
         await _db.SaveChangesAsync();
 
         return Ok();
+    }
+
+    [HttpGet("apartments/{id}")]
+    public async Task<ActionResult<ApartmentViewModel>> GetApartment(int id)
+    {
+        return _mapper.Map<ApartmentViewModel>(
+            await _db.Apartments
+                .Include(a => a.Tenants)
+                .Include(a => a.TenantsWhoMainThis)
+                .Include(a => a.Owner)
+                .Include(a => a.HouseEntrance.ApartmentHouse.ResidentialComplex.ConstructionCompany)
+                .FirstAsync(c =>
+                    c.Id == id &&
+                    c.HouseEntrance.ApartmentHouse.ResidentialComplex.ConstructionCompany.Employees.Contains(
+                        HttpContext.GetUser()))
+        );
+    }
+    
+    [HttpPut("apartments/{id}")]
+    public async Task<ActionResult<ApartmentViewModel>> PutApartment(int id, ApartmentPut apartment)
+    {
+        var entity = _db.Apartments
+            .Include(a => a.Tenants)
+            .Include(a => a.TenantsWhoMainThis)
+            .Include(a => a.Owner)
+            .Include(a => a.HouseEntrance.ApartmentHouse.ResidentialComplex.ConstructionCompany)
+            .FirstOrDefault(a => a.Id == id);
+ 
+        if (entity == null)
+        {
+            return NotFound();
+        }
+
+        if (entity.Id != apartment.Id)
+        {
+            return BadRequest();
+        }
+
+        entity.Area = apartment.Area;
+        entity.Area = apartment.Area;
+
+        _mapper.Map(apartment, entity);
+
+        _db.SaveChangesAsync();
+    
+        return Ok(_mapper.Map<ApartmentViewModel>(entity));
     }
 }

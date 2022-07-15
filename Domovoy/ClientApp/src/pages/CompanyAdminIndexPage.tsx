@@ -105,7 +105,7 @@ function CompanyAdminIndexPage(props: Props) {
                                     }}>Удалить</button>
                                     <ul>
                                         {e.apartments?.map(a => <li key={a.id}>
-                                            Квартира №{a.apartmentNumber}
+                                            <Link to={`details/apartment/${a.id}`}>Квартира №{a.apartmentNumber}</Link>
                                             <button onClick={() => {
                                                 ConstructionCompanyService
                                                     .deleteApiConstructioncompanyApartments(a.id!)

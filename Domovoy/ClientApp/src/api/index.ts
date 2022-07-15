@@ -14,6 +14,7 @@ export type { ApartmentHouse } from './models/ApartmentHouse';
 export type { ApartmentHouseCreate } from './models/ApartmentHouseCreate';
 export type { ApartmentHouseDetails } from './models/ApartmentHouseDetails';
 export type { ApartmentHouseViewModel } from './models/ApartmentHouseViewModel';
+export type { ApartmentPut } from './models/ApartmentPut';
 export type { ApartmentViewModel } from './models/ApartmentViewModel';
 export type { ApplicationUser } from './models/ApplicationUser';
 export { ApplicationUserType } from './models/ApplicationUserType';

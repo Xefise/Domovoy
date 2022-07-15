@@ -15,6 +15,7 @@ import CreateComplexPage from "./pages/CreateComplexPage";
 import CreateApartmentHouse from "./pages/CreateApartmentHouse";
 import CreateEntrancePage from "./pages/CreateEntrancePage";
 import CreateApartmentPage from "./pages/CreateApartmentPage";
+import ApartamentDetails from "./pages/ApartamentDetails";
 
 function App() {
     const location = useLocation();
@@ -22,7 +23,7 @@ function App() {
     return (
         <AuthProvider>
             <AnimatePresence exitBeforeEnter>
-                <Routes key={location.pathname.split("create")[0]} location={location}>
+                <Routes key={location.pathname.split("create")[0].split("details")[0]} location={location}>
                     <Route path="/" element={
                         <TypeSwitch
                             tenant={<TenantIndexPage/>}
@@ -35,6 +36,7 @@ function App() {
                         <Route path={"create/house/:complex"} element={<CreateApartmentHouse/>}/>
                         <Route path={"create/entrance/:house"} element={<CreateEntrancePage/>}/>
                         <Route path={"create/apartment/:house/:entrance"} element={<CreateApartmentPage/>}/>
+                        <Route path={"details/apartment/:apartment"} element={<ApartamentDetails/>}/>
                     </Route>
                     <Route path="login" element={<LoginPage/>}/>
                     <Route path="logout" element={<LogoutPage/>}/>

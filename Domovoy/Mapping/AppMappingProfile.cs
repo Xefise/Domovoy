@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Domovoy.Models;
+using Microsoft.AspNetCore.JsonPatch;
 
 namespace Domovoy.Mapping;
 
@@ -24,5 +25,7 @@ public class AppMappingProfile : Profile
         CreateMap<ApartmentHouseCreate, ApartmentHouse>();
         CreateMap<HouseEntranceCreate, HouseEntrance>();
         CreateMap<ApartmentCreate, Apartment>();
+        
+        CreateMap<ApartmentPut, Apartment>();
     }
 }

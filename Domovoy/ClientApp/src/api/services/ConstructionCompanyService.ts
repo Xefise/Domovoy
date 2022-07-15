@@ -3,6 +3,8 @@
 /* eslint-disable */
 import type { ApartmentCreate } from '../models/ApartmentCreate';
 import type { ApartmentHouseCreate } from '../models/ApartmentHouseCreate';
+import type { ApartmentPut } from '../models/ApartmentPut';
+import type { ApartmentViewModel } from '../models/ApartmentViewModel';
 import type { ConstructionCompanyDetails } from '../models/ConstructionCompanyDetails';
 import type { HouseEntranceCreate } from '../models/HouseEntranceCreate';
 import type { HouseEntranceDetails } from '../models/HouseEntranceDetails';
@@ -176,6 +178,44 @@ id: number,
             path: {
                 'id': id,
             },
+        });
+    }
+
+    /**
+     * @param id 
+     * @returns ApartmentViewModel Success
+     * @throws ApiError
+     */
+    public static getApiConstructioncompanyApartments(
+id: number,
+): CancelablePromise<ApartmentViewModel> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/api/constructioncompany/apartments/{id}',
+            path: {
+                'id': id,
+            },
+        });
+    }
+
+    /**
+     * @param id 
+     * @param requestBody 
+     * @returns ApartmentViewModel Success
+     * @throws ApiError
+     */
+    public static putApiConstructioncompanyApartments(
+id: number,
+requestBody?: ApartmentPut,
+): CancelablePromise<ApartmentViewModel> {
+        return __request(OpenAPI, {
+            method: 'PUT',
+            url: '/api/constructioncompany/apartments/{id}',
+            path: {
+                'id': id,
+            },
+            body: requestBody,
+            mediaType: 'application/json-patch+json',
         });
     }
 
