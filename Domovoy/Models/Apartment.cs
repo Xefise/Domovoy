@@ -11,7 +11,16 @@ public class Apartment
     /// В кв.м.
     /// </summary>
     public int Area { get; set; }
+    /// <summary>
+    /// В кв.м.
+    /// </summary>
+    public int LivingArea { get; set; }
+    /// <summary>
+    /// В кв.м.
+    /// </summary>
+    public int AreaWithoutBalconies { get; set; }
     
+    public AparmentType AparmentType { get; set; }
     public AparmentState AparmentState { get; set; }
     public int? Cost { get; set; }
     public string? Description { get; set; }
@@ -26,11 +35,18 @@ public class Apartment
     public int HouseEntranceId { get; set; }
 }
 
+public enum AparmentType
+{
+    Living,
+    Commercial
+}
+
 public enum AparmentState
 {
     NotForSell,
     ForSell,
-    ForRent
+    ForRent,
+    Booked
 }
 
 public class ApartmentViewModel
@@ -43,6 +59,16 @@ public class ApartmentViewModel
     /// В кв.м.
     /// </summary>
     public int Area { get; set; }
+    /// <summary>
+    /// В кв.м.
+    /// </summary>
+    public int LivingArea { get; set; }
+    /// <summary>
+    /// В кв.м.
+    /// </summary>
+    public int AreaWithoutBalconies { get; set; }
+    
+    public AparmentType AparmentType { get; set; }
     
     public AparmentState AparmentState { get; set; }
     public int? Cost { get; set; }
@@ -68,6 +94,16 @@ public class ApartmentDetails
     /// В кв.м.
     /// </summary>
     public int Area { get; set; }
+    /// <summary>
+    /// В кв.м.
+    /// </summary>
+    public int LivingArea { get; set; }
+    /// <summary>
+    /// В кв.м.
+    /// </summary>
+    public int AreaWithoutBalconies { get; set; }
+    
+    public AparmentType AparmentType { get; set; }
     
     public AparmentState AparmentState { get; set; }
     public int? Cost { get; set; }
@@ -88,6 +124,16 @@ public class ApartmentCreate
     /// В кв.м.
     /// </summary>
     public int Area { get; set; }
+    /// <summary>
+    /// В кв.м.
+    /// </summary>
+    public int LivingArea { get; set; }
+    /// <summary>
+    /// В кв.м.
+    /// </summary>
+    public int AreaWithoutBalconies { get; set; }
+    
+    public AparmentType AparmentType { get; set; }
     
     public AparmentState AparmentState { get; set; }
     public int? Cost { get; set; }
@@ -105,6 +151,16 @@ public class ApartmentPut
     /// В кв.м.
     /// </summary>
     public int Area { get; set; }
+    /// <summary>
+    /// В кв.м.
+    /// </summary>
+    public int LivingArea { get; set; }
+    /// <summary>
+    /// В кв.м.
+    /// </summary>
+    public int AreaWithoutBalconies { get; set; }
+    
+    public AparmentType AparmentType { get; set; }
     
     public AparmentState AparmentState { get; set; }
     public int? Cost { get; set; }

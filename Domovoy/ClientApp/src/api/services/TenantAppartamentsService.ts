@@ -20,4 +20,21 @@ export class TenantAppartamentsService {
         });
     }
 
+    /**
+     * @param code 
+     * @returns any Success
+     * @throws ApiError
+     */
+    public static postApiTenantappartamentsJoin(
+code?: string,
+): CancelablePromise<any> {
+        return __request(OpenAPI, {
+            method: 'POST',
+            url: '/api/tenantappartaments/join',
+            query: {
+                'code': code,
+            },
+        });
+    }
+
 }

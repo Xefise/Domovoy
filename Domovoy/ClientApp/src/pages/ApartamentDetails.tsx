@@ -3,7 +3,7 @@ import {useParams} from "react-router-dom";
 import {horizontalVariants} from "../animations";
 import { motion } from "framer-motion";
 import {apartamentToAddressSting} from "../addressToString";
-import {ApartmentViewModel, ConstructionCompanyService} from "../api";
+import {AparmentState, AparmentType, ApartmentViewModel, ConstructionCompanyService} from "../api";
 import {useEffect, useState} from "react";
 
 export interface Props {
@@ -43,13 +43,30 @@ function ApartamentDetails(props: Props) {
             {!isEditing 
                 ? <>
                     <p>Площадь: {apartmentObject.area}</p>
+                    <p>Жилая площадь: {apartmentObject.livingArea}</p>
+                    <p>Площадь без балконов/лоджий: {apartmentObject.areaWithoutBalconies}</p>
                     <p>Этаж: {apartmentObject.floor}</p>
                     <p>Статус: {apartmentObject.aparmentState}</p>
+                    <p>Тип: {apartmentObject.aparmentType}</p>
                 </>
                 : <>
                     <p>Номер квартиры: <input value={apartmentObject.apartmentNumber} type={"number"} onChange={e => setApartmentObject({...apartmentObject, apartmentNumber: parseInt(e.target.value)})}/></p>
                     <p>Площадь: <input value={apartmentObject.area} type={"number"} onChange={e => setApartmentObject({...apartmentObject, area: parseInt(e.target.value)})}/></p>
+                    <p>Жилая площадь: <input value={apartmentObject.livingArea} type={"number"} onChange={e => setApartmentObject({...apartmentObject, livingArea: parseInt(e.target.value)})}/></p>
+                    <p>Площадь без балконов/лоджий: <input value={apartmentObject.areaWithoutBalconies} type={"number"} onChange={e => setApartmentObject({...apartmentObject, areaWithoutBalconies: parseInt(e.target.value)})}/></p>
                     <p>Этаж: <input value={apartmentObject.floor} type={"number"} onChange={e => setApartmentObject({...apartmentObject, floor: parseInt(e.target.value)})}/></p>
+                    
+                    <p>Статус: <select value={apartmentObject.aparmentState} onChange={(e) => setApartmentObject({...apartmentObject, aparmentState: e.target.value as AparmentState})}>
+                        <option value={AparmentState.NOT_FOR_SELL}>NOT_FOR_SELL</option>
+                        <option value={AparmentState.FOR_SELL}>FOR_SELL</option>
+                        <option value={AparmentState.FOR_RENT}>FOR_RENT</option>
+                        <option value={AparmentState.BOOKED}>BOOKED</option>
+                    </select></p>
+
+                    <p>Статус: <select value={apartmentObject.aparmentType} onChange={(e) => setApartmentObject({...apartmentObject, aparmentType: e.target.value as AparmentType})}>
+                        <option value={AparmentType.LIVING}>LIVING</option>
+                        <option value={AparmentType.COMMERCIAL}>COMMERCIAL</option>
+                    </select></p>
                 </>
             }
         </>}

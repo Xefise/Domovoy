@@ -8,6 +8,10 @@ public class ApplicationUser : IdentityUser<int>
     [Required]
     public ApplicationUserType Type { get; set; }
     
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public string? Patronymic { get; set; }
+    
     /// <summary>
     /// If Tenant
     /// Apartments where user living

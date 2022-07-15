@@ -18,6 +18,7 @@ function CreateComplexPage(props: Props) {
     
     return  <motion.div variants={horizontalVariants} initial={'init'} animate={'show'} exit={'hide'} className={'layout'}>
         Создание дома
+        <input value={address.country || ''} onChange={e => setAddress({...address, country: e.target.value})} placeholder={"Страна"}/>
         <input value={address.city || ''} onChange={e => setAddress({...address, city: e.target.value})} placeholder={"Город"}/>
         <input value={address.street || ''} onChange={e => setAddress({...address, street: e.target.value})} placeholder={"Улица"}/>
         <input value={address.houseNumber || ''} onChange={e => setAddress({...address, houseNumber: parseInt(e.target.value)})} type={"number"} placeholder={"Номер дома"}/>

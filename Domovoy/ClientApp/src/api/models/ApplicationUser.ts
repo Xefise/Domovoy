@@ -8,6 +8,9 @@ import type { ConstructionCompany } from './ConstructionCompany';
 
 export type ApplicationUser = {
     type: ApplicationUserType;
+    firstName?: string | null;
+    lastName?: string | null;
+    patronymic?: string | null;
     /**
      * If Tenant
  * Apartments where user living
