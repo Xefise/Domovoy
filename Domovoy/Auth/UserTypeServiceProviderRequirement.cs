@@ -24,8 +24,10 @@ public class UserTypeServiceProviderAuthorizationHandler : AuthorizationHandler<
     {
         if (!context.User.HasClaim(x => x.Type == ClaimTypes.Name))
             return Task.CompletedTask;
+        
+        var id = int.Parse(context.User.Claims.First(c => c.Type == ClaimTypes.Name).Value);
 
-        if (_db.Users.First((u) => u.Id == int.Parse(context.User.Claims.First(c => c.Type == ClaimTypes.Name).Value)).Type == ApplicationUserType.ServiceProvider)
+        if (_db.Users.First((u) => u.Id == id).Type == ApplicationUserType.ServiceProvider)
         {
            context.Succeed(requirement);
         }

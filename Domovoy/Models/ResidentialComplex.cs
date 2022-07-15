@@ -18,3 +18,17 @@ public class ResidentialComplexViewModel
     
     public ConstructionCompanyViewModel ConstructionCompany { get; set; }
 }
+
+public class ResidentialComplexDetails
+{
+    public int Id { get; set; }
+    
+    public string Name { get; set; }
+    
+    public List<ApartmentHouseDetails> ApartmentHouses { get; set; }
+}
+
+public class ResidentialComplexCreate
+{
+    public string Name { get; set; }
+}

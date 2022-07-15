@@ -12,6 +12,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityR
     public DbSet<HouseEntrance> HouseEntrances { get; set; } = null!;
     public DbSet<Apartment> Apartments { get; set; } = null!;
     public DbSet<ConstructionCompany> ConstructionCompanies { get; set; } = null!;
+    public DbSet<ResidentialComplex> ResidentialComplexes { get; set; } = null!;
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
     {

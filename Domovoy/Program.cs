@@ -96,6 +96,7 @@ builder.Services.Configure<IdentityOptions>(opts =>
 builder.Services.AddTransient<IAuthorizationHandler, UserTypeTenantAuthorizationHandler>();
 builder.Services.AddTransient<IAuthorizationHandler, UserTypeCompanyEmloyeeAuthorizationHandler>();
 builder.Services.AddTransient<IAuthorizationHandler, UserTypeServiceProviderAuthorizationHandler>();
+builder.Services.AddTransient<IAuthorizationHandler, UserTypeAgentAuthorizationHandler>();
 
 builder.Services.AddAuthorization(options =>
 {
@@ -103,8 +104,10 @@ builder.Services.AddAuthorization(options =>
         policy.Requirements.Add(new UserTypeTenantRequirement()));
     options.AddPolicy("Employee", policy =>
         policy.Requirements.Add(new UserTypeCompanyEmloyeeRequirementRequirement()));
-    options.AddPolicy("Employee", policy =>
+    options.AddPolicy("ServiceProvider", policy =>
         policy.Requirements.Add(new UserTypeServiceProviderRequirement()));
+    options.AddPolicy("Agent", policy =>
+        policy.Requirements.Add(new UserTypeAgentRequirement()));
 });
 
 // Adding Authentication
