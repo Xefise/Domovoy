@@ -50,6 +50,10 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityR
         builder.Entity<Apartment>()
             .HasMany(p => p.Tenants)
             .WithMany(b => b.Apartments);
+        
+        builder.Entity<Apartment>()
+            .HasMany(p => p.TenantsWhoAddThisToCart)
+            .WithMany(b => b.Cart);
 
         builder.Entity<ApplicationUser>()
             .HasOne(p => p.MainApartment)

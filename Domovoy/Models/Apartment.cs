@@ -29,6 +29,7 @@ public class Apartment
     public ApplicationUser? Owner { get; set; }
     
     public List<ApplicationUser> TenantsWhoMainThis { get; set; }
+    public List<ApplicationUser> TenantsWhoAddThisToCart { get; set; }
     public List<InviteCode> InviteCodes { get; set; }
 
     public List<ServiceApartment> ServiceApartments { get; set; }
