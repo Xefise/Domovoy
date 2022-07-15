@@ -4,6 +4,14 @@ import {AuthService, LoginModel} from "../api";
 import { ValidationProblemDetails } from "../models/ValidationProblemDetails";
 import {useAuth} from "./AuthProvider";
 
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import '../styles/LoginForm.css';
+import { PersonOutline } from 'react-ionicons'
+import loginIcon from '../images/loginIcon.svg';
+import passwordIcon from '../images/passwordIcon.svg';
+
 export interface Props {
 
 }
@@ -36,12 +44,23 @@ function LoginForm(props: Props) {
         });
     }
     
-    return <form onSubmit={login}>
+    return <>
+        <form className="Form" onSubmit={login}>
         {errors && <div>{Object.entries(errors.errors).map((([f, e]) => e.map(e => <p>{e}</p>)))}</div>}
-        <input onChange={setUsername} value={loginModel.username} placeholder={"Login"} required/>
-        <input onChange={setPassword} value={loginModel.password} placeholder={"Password"} type={"password"} required autoComplete={"current-password"}/>
-        <button type={"submit"}>Login</button>
-    </form>
+            <Container> 
+                <input className="inputData" onChange={setUsername} value={loginModel.username} placeholder={"Логин"} required/>
+                <img src={loginIcon} className="inputIcons"/>
+                <br/>
+                <input className="inputData" onChange={setPassword} value={loginModel.password} placeholder={"Пароль"} type={"password"} required autoComplete={"current-password"}/>
+                <img src={passwordIcon} className="inputIcons"/>
+                <br/>
+                <button type={"submit"} className="loginAccount">Войти</button>
+                <p onClick={() => alert("Вспоминайте!")}>Забыли пароль?</p>
+            </Container>
+        </form>
+    </>
+
+   
 }
 
 export default LoginForm;
