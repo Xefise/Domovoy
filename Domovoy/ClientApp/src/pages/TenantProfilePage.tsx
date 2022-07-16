@@ -60,36 +60,92 @@ function TenantProfilePage(props: Props) {
 
         <b className="text_blue_style my_flat">Мои квартиры</b>
         <Carousel>
-        {apartaments.map(a =>
-      <Carousel.Item>
-        <div className="flatBlock">
-            <Container className="myflatsList">
-                <Row>
-                    <Col xs={11} md={11} sm={10}><p className="flat_status">Ищет квартиру</p></Col>
-                    <Col xs={1} md={1} sm={1}><p className="more_info">...</p></Col>
-                </Row>
-                <Row>
-                    {apartamentToAddressSting(a)}
-                </Row>
-                <Row>
+            {apartaments.map(a =>
+                <Carousel.Item>
+                    <div className="flatBlock">
+                        <Container className="myflatsList">
+                            <Row>
+                                <Col xs={11} md={11} sm={10}><p className="flat_status">Ищет квартиру</p></Col>
+                                <Col xs={1} md={1} sm={1}><p className="more_info">...</p></Col>
+                            </Row>
+                            <Row>
+                                {apartamentToAddressSting(a)}
+                            </Row>
+                            <Row>
 
-                </Row>
-                <Row>
-                    <p>Характеристики:</p>
-                    <br/>
-                    <p>40 м²</p>
-                </Row>
-            </Container>
-        </div>
-        </Carousel.Item>
-        )}
+                            </Row>
+                            <Row>
+                                <p>Характеристики:</p>
+                                <br/>
+                                <p>40 м²</p>
+                            </Row>
+                        </Container>
+                    </div>
+                </Carousel.Item>
+            )}
+            {apartaments.length == 0 &&
+                <Carousel.Item style={{height: 214}}>
+                    <div className="flatBlock">
+                        <Container className="myflatsList">
+                            <Row>
+                                <p>У вас нет квартир</p>
+                            </Row>
+                        </Container>
+                    </div>
+                </Carousel.Item>
+            }
+        </Carousel>
+
+        <b className="text_blue_style my_flat">Ваша корзина</b>
+        <Carousel>
+            {cart.map(a =>
+                <Carousel.Item>
+                    <div className="flatBlock">
+                        <Container className="myflatsList">
+                            <Row>
+                                <Col xs={11} md={11} sm={10}><p className="flat_status">Ищет квартиру</p></Col>
+                                <Col xs={1} md={1} sm={1}><p onClick={() => {
+                                    TenantCartService.deleteApiTenantcart(a.id!).then(() => {
+                                        setCartLoading(true)
+                                        TenantCartService.getApiTenantcart().then(d => setCart(d)).finally(() => setCartLoading(false))
+                                    })
+                                }} style={{cursor: "pointer"}} className="more_info">...</p></Col>
+                            </Row>
+                            <Row>
+                                {apartamentToAddressSting(a)}
+                            </Row>
+                            <Row>
+
+                            </Row>
+                            <Row>
+                                <p>Характеристики:</p>
+                                <br/>
+                                <p>40 м²</p>
+                            </Row>
+                        </Container>
+                    </div>
+                </Carousel.Item>
+            )}
+            {cart.length == 0 &&
+                <Carousel.Item style={{height: 214}}>
+                    <div className="flatBlock">
+                        <Container className="myflatsList">
+                            <Row>
+                                <p>У вас нет квартир в корзине</p>
+                            </Row>
+                        </Container>
+                    </div>
+                </Carousel.Item>
+            }
         </Carousel>
 
         <Container className="fotter_container">
-            <img src={basketIcon} className="busket"/>
             <button className="solveProblem">Решить проблему в квартире &nbsp; <img src={important}/></button>
             <button onClick={() => navigate('/logout')} style={{marginTop: 10}} className="solveProblem">Выйти &nbsp; <img src={important}/></button>
         </Container>
+        
+        <br/>
+        <br/>
 
         {/*Ваша корзина:
         <ul>

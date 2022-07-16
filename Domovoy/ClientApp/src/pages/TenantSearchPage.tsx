@@ -1,14 +1,25 @@
-﻿import {motion} from "framer-motion";
+﻿import {AnimatePresence, motion} from "framer-motion";
 import {upVariants} from "../animations";
 import {Link} from "react-router-dom";
 import {FormEvent, useState} from "react";
-import {ApartmentState, ApartmentType, ApartmentViewModel, SerachFilters, TenantSearchService} from "../api";
+import {
+    ApartmentState,
+    ApartmentType,
+    ApartmentViewModel,
+    SerachFilters,
+    TenantCartService,
+    TenantSearchService
+} from "../api";
 import {apartamentToAddressSting} from "../addressToString";
 
 import Container from 'react-bootstrap/Container';
 import Dropdown from 'react-bootstrap/Dropdown';
 import '../styles/SearchPage.scss';
 import '../styles/menu.css';
+
+import VectorLeft from '../images/VectorLeft.svg';
+import VectorRight from '../images/VectorRight.svg';
+import Card from "../components/Card";
 
 export interface Props {
 
@@ -26,14 +37,29 @@ function TenantSearchPage(props: Props) {
         roomCountMin: 0,
         roomCountMax: 0
     })
+    const [changed, setChanged] = useState(false)
+    const [searchId, setSearchId] = useState(0)
     
     const search = () => {
         if (!loading) {
+            setSearchId(searchId + 1)
+            setResults([])
             setLoading(true)
+            setChanged(false)
             TenantSearchService.postApiTenantsearch(filters)
                 .then(d => setResults(d))
                 .finally(() => setLoading(false))
         }
+    }
+    
+    const addToCart = (a: ApartmentViewModel) => {
+        TenantCartService.postApiTenantcart(a.id!)
+        removeFromList(a)
+    }
+    
+    const removeFromList = (a: ApartmentViewModel) => {
+        setChanged(true)
+        setResults(results.filter(r => r.id != a.id))
     }
 
     return <motion.div className={"searchPage"} variants={upVariants} initial={'init'} animate={'show'} exit={'hide'}>
@@ -68,12 +94,17 @@ function TenantSearchPage(props: Props) {
                 <button className="filter_btn" onClick={search} disabled={loading}>Поиск</button> <br/>
               </Dropdown.Menu>
             </Dropdown>
-            
-                <ul>
-                    {results.map(r => <li>
-                        {apartamentToAddressSting(r)}
-                    </li>)}
-                </ul>
+
+            <div className={"cardsWrapper"}>
+                <AnimatePresence>
+                    {[...results].reverse().map((r, i) => <Card onSnap={d => removeFromList(r)} apartment={r} key={r.id! + searchId.toString()} drag={i == results.length - 1}/>)}
+                </AnimatePresence>
+                {results.length == 0 && <p>{changed ? "Больше нет результатов" : "Нет результатов"}</p>}
+            </div>
+            {results.length > 0 && <div className={"buttons"}>
+                <button onClick={() => removeFromList(results[0])}><img src={VectorLeft}/></button>
+                <button onClick={() => addToCart(results[0])}><img src={VectorRight}/></button>
+            </div>}
 
 {/*            </form>*/}
         </Container>

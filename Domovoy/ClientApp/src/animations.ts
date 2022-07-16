@@ -66,3 +66,34 @@ export const horizontalVariants: Variants = {
         }
     }
 }
+
+export const initialCard: Target = {
+    y: 100,
+    opacity: 0,
+}
+
+export const enterCard: Target = {
+    y: 0,
+    opacity: 1
+}
+
+export const exitCard: Target = {
+    y: 100,
+    opacity: 0
+}
+
+export const cardVariants: Variants = {
+    "init": initialCard,
+    "show": {
+        ...enterCard, transition: {
+            duration: 0.7,
+            ...translition
+        }
+    },
+    "hide": {
+        ...exitCard, transition: {
+            duration: 0.3,
+            ...translition
+        }
+    }
+}
