@@ -10,14 +10,15 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Domovoy.Controllers;
 
+[Authorize("Tenant")]
 [Route("api/[controller]")]
 [ApiController]
-public class ChatService : ControllerBase
+public class ChatsController : ControllerBase
 {
     private readonly ApplicationDbContext _db;
     private readonly IMapper _mapper;
 
-    public ChatService(ApplicationDbContext db, IMapper mapper)
+    public ChatsController(ApplicationDbContext db, IMapper mapper)
     {
         _db = db;
         _mapper = mapper;
@@ -31,12 +32,15 @@ public class ChatService : ControllerBase
             .ToListAsync();
     }
 
-    public async Task<ActionResult> AddChat(List<ApplicationUser> users)
+    [HttpPost ("add")]
+    public async Task<ActionResult> AddChat(List<int> userIds)
     {
-        await _db.Chats.AddAsync(new Chat("", users));
+        _db.Chats.Add(new Chat("", _db.Users.Where(c => userIds.Contains(c.Id)).ToList()));
+        await _db.SaveChangesAsync();
         return Ok();
     }
 
+    [HttpGet ("{chatId}")]
     public async Task<ActionResult<List<Message>>> ShowChat(int chatId)
     {
         return await _db.Messages
@@ -46,9 +50,11 @@ public class ChatService : ControllerBase
             .ToListAsync();
     }
 
+    [HttpPost ("{chatId}/send")]
     public async Task<ActionResult> SentMessage(string text, int chatId)
     {
         await _db.Messages.AddAsync(new Message(text, _db.Chats.First(c => c.Id == chatId)));
+        await _db.SaveChangesAsync();
         return Ok();
     }
 }
