@@ -1,5 +1,5 @@
 ﻿import React from "react";
-import {AnimatePresence} from "framer-motion";
+import {AnimatePresence, motion} from "framer-motion";
 import {Link, useOutlet} from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -12,6 +12,7 @@ import chatIcon from "../images/chatIcon.svg";
 import profileActiveIcon from "../images/profileActiveIcon.svg";
 import profileIcon from "../images/profileIcon.svg";
 import Container from "react-bootstrap/Container";
+import {upVariants} from "../animations";
 
 export interface Props {
 
@@ -20,7 +21,10 @@ export interface Props {
 function AgentLayout(props: Props) {
     const Outlet = useOutlet()
     
-    return <>
+    return <motion.div variants={upVariants} initial={'init'} animate={'show'} exit={'hide'} style={{
+        width: '100%',
+        minHeight: '100vh'
+    }}>
         <AnimatePresence exitBeforeEnter>
             {Outlet && React.cloneElement(Outlet, {key: location.pathname.split("create")[0].split("details")[0]})}
         </AnimatePresence>
@@ -33,7 +37,7 @@ function AgentLayout(props: Props) {
                 </Row>
             </Container>
         </nav>
-    </>
+    </motion.div>
 }
 
 export default AgentLayout;
