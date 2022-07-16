@@ -34,6 +34,11 @@
 	.smartHome{
 		text-align: center;
 		padding: 10px;
+		background: #fff;
+		width: 300px;
+		border-radius: 20px;
+		display: block;
+		margin: 20px auto 20px auto;
 	}
 
 	.smart_element{
@@ -60,5 +65,46 @@
 	    top: 30%;
 	    transform: translate(0%, -50%)
 	}
+
+	.dropdown_toggle{
+		width: 300px;
+		display: block;
+		margin: 20px auto 150px auto;
+	}
+
+	.dropdown_menu{
+		width: 300px;
+		margin: 0px auto 150px auto;
+	}
+
+	.flatServices{
+		.show > .btn-success.dropdown-toggle, .btn-success:focus, .show>.btn-success.dropdown-toggle:focus, .flat_services:hover, .flat_services{
+			font-weight: bold;
+			background: rgba(155, 81, 224, 0.15);
+			box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.05);
+			border-radius: 20px;
+			color: rgba(34, 33, 91, 1);
+			border: 0px;
+			border-color: rgba(155, 81, 224, 0.15);
+		}
+	}
+
+	.otherServices{
+		.show > .btn-success.dropdown-toggle, .btn-success:focus, .show>.btn-success.dropdown-toggle:focus, .other_services:hover, .other_services{
+			font-weight: bold;
+			background: rgba(76, 227, 100, 0.15);
+			box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.05);
+			border-radius: 20px;
+			color: #000;
+			border: 0px;
+			border-color: rgba(155, 81, 224, 0.15);
+		}
+	}
+
+	
+	.other_services{
+		
+	}
+
 
 }

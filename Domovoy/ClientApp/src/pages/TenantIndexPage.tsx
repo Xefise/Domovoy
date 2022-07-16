@@ -15,6 +15,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Carousel from 'react-bootstrap/Carousel';
+import Dropdown from 'react-bootstrap/Dropdown';
 import '../styles/IndexPage.scss';
 import profileImage from '../images/profileImage.svg';
 import lampImage from '../images/lampImage.svg';
@@ -63,6 +64,7 @@ function TenantIndexPage() {
             </option>)}
         </select>
         </Container>
+
         <h3 className="text_blue_style smartHome"><b>Умный дом</b></h3>
         <Container>
             <Row>
@@ -75,6 +77,42 @@ function TenantIndexPage() {
                 </>
             )}
 
+            </Row>
+        </Container>
+
+        <h3 className="text_blue_style smartHome"><b>Услуги</b></h3>
+
+        <Container>
+            <Row>
+                <Col>
+
+                    <Dropdown className="flatServices">
+                      <Dropdown.Toggle variant="success" id="dropdown-basic" className="dropdown_toggle flat_services">
+                        <span className="filters_text">Услуги для квартиры</span>
+                      </Dropdown.Toggle>
+
+                      <Dropdown.Menu className="dropdown_menu">
+                        <Dropdown.Item href="#/action-1">1</Dropdown.Item>
+                        <Dropdown.Item href="#/action-1">2</Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
+
+                </Col>
+
+                <Col>
+
+                    <Dropdown className="otherServices">
+                      <Dropdown.Toggle variant="success" id="dropdown-basic" className="dropdown_toggle other_services">
+                        <span className="filters_text">Доп Услуги</span>
+                      </Dropdown.Toggle>
+
+                      <Dropdown.Menu className="dropdown_menu">
+                        <Dropdown.Item href="#/action-1">1</Dropdown.Item>
+                        <Dropdown.Item href="#/action-1">2</Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
+
+                </Col>
             </Row>
         </Container>
     </motion.div>
