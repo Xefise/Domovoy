@@ -15,15 +15,9 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityR
     public DbSet<ResidentialComplex> ResidentialComplexes { get; set; } = null!;
     public DbSet<InviteCode> InviteCodes { get; set; } = null!;
 
-    public DbSet<Service> Services { get; set; } = null!;
-    public DbSet<PermanentService> PermanentServices { get; set; } = null!;
-    public DbSet<ServiceApartment> ServiceApartments { get; set; } = null!;
-    public DbSet<ServiceUser> ServiceUsers { get; set; } = null!;
+    public DbSet<Chat> Chats { get; set; } = null!;
+    public DbSet<Message> Messages { get; set; } = null!;
 
-    public DbSet<Informer> Informers { get; set; } = null!;
-    public DbSet<InformMeter> InformMeter { get; set; } = null!;
-    public DbSet<EventInformer> EventInformer { get; set; } = null!;
-    public DbSet<ActiveSession> ActiveSession { get; set; } = null!;
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
     {
@@ -60,27 +54,5 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityR
         builder.Entity<ApplicationUser>()
             .HasOne(p => p.MainApartment)
             .WithMany(b => b.TenantsWhoMainThis);
-
-        builder.Entity<EventInformer>()
-            .HasOne(p => p.Informer)
-            .WithOne(p => p.EventInformer);
-
-        //#region Service
-        builder.Entity<Service>()
-            .HasOne(p => p.PermanentService)
-            .WithOne(p => p.Service)
-            .HasForeignKey<PermanentService>(p => p.ServiceId);
-        builder.Entity<Service>()
-            .HasOne(p => p.ServiceUser)
-            .WithOne(p => p.Service)
-            .HasForeignKey<ServiceUser>(p => p.ServiceId);
-        builder.Entity<Service>()
-            .HasOne(p => p.ServiceApartment)
-            .WithOne(p => p.Service)
-            .HasForeignKey<ServiceApartment>(p => p.ServiceId);
-        builder.Entity<ServicePaymentInvoice>()
-            .HasOne(p => p.Service)
-            .WithMany(p => p.ServicePaymentInvoices);
-        //#endregion
     }
 }

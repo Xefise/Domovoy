@@ -33,8 +33,6 @@ public class ApplicationUser : IdentityUser<int>
     /// If ConstructionCompanyAdmin
     /// </summary>
     public ConstructionCompany? ConstructionCompany { get; set; }
-
-    public List<ServiceUser> ServiceUsers { get; set; }
 }
 
 public enum ApplicationUserType

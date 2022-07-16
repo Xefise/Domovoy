@@ -3,6 +3,7 @@ using System;
 using Domovoy.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Domovoy.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220716005109_Chat")]
+    partial class Chat
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.7");
@@ -45,6 +47,32 @@ namespace Domovoy.Migrations
                     b.HasIndex("TenantsWhoAddThisToCartId");
 
                     b.ToTable("ApartmentApplicationUser1");
+                });
+
+            modelBuilder.Entity("Domovoy.Models.ActiveSession", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Comment")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("End")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("EventInformerId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("Start")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EventInformerId");
+
+                    b.ToTable("ActiveSession");
                 });
 
             modelBuilder.Entity("Domovoy.Models.Apartment", b =>
@@ -252,6 +280,26 @@ namespace Domovoy.Migrations
                     b.ToTable("ConstructionCompanies");
                 });
 
+            modelBuilder.Entity("Domovoy.Models.EventInformer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("InformertId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsNowActive")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime?>("Time")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("EventInformer");
+                });
+
             modelBuilder.Entity("Domovoy.Models.HouseEntrance", b =>
                 {
                     b.Property<int>("Id")
@@ -269,6 +317,64 @@ namespace Domovoy.Migrations
                     b.HasIndex("ApartmentHouseId");
 
                     b.ToTable("HouseEntrances");
+                });
+
+            modelBuilder.Entity("Domovoy.Models.Informer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ApartmentId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("EventInformerId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("InformMeterId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("LastInform")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApartmentId");
+
+                    b.HasIndex("EventInformerId")
+                        .IsUnique();
+
+                    b.HasIndex("InformMeterId")
+                        .IsUnique();
+
+                    b.ToTable("Informers");
+                });
+
+            modelBuilder.Entity("Domovoy.Models.InformMeter", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Count")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("InformertId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("LastInformedCount")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("InformMeter");
                 });
 
             modelBuilder.Entity("Domovoy.Models.InviteCode", b =>
@@ -300,7 +406,7 @@ namespace Domovoy.Migrations
                     b.Property<int>("AuthorId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("ChatId")
+                    b.Property<int?>("ChatId")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("SentAt")
@@ -317,6 +423,30 @@ namespace Domovoy.Migrations
                     b.HasIndex("ChatId");
 
                     b.ToTable("Messages");
+                });
+
+            modelBuilder.Entity("Domovoy.Models.PermanentService", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("AutoPay")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Period")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("ServiceId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ServiceId")
+                        .IsUnique();
+
+                    b.ToTable("PermanentServices");
                 });
 
             modelBuilder.Entity("Domovoy.Models.ResidentialComplex", b =>
@@ -337,6 +467,112 @@ namespace Domovoy.Migrations
                     b.HasIndex("ConstructionCompanyId");
 
                     b.ToTable("ResidentialComplexes");
+                });
+
+            modelBuilder.Entity("Domovoy.Models.Service", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime?>("CloseDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int?>("PermanentServiceId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("ServiceApartmentId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("ServiceUserId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Services");
+                });
+
+            modelBuilder.Entity("Domovoy.Models.ServiceApartment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ApartmentId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ServiceId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApartmentId");
+
+                    b.HasIndex("ServiceId")
+                        .IsUnique();
+
+                    b.ToTable("ServiceApartments");
+                });
+
+            modelBuilder.Entity("Domovoy.Models.ServicePaymentInvoice", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Check")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsPaid")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("RepaymentTime")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("ServiceId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ServiceId");
+
+                    b.ToTable("ServicePaymentInvoice");
+                });
+
+            modelBuilder.Entity("Domovoy.Models.ServiceUser", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ApplicationUserId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ServiceId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("ServiceId")
+                        .IsUnique();
+
+                    b.ToTable("ServiceUsers");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<int>", b =>
@@ -495,6 +731,17 @@ namespace Domovoy.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Domovoy.Models.ActiveSession", b =>
+                {
+                    b.HasOne("Domovoy.Models.EventInformer", "EventInformer")
+                        .WithMany("ActiveSessions")
+                        .HasForeignKey("EventInformerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("EventInformer");
+                });
+
             modelBuilder.Entity("Domovoy.Models.Apartment", b =>
                 {
                     b.HasOne("Domovoy.Models.HouseEntrance", "HouseEntrance")
@@ -568,6 +815,29 @@ namespace Domovoy.Migrations
                     b.Navigation("ApartmentHouse");
                 });
 
+            modelBuilder.Entity("Domovoy.Models.Informer", b =>
+                {
+                    b.HasOne("Domovoy.Models.Apartment", "Apartment")
+                        .WithMany("Informers")
+                        .HasForeignKey("ApartmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domovoy.Models.EventInformer", "EventInformer")
+                        .WithOne("Informer")
+                        .HasForeignKey("Domovoy.Models.Informer", "EventInformerId");
+
+                    b.HasOne("Domovoy.Models.InformMeter", "InformMeter")
+                        .WithOne("Informer")
+                        .HasForeignKey("Domovoy.Models.Informer", "InformMeterId");
+
+                    b.Navigation("Apartment");
+
+                    b.Navigation("EventInformer");
+
+                    b.Navigation("InformMeter");
+                });
+
             modelBuilder.Entity("Domovoy.Models.InviteCode", b =>
                 {
                     b.HasOne("Domovoy.Models.Apartment", "Apartment")
@@ -587,15 +857,22 @@ namespace Domovoy.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domovoy.Models.Chat", "Chat")
+                    b.HasOne("Domovoy.Models.Chat", null)
                         .WithMany("Messages")
-                        .HasForeignKey("ChatId")
+                        .HasForeignKey("ChatId");
+
+                    b.Navigation("Author");
+                });
+
+            modelBuilder.Entity("Domovoy.Models.PermanentService", b =>
+                {
+                    b.HasOne("Domovoy.Models.Service", "Service")
+                        .WithOne("PermanentService")
+                        .HasForeignKey("Domovoy.Models.PermanentService", "ServiceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Author");
-
-                    b.Navigation("Chat");
+                    b.Navigation("Service");
                 });
 
             modelBuilder.Entity("Domovoy.Models.ResidentialComplex", b =>
@@ -607,6 +884,55 @@ namespace Domovoy.Migrations
                         .IsRequired();
 
                     b.Navigation("ConstructionCompany");
+                });
+
+            modelBuilder.Entity("Domovoy.Models.ServiceApartment", b =>
+                {
+                    b.HasOne("Domovoy.Models.Apartment", "Apartment")
+                        .WithMany("ServiceApartments")
+                        .HasForeignKey("ApartmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domovoy.Models.Service", "Service")
+                        .WithOne("ServiceApartment")
+                        .HasForeignKey("Domovoy.Models.ServiceApartment", "ServiceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Apartment");
+
+                    b.Navigation("Service");
+                });
+
+            modelBuilder.Entity("Domovoy.Models.ServicePaymentInvoice", b =>
+                {
+                    b.HasOne("Domovoy.Models.Service", "Service")
+                        .WithMany("ServicePaymentInvoices")
+                        .HasForeignKey("ServiceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Service");
+                });
+
+            modelBuilder.Entity("Domovoy.Models.ServiceUser", b =>
+                {
+                    b.HasOne("Domovoy.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany("ServiceUsers")
+                        .HasForeignKey("ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domovoy.Models.Service", "Service")
+                        .WithOne("ServiceUser")
+                        .HasForeignKey("Domovoy.Models.ServiceUser", "ServiceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
+
+                    b.Navigation("Service");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -662,7 +988,11 @@ namespace Domovoy.Migrations
 
             modelBuilder.Entity("Domovoy.Models.Apartment", b =>
                 {
+                    b.Navigation("Informers");
+
                     b.Navigation("InviteCodes");
+
+                    b.Navigation("ServiceApartments");
 
                     b.Navigation("TenantsWhoMainThis");
                 });
@@ -675,6 +1005,8 @@ namespace Domovoy.Migrations
             modelBuilder.Entity("Domovoy.Models.ApplicationUser", b =>
                 {
                     b.Navigation("OwndedApartments");
+
+                    b.Navigation("ServiceUsers");
                 });
 
             modelBuilder.Entity("Domovoy.Models.Chat", b =>
@@ -691,14 +1023,39 @@ namespace Domovoy.Migrations
                     b.Navigation("ResidentialComplexes");
                 });
 
+            modelBuilder.Entity("Domovoy.Models.EventInformer", b =>
+                {
+                    b.Navigation("ActiveSessions");
+
+                    b.Navigation("Informer")
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Domovoy.Models.HouseEntrance", b =>
                 {
                     b.Navigation("Apartments");
                 });
 
+            modelBuilder.Entity("Domovoy.Models.InformMeter", b =>
+                {
+                    b.Navigation("Informer")
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Domovoy.Models.ResidentialComplex", b =>
                 {
                     b.Navigation("ApartmentHouses");
+                });
+
+            modelBuilder.Entity("Domovoy.Models.Service", b =>
+                {
+                    b.Navigation("PermanentService");
+
+                    b.Navigation("ServiceApartment");
+
+                    b.Navigation("ServicePaymentInvoices");
+
+                    b.Navigation("ServiceUser");
                 });
 #pragma warning restore 612, 618
         }

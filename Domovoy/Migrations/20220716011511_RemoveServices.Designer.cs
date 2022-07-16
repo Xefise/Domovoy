@@ -3,6 +3,7 @@ using System;
 using Domovoy.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Domovoy.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220716011511_RemoveServices")]
+    partial class RemoveServices
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.7");
@@ -300,7 +302,7 @@ namespace Domovoy.Migrations
                     b.Property<int>("AuthorId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("ChatId")
+                    b.Property<int?>("ChatId")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("SentAt")
@@ -587,15 +589,11 @@ namespace Domovoy.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domovoy.Models.Chat", "Chat")
+                    b.HasOne("Domovoy.Models.Chat", null)
                         .WithMany("Messages")
-                        .HasForeignKey("ChatId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ChatId");
 
                     b.Navigation("Author");
-
-                    b.Navigation("Chat");
                 });
 
             modelBuilder.Entity("Domovoy.Models.ResidentialComplex", b =>
