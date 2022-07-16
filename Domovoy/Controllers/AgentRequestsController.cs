@@ -51,6 +51,8 @@ public class AgentRequestsController: ControllerBase
 
         _db.ApartmentRequests.Remove(request);
 
+        request.Apartment.ApartmentState = ApartmentState.NotForSell;
+
         await _db.SaveChangesAsync();
 
         return Ok();

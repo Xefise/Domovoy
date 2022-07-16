@@ -2,7 +2,13 @@
 import {motion} from "framer-motion";
 import {useAuth} from "../components/AuthProvider";
 import {useEffect, useState} from "react";
-import {ApartmentViewModel, TenantAppartamentsService, TenantCartService} from "../api";
+import {
+    ApartmentPutTenant, ApartmentState,
+    ApartmentViewModel,
+    TenantAppartamentsService,
+    TenantCartService,
+    TenantRequestsService
+} from "../api";
 import {apartamentToAddressSting} from "../addressToString";
 import {Link, useNavigate} from "react-router-dom";
 
@@ -31,6 +37,10 @@ function TenantProfilePage(props: Props) {
 
     const [cartLoading, setCartLoading] = useState(true)
     const [cart, setCart] = useState<ApartmentViewModel[]>([])
+    
+    const [code, setCode] = useState("")
+    
+    const [editingApartment, setEditingApartment] = useState<ApartmentPutTenant>()
 
     useEffect(() => {
         TenantAppartamentsService.getApiTenantappartaments().then(d => setApartaments(d)).finally(() => setApartamentsLoading(false))
@@ -55,19 +65,21 @@ function TenantProfilePage(props: Props) {
         <Container className="profileBlock">
             <img src={profileImage}/>
             <img src={editIcon} className="edit_profile"/>
-            <p className="profile_status">Ищет квартиру</p>
+            {/*<p className="profile_status">Ищет квартиру</p>*/}
             <b className="text_blue_style">{auth.user?.lastName} {auth.user?.firstName}</b>
         </Container>
 
         <b className="text_blue_style my_flat">Мои квартиры</b>
-        <Carousel>
+        <Carousel indicators={false}>
             {apartaments.map(a =>
                 <Carousel.Item>
                     <div className="flatBlock">
                         <Container className="myflatsList">
                             <Row>
-                                <Col xs={11} md={11} sm={10}><p className="flat_status">Ищет квартиру</p></Col>
-                                <Col xs={1} md={1} sm={1}><p className="more_info">...</p></Col>
+                                {/*<Col xs={11} md={11} sm={10}><p className="flat_status">Ищет квартиру</p></Col>*/}
+                                <Col xs={12} md={12} sm={12}><p className="more_info" style={{cursor: "pointer"}} onClick={() => {
+                                    if (!editingApartment) setEditingApartment(a)
+                                }}>Редактировать</p></Col>
                             </Row>
                             <Row>
                                 {apartamentToAddressSting(a)}
@@ -76,9 +88,32 @@ function TenantProfilePage(props: Props) {
 
                             </Row>
                             <Row>
-                                <p>Характеристики:</p>
-                                <br/>
-                                <p>40 м²</p>
+                                {!editingApartment || editingApartment.id != a.id 
+                                    ? <>
+                                        <p>Характеристики:</p>
+                                        <br/>
+                                        <p>{a.area} м²</p>
+                                    </>
+                                    : <>
+                                        Стоимость: <input value={editingApartment.cost || 0} type={"number"} onChange={e => setEditingApartment({...editingApartment, cost: parseInt(e.target.value)})}/>
+                                        <p>Статус: <select value={editingApartment.apartmentState} onChange={(e) => setEditingApartment({...editingApartment, apartmentState: e.target.value as ApartmentState})}>
+                                            <option value={ApartmentState.NOT_FOR_SELL}>NOT_FOR_SELL</option>
+                                            <option value={ApartmentState.FOR_SELL}>FOR_SELL</option>
+                                            <option value={ApartmentState.FOR_RENT}>FOR_RENT</option>
+                                            <option value={ApartmentState.BOOKED}>BOOKED</option>
+                                        </select></p>
+                                        Описание: <input value={editingApartment.description || ''} onChange={e =>setEditingApartment({...editingApartment, description: e.target.value})}/>
+                                        <button disabled={apartamentsLoading} onClick={() => {
+                                            setApartamentsLoading(true)
+                                            TenantAppartamentsService.putApiTenantappartaments(editingApartment.id!, editingApartment).then(() => {
+                                                TenantAppartamentsService.getApiTenantappartaments().then(d => setApartaments(d)).finally(() => {
+                                                    setEditingApartment(undefined)
+                                                    setApartamentsLoading(false);
+                                                })
+                                            })
+                                        }}>Сохранить</button>
+                                    </>
+                                }
                             </Row>
                         </Container>
                     </div>
@@ -96,6 +131,18 @@ function TenantProfilePage(props: Props) {
                 </Carousel.Item>
             }
         </Carousel>
+        
+        <Container className={"code_input"}>
+            <p>Введите код для добавления квартиры</p>
+            <input value={code} onChange={e => setCode(e.target.value)}/>
+            <button disabled={apartamentsLoading} onClick={() => {
+                setApartamentsLoading(true)
+                TenantAppartamentsService.postApiTenantappartamentsJoin(code).then(() => {
+                    setApartamentsLoading(true)
+                    TenantAppartamentsService.getApiTenantappartaments().then(d => setApartaments(d)).finally(() => setApartamentsLoading(false))
+                }).finally(() => setApartamentsLoading(false))
+            }}>Добавить</button>
+        </Container>
 
         <b className="text_blue_style my_flat">Ваша корзина</b>
         <Carousel>
@@ -104,13 +151,15 @@ function TenantProfilePage(props: Props) {
                     <div className="flatBlock">
                         <Container className="myflatsList">
                             <Row>
-                                <Col xs={11} md={11} sm={10}><p className="flat_status">Ищет квартиру</p></Col>
+                                <Col xs={6} md={6} sm={12}><p onClick={() => {
+                                    TenantRequestsService.postApiTenantrequests(a.id!, "Заказанно через корзину")
+                                }} style={{cursor: "pointer"}} className="more_info">Отправить запрос</p></Col>
                                 <Col xs={1} md={1} sm={1}><p onClick={() => {
                                     TenantCartService.deleteApiTenantcart(a.id!).then(() => {
                                         setCartLoading(true)
                                         TenantCartService.getApiTenantcart().then(d => setCart(d)).finally(() => setCartLoading(false))
                                     })
-                                }} style={{cursor: "pointer"}} className="more_info">...</p></Col>
+                                }} style={{cursor: "pointer"}} className="more_info">Удалить</p></Col>
                             </Row>
                             <Row>
                                 {apartamentToAddressSting(a)}
@@ -121,7 +170,7 @@ function TenantProfilePage(props: Props) {
                             <Row>
                                 <p>Характеристики:</p>
                                 <br/>
-                                <p>40 м²</p>
+                                <p>{a.area} м²</p>
                             </Row>
                         </Container>
                     </div>

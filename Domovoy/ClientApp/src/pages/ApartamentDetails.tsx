@@ -65,7 +65,7 @@ function ApartamentDetails(props: Props) {
                         <option value={ApartmentState.BOOKED}>BOOKED</option>
                     </select></p>
 
-                    <p>Статус: <select value={apartmentObject.apartmentType} onChange={(e) => setApartmentObject({...apartmentObject, apartmentType: e.target.value as ApartmentType})}>
+                    <p>Тип: <select value={apartmentObject.apartmentType} onChange={(e) => setApartmentObject({...apartmentObject, apartmentType: e.target.value as ApartmentType})}>
                         <option value={ApartmentType.LIVING}>LIVING</option>
                         <option value={ApartmentType.COMMERCIAL}>COMMERCIAL</option>
                     </select></p>

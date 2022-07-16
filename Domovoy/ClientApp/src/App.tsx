@@ -24,6 +24,8 @@ import TenantSearchPage from "./pages/TenantSearchPage";
 import TenantProfilePage from "./pages/TenantProfilePage";
 import TenantChatPage from "./pages/TenantChatPage";
 import OpenIntercomPage from "./pages/OpenIntercomPage";
+import AgentLayout from "./pages/AgentLayout";
+import AgentIndexPage from "./pages/AgentIndexPage";
 
 function App() {
     const location = useLocation();
@@ -33,17 +35,19 @@ function App() {
         : location.pathname.includes("logout")
             ? "logout"
             : "main"
+    
+    console.log(key)
 
     return (
         <AuthProvider>
             <AnimatePresence exitBeforeEnter>
                 <Routes key={key} location={location}>
-                    <Route path="/" element={
+                    <Route key={key} path="/" element={
                         <TypeSwitch
                             tenant={<TenantLayout/>}
                             constructionCompanyAdmin={<CompanyAdminLayout/>}
                             serviceProvider={<></>}
-                            agent={<></>}
+                            agent={<AgentLayout/>}
                             nonAuntificated={<Navigate to={'login'}/>}/>}
                     >
                         <Route path={""} element={
@@ -51,7 +55,7 @@ function App() {
                                 tenant={<TenantIndexPage/>}
                                 constructionCompanyAdmin={<CompanyAdminIndexPage/>}
                                 serviceProvider={<></>}
-                                agent={<></>}
+                                agent={<AgentIndexPage/>}
                                 nonAuntificated={<Navigate to={'login'}/>}/>
                         }>
                             <Route path={"create/complex"} element={<CreateComplexPage/>}/>

@@ -27,6 +27,8 @@ public class TenantRequestsController: ControllerBase
     {
         var apartment = await _db.Apartments.FirstOrDefaultAsync(a => a.Id == apartmentId && (a.ApartmentState == ApartmentState.ForRent || a.ApartmentState == ApartmentState.ForSell)); 
         if (apartment == null) return BadRequest();
+        
+        if (_db.ApartmentRequests.Where(r => r.Apartment == apartment && r.Requester == HttpContext.GetUser()).Count() > 0) return BadRequest();
 
         var newRequest = new ApartmentRequest()
         {

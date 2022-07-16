@@ -59,7 +59,7 @@
 
 	.more_info{
 		text-align: left;
-		font-size: 25px;
+		font-size: 16px;
 		margin-top: -15px;
 	}
 
@@ -75,6 +75,36 @@
 
 	.fotter_container{
 		margin-bottom: 150px;
+	}
+	
+	.code_input {
+		margin-top: 10px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 10px;
+
+		@media screen and (max-width: 600px){
+			flex-direction: column;
+		}
+		
+		input {
+			border-radius: 10px;
+			border-color: #bababa;
+			border-style: solid;
+			outline: none;
+		}
+		
+		button {
+			border-radius: 10px;
+			border-color: #bababa;
+			border-style: solid;
+			outline: none;
+		}
+
+		p {
+			margin: 0;
+		}
 	}
 
 	@media screen and (max-width: 1140px){
