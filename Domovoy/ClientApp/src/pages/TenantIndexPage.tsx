@@ -92,8 +92,8 @@ function TenantIndexPage() {
                       </Dropdown.Toggle>
 
                       <Dropdown.Menu className="dropdown_menu">
-                        <Dropdown.Item href="#/action-1">1</Dropdown.Item>
-                        <Dropdown.Item href="#/action-1">2</Dropdown.Item>
+                        <Dropdown.Item href="#/action-1">Юр. услуги</Dropdown.Item>
+                        <Dropdown.Item href="#/action-1">Страхование</Dropdown.Item>
                       </Dropdown.Menu>
                     </Dropdown>
 
@@ -107,8 +107,8 @@ function TenantIndexPage() {
                       </Dropdown.Toggle>
 
                       <Dropdown.Menu className="dropdown_menu">
-                        <Dropdown.Item href="#/action-1">1</Dropdown.Item>
-                        <Dropdown.Item href="#/action-1">2</Dropdown.Item>
+                        <Dropdown.Item href="#/action-1">Уход за животными</Dropdown.Item>
+                        <Dropdown.Item href="#/action-1">Уборка</Dropdown.Item>
                       </Dropdown.Menu>
                     </Dropdown>
 
