@@ -29,6 +29,7 @@ public class AppMappingProfile : Profile
         CreateMap<ApartmentCreate, Apartment>();
 
         CreateMap<ApartmentPut, Apartment>();
+        CreateMap<ApartmentPutTenant, Apartment>();
 
         CreateMap<SmartHomeDeviceActionLogEntry, SmartHomeDeviceActionLogEntryDTO>();
         CreateMap<SmartHomeDevice, SmartHomeDeviceGet>();

@@ -1,6 +1,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { ApartmentPutTenant } from '../models/ApartmentPutTenant';
 import type { ApartmentViewModel } from '../models/ApartmentViewModel';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
@@ -17,6 +18,27 @@ export class TenantAppartamentsService {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/api/tenantappartaments',
+        });
+    }
+
+    /**
+     * @param id 
+     * @param requestBody 
+     * @returns ApartmentViewModel Success
+     * @throws ApiError
+     */
+    public static putApiTenantappartaments(
+id: number,
+requestBody?: ApartmentPutTenant,
+): CancelablePromise<ApartmentViewModel> {
+        return __request(OpenAPI, {
+            method: 'PUT',
+            url: '/api/tenantappartaments/{id}',
+            path: {
+                'id': id,
+            },
+            body: requestBody,
+            mediaType: 'application/json-patch+json',
         });
     }
 

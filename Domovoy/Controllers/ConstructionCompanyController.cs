@@ -189,7 +189,7 @@ public class ConstructionCompanyController : ControllerBase
             .Include(a => a.TenantsWhoMainThis)
             .Include(a => a.Owner)
             .Include(a => a.HouseEntrance.ApartmentHouse.ResidentialComplex.ConstructionCompany)
-            .FirstOrDefault(a => a.Id == id);
+            .FirstOrDefault(a => a.Id == id && a.HouseEntrance.ApartmentHouse.ResidentialComplex.ConstructionCompany.Employees.Contains(HttpContext.GetUser()));
  
         if (entity == null)
         {
@@ -200,9 +200,6 @@ public class ConstructionCompanyController : ControllerBase
         {
             return BadRequest();
         }
-
-        entity.Area = apartment.Area;
-        entity.Area = apartment.Area;
 
         _mapper.Map(apartment, entity);
 
