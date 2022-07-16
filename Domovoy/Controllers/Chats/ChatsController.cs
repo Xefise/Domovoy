@@ -41,10 +41,10 @@ public class ChatsController : ControllerBase
     }
 
     [HttpGet ("{chatId}")]
-    public async Task<ActionResult<List<Message>>> ShowChat(int chatId)
+    public async Task<ActionResult<List<Message>>> ShowChat(int chatId, [FromQuery] DateTime? since)
     {
         return await _db.Messages
-            .Where(c => c.ChatId == chatId)
+            .Where(c => c.ChatId == chatId && (c.SentAt > since || since == null))
             .OrderByDescending(s => s.SentAt)
             .Take(50)
             .ToListAsync();
