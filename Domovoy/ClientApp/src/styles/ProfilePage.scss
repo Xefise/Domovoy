@@ -78,6 +78,49 @@
 		margin-bottom: 150px;
 	}
 
+	.carousel-inner{
+		border-radius: 30px;
+	}
+
+	.carousel-control-prev, .carousel-control-next{
+		background: #F9F9F9;
+		height: 0px;
+		width: 0px;
+	}
+
+	.carousel-control-next-icon:after
+	{
+		content: '>';
+		font-size: 55px;
+		color: black;
+		text-decoration: none;
+		position: relative;
+		top: 80px;
+		left: 30px;
+		background: #fff;
+		padding: 0px 5px 10px 5px;
+		border-radius: 10px;
+	}
+
+	.carousel-control-prev-icon:after {
+		content: '<';
+		font-size: 55px;
+		color: black;
+		text-decoration: none;
+		position: relative;
+		top: 80px;
+		right: 45px;
+		background: #fff;
+		padding: 0px 5px 10px 5px;
+		border-radius: 10px;
+	}
+
+	.carousel{
+		width: 50%;
+		display: block;
+		margin: auto;
+	}
+
 	@media screen and (max-width: 1140px){
 	    .profile_status{
 	    	width: 60%;

@@ -9,6 +9,7 @@ import {Link} from "react-router-dom";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Carousel from 'react-bootstrap/Carousel';
 import '../styles/menu.css';
 import '../styles/ProfilePage.scss';
 import profileImage from '../images/profileImage.svg';
@@ -57,7 +58,9 @@ function TenantProfilePage(props: Props) {
         </Container>
 
         <b className="text_blue_style my_flat">Мои квартиры</b>
+        <Carousel>
         {apartaments.map(a =>
+      <Carousel.Item>
         <div className="flatBlock">
             <Container className="myflatsList">
                 <Row>
@@ -77,7 +80,9 @@ function TenantProfilePage(props: Props) {
                 </Row>
             </Container>
         </div>
+        </Carousel.Item>
         )}
+        </Carousel>
 
         <Container className="fotter_container">
             <img src={basketIcon} className="busket"/>
