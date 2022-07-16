@@ -27,6 +27,8 @@ public class ApplicationUser : IdentityUser<int>
     /// </summary>
     public Apartment? MainApartment { get; set; }
     
+    public List<ApartmentRequest> ApartmentRequests { get; set; }
+
     public List<Apartment> Cart { get; set; }
 
     /// <summary>

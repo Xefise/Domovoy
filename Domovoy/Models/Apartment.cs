@@ -32,6 +32,8 @@ public class Apartment
     public List<ApplicationUser> TenantsWhoAddThisToCart { get; set; }
     public List<InviteCode> InviteCodes { get; set; }
     
+    public List<ApartmentRequest> ApartmentRequests { get; set; }
+    
     public List<SmartHomeDevice> SmartHomeDevices { get; set; }
 
     public HouseEntrance HouseEntrance { get; set; }

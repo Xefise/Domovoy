@@ -2,6 +2,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
+import type { ApartmentRequest } from './ApartmentRequest';
 import type { ApartmentState } from './ApartmentState';
 import type { ApartmentType } from './ApartmentType';
 import type { ApplicationUser } from './ApplicationUser';
@@ -35,6 +36,7 @@ export type Apartment = {
     tenantsWhoMainThis?: Array<ApplicationUser> | null;
     tenantsWhoAddThisToCart?: Array<ApplicationUser> | null;
     inviteCodes?: Array<InviteCode> | null;
+    apartmentRequests?: Array<ApartmentRequest> | null;
     smartHomeDevices?: Array<SmartHomeDevice> | null;
     houseEntrance?: HouseEntrance;
     houseEntranceId?: number;

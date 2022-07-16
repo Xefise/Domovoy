@@ -3,6 +3,7 @@
 /* eslint-disable */
 
 import type { Apartment } from './Apartment';
+import type { ApartmentRequest } from './ApartmentRequest';
 import type { ApplicationUserType } from './ApplicationUserType';
 import type { ConstructionCompany } from './ConstructionCompany';
 
@@ -22,6 +23,7 @@ export type ApplicationUser = {
      */
     owndedApartments?: Array<Apartment> | null;
     mainApartment?: Apartment;
+    apartmentRequests?: Array<ApartmentRequest> | null;
     cart?: Array<Apartment> | null;
     constructionCompany?: ConstructionCompany;
     id?: number;
