@@ -48,6 +48,7 @@ function ApartamentDetails(props: Props) {
                     <p>Этаж: {apartmentObject.floor}</p>
                     <p>Статус: {apartmentObject.apartmentState}</p>
                     <p>Тип: {apartmentObject.apartmentType}</p>
+                    <p>Стоимость: {apartmentObject.cost}</p>
                 </>
                 : <>
                     <p>Номер квартиры: <input value={apartmentObject.apartmentNumber} type={"number"} onChange={e => setApartmentObject({...apartmentObject, apartmentNumber: parseInt(e.target.value)})}/></p>
@@ -55,6 +56,7 @@ function ApartamentDetails(props: Props) {
                     <p>Жилая площадь: <input value={apartmentObject.livingArea} type={"number"} onChange={e => setApartmentObject({...apartmentObject, livingArea: parseInt(e.target.value)})}/></p>
                     <p>Площадь без балконов/лоджий: <input value={apartmentObject.areaWithoutBalconies} type={"number"} onChange={e => setApartmentObject({...apartmentObject, areaWithoutBalconies: parseInt(e.target.value)})}/></p>
                     <p>Этаж: <input value={apartmentObject.floor} type={"number"} onChange={e => setApartmentObject({...apartmentObject, floor: parseInt(e.target.value)})}/></p>
+                    <p>Стоимость: <input value={apartmentObject.cost || 0} type={"number"} onChange={e => setApartmentObject({...apartmentObject, cost: parseInt(e.target.value)})}/></p>
                     
                     <p>Статус: <select value={apartmentObject.apartmentState} onChange={(e) => setApartmentObject({...apartmentObject, apartmentState: e.target.value as ApartmentState})}>
                         <option value={ApartmentState.NOT_FOR_SELL}>NOT_FOR_SELL</option>

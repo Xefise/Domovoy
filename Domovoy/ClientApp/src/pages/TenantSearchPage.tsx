@@ -27,8 +27,7 @@ function TenantSearchPage(props: Props) {
         roomCountMax: 0
     })
     
-    const search = (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
+    const search = () => {
         if (!loading) {
             setLoading(true)
             TenantSearchService.postApiTenantsearch(filters)
@@ -56,17 +55,17 @@ function TenantSearchPage(props: Props) {
                 <input className="from_to" value={filters.costMax || ''} onChange={e => setFilters({...filters, costMax: parseInt(e.target.value)})} placeholder={"До"} type={'number'}/> <br/>
                 <label>Кол-во комнат</label><br/><input className="from_to" value={filters.roomCountMin || ''} onChange={e => setFilters({...filters, roomCountMin: parseInt(e.target.value)})} placeholder={"От"} type={'number'}/>
                 <input className="from_to" value={filters.roomCountMax || ''} onChange={e => setFilters({...filters, roomCountMax: parseInt(e.target.value)})} placeholder={"До"} type={'number'}/> <br/>
-                Статус: <select value={filters.apartmentState} onChange={(e) => setFilters({...filters, apartmentState: e.target.value as ApartmentState})}>
+                Статус: <select value={filters.apartmentState} onChange={(e) => setFilters({...filters, apartmentState: e.target.value == "any" ? undefined : e.target.value as ApartmentState})}>
                     <option value={ApartmentState.FOR_SELL}>Для продажи</option>
                     <option value={ApartmentState.FOR_RENT}>Для аренды</option>
-                    <option value={undefined}>Любой</option>
+                    <option value={"any"}>Любой</option>
                 </select> <br/>
-                Тип: <select value={filters.apartmentType} onChange={(e) => setFilters({...filters, apartmentType: e.target.value as ApartmentType})}>
+                Тип: <select value={filters.apartmentType} onChange={(e) => setFilters({...filters, apartmentType: e.target.value == "any" ? undefined : e.target.value as ApartmentType})}>
                     <option value={ApartmentType.LIVING}>Жилое</option>
-                    <option value={ApartmentType.COMMERCIAL}>Комерческое</option>
-                    <option value={undefined}>Любое</option>
+                    <option value={ApartmentType.COMMERCIAL}>Коммерческое</option>
+                    <option value={"any"}>Любое</option>
                 </select> <br/>
-                <button className="filter_btn" type={"submit"}>Поиск</button> <br/>
+                <button className="filter_btn" onClick={search} disabled={loading}>Поиск</button> <br/>
               </Dropdown.Menu>
             </Dropdown>
             

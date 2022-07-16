@@ -4,7 +4,7 @@ import {useAuth} from "../components/AuthProvider";
 import {useEffect, useState} from "react";
 import {ApartmentViewModel, TenantAppartamentsService, TenantCartService} from "../api";
 import {apartamentToAddressSting} from "../addressToString";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -23,6 +23,7 @@ export interface Props {
 
 function TenantProfilePage(props: Props) {
     const auth = useAuth()
+    const navigate = useNavigate()
 
     const [apartamentsLoading, setApartamentsLoading] = useState(true)
     const [apartaments, setApartaments] = useState<ApartmentViewModel[]>([])
@@ -87,6 +88,7 @@ function TenantProfilePage(props: Props) {
         <Container className="fotter_container">
             <img src={basketIcon} className="busket"/>
             <button className="solveProblem">Решить проблему в квартире &nbsp; <img src={important}/></button>
+            <button onClick={() => navigate('/logout')} style={{marginTop: 10}} className="solveProblem">Выйти &nbsp; <img src={important}/></button>
         </Container>
 
         {/*Ваша корзина:
