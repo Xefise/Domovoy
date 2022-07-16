@@ -3,6 +3,7 @@
 }
 
 nav{
+	z-index: 999;
 	background: #fff;
 	position: fixed;
 	top: 90%;
@@ -22,6 +23,11 @@ nav{
 
 .nav_link:hover{
 	color: black;
+}
+
+.previousPage{
+	font-size: 25px;
+	margin-top: 20px;
 }
 
 @media screen and (max-width: 572px){

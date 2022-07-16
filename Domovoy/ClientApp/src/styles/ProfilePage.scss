@@ -1,0 +1,98 @@
+.profilePage{
+
+	.text_blue_style{
+		color: rgba(34, 33, 91, 1);
+		width: 30%;
+		display: block;
+		margin: 10px auto 10px auto;
+		text-align: center;
+	}
+
+	.my_flat{
+		margin-top: 40px;
+		font-size: 23px;
+		text-align: center;
+	}
+
+	.flatBlock, .profileBlock{
+		margin: 20px auto 0px auto;
+		border-radius: 30px;
+		background: #fff;
+		padding: 10px;
+		width: 50%;
+	}
+
+	.profile_status{
+		color: rgba(47, 128, 237, 1);
+		background: rgba(238, 247, 254, 1);
+		width: 40%;
+		border-radius: 5px;
+		padding: 3px;
+		text-align: center;
+		display: block;
+		margin: auto;
+	}
+
+	.flat_status{
+		color: rgba(213, 141, 73, 1);
+		background: rgba(223, 168, 116, 0.2);
+		width: 50%;
+		border-radius: 4px;
+		padding: 3px;
+		text-align: center;
+	}
+
+	.edit_profile{
+		position: relative;
+		bottom: 20px;
+		left: 20px;
+	}
+
+	.profileBlock img{
+		display: block;
+		margin: auto;
+	}
+
+	.busket{
+		display: block;
+		margin: auto;
+	}
+
+	.more_info{
+		text-align: left;
+		font-size: 25px;
+		margin-top: -15px;
+	}
+
+	.solveProblem{
+		background: #EB5757;
+		border-radius: 20px;
+		color: #fff;
+		border: 0px;
+		padding: 10px 20px 10px 20px;
+		display: block;
+		margin: auto;
+	}
+
+	.fotter_container{
+		margin-bottom: 500px;
+	}
+
+	@media screen and (max-width: 1140px){
+	    .profile_status{
+	    	width: 60%;
+	    }
+	    .flat_status{
+	    	width: 80%;
+	    }
+	}
+
+	@media screen and (max-width: 600px){
+	    .profile_status{
+	    	width: 80%;
+	    }
+	    .flat_status{
+	    	width: 95%;
+	    }
+	}
+}

@@ -4,6 +4,17 @@ import {useAuth} from "../components/AuthProvider";
 import {useEffect, useState} from "react";
 import {ApartmentViewModel, TenantAppartamentsService, TenantCartService} from "../api";
 import {apartamentToAddressSting} from "../addressToString";
+import {Link} from "react-router-dom";
+
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import '../styles/menu.css';
+import '../styles/ProfilePage.scss';
+import profileImage from '../images/profileImage.svg';
+import editIcon from '../images/editIcon.svg';
+import basketIcon from '../images/basketIcon.svg';
+import important from '../images/important.svg';
 
 export interface Props {
 
@@ -30,21 +41,56 @@ function TenantProfilePage(props: Props) {
         })
     }
     
-    return <motion.div variants={upVariants} initial={'init'} animate={'show'} exit={'hide'}>
-        <h3>Профиль</h3>
-        <p>{auth.user?.firstName} {auth.user?.lastName} {auth.user?.patronymic}</p>
-        Ваша корзина:
+    return <motion.div className="profilePage" variants={upVariants} initial={'init'} animate={'show'} exit={'hide'}>
+
+        <Container>
+            <div className="previousPage">
+                <Link to={'/'} className="nav_link"><span className="back">&lt;</span> &nbsp; <b>Профиль</b></Link>
+            </div>
+        </Container>
+
+        <Container className="profileBlock">
+            <img src={profileImage}/>
+            <img src={editIcon} className="edit_profile"/>
+            <p className="profile_status">Ищет квартиру</p>
+            <b className="text_blue_style">{auth.user?.lastName} {auth.user?.firstName}</b>
+        </Container>
+
+        <b className="text_blue_style my_flat">Мои квартиры</b>
+        <div className="flatBlock">
+            <Container className="myflatsList">
+                <Row>
+                    <Col xs={11} md={11} sm={10}><p className="flat_status">Ищет квартиру</p></Col>
+                    <Col xs={1} md={1} sm={1}><p className="more_info">...</p></Col>
+                </Row>
+                <Row>
+                    <p>Ул. фронтендеров, д.14, кв 80 </p>
+                </Row>
+                <Row>
+                    {apartaments.map(a => <Col>
+                        {apartamentToAddressSting(a)}
+                    </Col>)}
+                </Row>
+                <Row>
+                    <p>Характеристики:</p>
+                    <br/>
+                    <p>40 м²</p>
+                </Row>
+            </Container>
+        </div>
+
+        <Container className="fotter_container">
+            <img src={basketIcon} className="busket"/>
+            <button className="solveProblem">Решить проблему в квартире &nbsp; <img src={important}/></button>
+        </Container>
+
+        {/*Ваша корзина:
         <ul>
             {cart.map(a => <li>
                 {apartamentToAddressSting(a)} <button onClick={() => removeFromCart(a.id!)}>Удалить</button>
             </li>)}
-        </ul>
-        Ваши квартиры:
-        <ul>
-            {apartaments.map(a => <li>
-                {apartamentToAddressSting(a)}
-            </li>)}
-        </ul>
+        </ul>*/}
+        
     </motion.div>
 }
 

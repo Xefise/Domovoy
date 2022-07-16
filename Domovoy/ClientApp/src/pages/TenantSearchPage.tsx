@@ -7,8 +7,6 @@ import {apartamentToAddressSting} from "../addressToString";
 
 import Container from 'react-bootstrap/Container';
 import Dropdown from 'react-bootstrap/Dropdown';
-// import Row from 'react-bootstrap/Row';
-// import Col from 'react-bootstrap/Col';
 import '../styles/SearchPage.scss';
 import '../styles/menu.css';
 

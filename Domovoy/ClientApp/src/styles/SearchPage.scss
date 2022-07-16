@@ -1,9 +1,5 @@
 .searchPage {
-	.previousPage{
-		font-size: 25px;
-		margin-top: 20px;
-	}
-
+	
 	.back{
 		font-size: 30px;
 	}
@@ -47,6 +43,7 @@
 	}
 
 	.dropdown_menu{
+		z-index: 1;
 		width: 30%;
 		border: 0px;
 		background: #f6f6f6;
