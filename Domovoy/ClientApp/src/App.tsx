@@ -23,6 +23,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import TenantSearchPage from "./pages/TenantSearchPage";
 import TenantProfilePage from "./pages/TenantProfilePage";
 import TenantChatPage from "./pages/TenantChatPage";
+import OpenIntercomPage from "./pages/OpenIntercomPage";
 
 function App() {
     const location = useLocation();
@@ -65,6 +66,7 @@ function App() {
                     </Route>
                     <Route path="login" element={<LoginPage/>}/>
                     <Route path="logout" element={<LogoutPage/>}/>
+                    <Route path="open/:intercomId" element={<AuthSwitch auntificated={<OpenIntercomPage/>} nonAuntificated={<Navigate to={"/login"}/>}/>}/>
                     <Route path="oauth">
                         <Route path="google" element={<GoogleOAuthCallback/>}/>
                     </Route>

@@ -36,6 +36,7 @@ public class ConstructionCompanyController : ControllerBase
         return _mapper.Map<List<HouseEntranceDetails>>(
             _db.HouseEntrances
                 .Include("Apartments.InviteCodes")
+                .Include("Apartments.SmartHomeDevices")
                 .Where(e =>
                     e.ApartmentHouse.ResidentialComplex.Id == id &&
                     e.ApartmentHouse.ResidentialComplex.ConstructionCompany.Employees.Contains(HttpContext.GetUser()))
@@ -246,6 +247,42 @@ public class ConstructionCompanyController : ControllerBase
             return BadRequest();
         
         _db.InviteCodes.Remove(code);
+          
+        await _db.SaveChangesAsync();
+
+        return Ok();
+    }
+    
+    [HttpPost("apartments/{apartmentId}/devices")]
+    public async Task<ActionResult> CreateApartmentSmartHomeDevices(int apartmentId, SmartHomeDeviceCreate deviceCreate)
+    {
+        var apartment = await _db.Apartments.FirstOrDefaultAsync(a => a.Id == apartmentId && a.HouseEntrance.ApartmentHouse.ResidentialComplex.ConstructionCompany.Employees.Contains(HttpContext.GetUser()));
+
+        if (apartment == null)
+            return BadRequest();
+
+        var newDevice = new SmartHomeDevice()
+        {
+            Apartment = apartment,
+            SmartHomeDeviceType = deviceCreate.SmartHomeDeviceType
+        };
+
+        _db.SmartHomeDevices.Add(newDevice);
+
+        await _db.SaveChangesAsync();
+        
+        return Ok();
+    }
+    
+    [HttpDelete("devices/{deviceId}")]
+    public async Task<ActionResult> DeleteSmartHomeDevices(int deviceId)
+    {
+        var device = await _db.SmartHomeDevices.FirstOrDefaultAsync(a => a.Id == deviceId && a.Apartment.HouseEntrance.ApartmentHouse.ResidentialComplex.ConstructionCompany.Employees.Contains(HttpContext.GetUser()));
+
+        if (device == null)
+            return BadRequest();
+        
+        _db.SmartHomeDevices.Remove(device);
           
         await _db.SaveChangesAsync();
 

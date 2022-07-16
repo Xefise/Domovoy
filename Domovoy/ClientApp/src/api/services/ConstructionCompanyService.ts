@@ -9,6 +9,7 @@ import type { ConstructionCompanyDetails } from '../models/ConstructionCompanyDe
 import type { HouseEntranceCreate } from '../models/HouseEntranceCreate';
 import type { HouseEntranceDetails } from '../models/HouseEntranceDetails';
 import type { ResidentialComplexCreate } from '../models/ResidentialComplexCreate';
+import type { SmartHomeDeviceCreate } from '../models/SmartHomeDeviceCreate';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
@@ -249,6 +250,44 @@ id: number,
             url: '/api/constructioncompany/codes/{id}',
             path: {
                 'id': id,
+            },
+        });
+    }
+
+    /**
+     * @param apartmentId 
+     * @param requestBody 
+     * @returns any Success
+     * @throws ApiError
+     */
+    public static postApiConstructioncompanyApartmentsDevices(
+apartmentId: number,
+requestBody?: SmartHomeDeviceCreate,
+): CancelablePromise<any> {
+        return __request(OpenAPI, {
+            method: 'POST',
+            url: '/api/constructioncompany/apartments/{apartmentId}/devices',
+            path: {
+                'apartmentId': apartmentId,
+            },
+            body: requestBody,
+            mediaType: 'application/json-patch+json',
+        });
+    }
+
+    /**
+     * @param deviceId 
+     * @returns any Success
+     * @throws ApiError
+     */
+    public static deleteApiConstructioncompanyDevices(
+deviceId: number,
+): CancelablePromise<any> {
+        return __request(OpenAPI, {
+            method: 'DELETE',
+            url: '/api/constructioncompany/devices/{deviceId}',
+            path: {
+                'deviceId': deviceId,
             },
         });
     }

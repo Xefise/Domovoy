@@ -6,6 +6,7 @@ import type { ApartmentState } from './ApartmentState';
 import type { ApartmentType } from './ApartmentType';
 import type { ApplicationUserViewModel } from './ApplicationUserViewModel';
 import type { InviteCodeViewModel } from './InviteCodeViewModel';
+import type { SmartHomeDeviceGet } from './SmartHomeDeviceGet';
 
 export type ApartmentDetails = {
     id?: number;
@@ -31,4 +32,5 @@ export type ApartmentDetails = {
     inviteCodes?: Array<InviteCodeViewModel> | null;
     owner?: ApplicationUserViewModel;
     tenantsWhoMainThis?: Array<ApplicationUserViewModel> | null;
+    smartHomeDevices?: Array<SmartHomeDeviceGet> | null;
 };

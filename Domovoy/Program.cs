@@ -1,10 +1,12 @@
 using System.Reflection;
 using System.Security.Claims;
 using System.Text;
+using AutoMapper;
 using Domovoy.Auth;
 using Domovoy.Data;
 using Domovoy.Mapping;
 using Domovoy.Models;
+using Domovoy.SmartHome;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -26,8 +28,6 @@ builder.Host.UseSerilog((ctx, lc) =>
     lc.MinimumLevel.Override("Microsoft.EntityFrameworkCore.Database.Command", Serilog.Events.LogEventLevel.Warning);
     lc.WriteTo.Console();
 });
-
-builder.Services.AddAutoMapper(typeof(AppMappingProfile));
 
 builder.Services.AddDbContext<ApplicationDbContext>(c => c.UseSqlite("Filename=DataBase.db"));
 
@@ -110,6 +110,8 @@ builder.Services.AddAuthorization(options =>
         policy.Requirements.Add(new UserTypeAgentRequirement()));
 });
 
+builder.Services.AddTransient<ISmartHomeDeviceHandler, IntercomHandler>();
+
 // Adding Authentication
 var authenticationBuilder = builder.Services.AddAuthentication(options =>
 {
@@ -185,6 +187,11 @@ authenticationBuilder.AddJwtBearer(options =>
 //             
 //     googleOptions.Events.OnTicketReceived += ctx => AuthUtils.OnTicketReceived(ctx);
 // });
+
+builder.Services.AddSingleton(provider => new MapperConfiguration(cfg =>
+{
+    cfg.AddProfile(new AppMappingProfile(provider));
+}).CreateMapper());
 
 var app = builder.Build();
 

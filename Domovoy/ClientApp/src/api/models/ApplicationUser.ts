@@ -5,7 +5,6 @@
 import type { Apartment } from './Apartment';
 import type { ApplicationUserType } from './ApplicationUserType';
 import type { ConstructionCompany } from './ConstructionCompany';
-import type { ServiceUser } from './ServiceUser';
 
 export type ApplicationUser = {
     type: ApplicationUserType;
@@ -25,7 +24,6 @@ export type ApplicationUser = {
     mainApartment?: Apartment;
     cart?: Array<Apartment> | null;
     constructionCompany?: ConstructionCompany;
-    serviceUsers?: Array<ServiceUser> | null;
     id?: number;
     userName?: string | null;
     normalizedUserName?: string | null;

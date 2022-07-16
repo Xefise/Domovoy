@@ -14,6 +14,9 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityR
     public DbSet<ConstructionCompany> ConstructionCompanies { get; set; } = null!;
     public DbSet<ResidentialComplex> ResidentialComplexes { get; set; } = null!;
     public DbSet<InviteCode> InviteCodes { get; set; } = null!;
+    
+    public DbSet<SmartHomeDevice> SmartHomeDevices { get; set; } = null!;
+    public DbSet<SmartHomeDeviceActionLogEntry> SmartHomeDeviceActionLog { get; set; } = null!;
 
     public DbSet<Chat> Chats { get; set; } = null!;
     public DbSet<Message> Messages { get; set; } = null!;

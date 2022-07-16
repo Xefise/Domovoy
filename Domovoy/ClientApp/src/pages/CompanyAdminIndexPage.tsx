@@ -1,16 +1,16 @@
 ﻿import {useAuth} from "../components/AuthProvider";
 import React, {ChangeEvent, useContext, useEffect, useState} from "react";
 import {
-    ApartmentHouseDetails, ApplicationUser,
-    ConstructionCompany,
+    ApartmentHouseDetails,
     ConstructionCompanyDetails,
     ConstructionCompanyService,
-    ConstructionCompanyViewModel, HouseEntrance, HouseEntranceDetails
+    HouseEntranceDetails,
+    SmartHomeDeviceType
 } from "../api";
 import {upVariants} from "../animations";
 import {AnimatePresence, motion} from "framer-motion";
 import {addressToString} from "../addressToString";
-import {Link, Outlet, useLocation, useOutlet} from "react-router-dom";
+import {Link, useLocation, useOutlet} from "react-router-dom";
 
 export interface Props {
 
@@ -127,6 +127,22 @@ function CompanyAdminIndexPage(props: Props) {
                                                     reloadHouse(h.id!)
                                                 })
                                             }}>Добавить код</button>
+                                            <br/>
+                                            Умный дом:
+                                            <ul>
+                                                {a.smartHomeDevices?.map(d => <li>
+                                                    {d.smartHomeDeviceType == SmartHomeDeviceType.INTERCOM && "Домофон"}  <button onClick={() => {
+                                                    ConstructionCompanyService.deleteApiConstructioncompanyDevices(d.id!).then(() => {
+                                                        reloadHouse(h.id!)
+                                                    })
+                                                }}>Удалить</button>
+                                                </li>)}
+                                            </ul>
+                                            <button onClick={() => {
+                                                ConstructionCompanyService.postApiConstructioncompanyApartmentsDevices(a.id!, {smartHomeDeviceType: SmartHomeDeviceType.INTERCOM}).then(() => {
+                                                    reloadHouse(h.id!)
+                                                })
+                                            }}>Добавить домофон</button>
                                         </li>)}
                                     </ul>
                                     <Link to={`create/apartment/${h.id}/${e.id}`}>Создать квартиру</Link>

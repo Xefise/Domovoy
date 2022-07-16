@@ -6,9 +6,8 @@ import type { ApartmentState } from './ApartmentState';
 import type { ApartmentType } from './ApartmentType';
 import type { ApplicationUser } from './ApplicationUser';
 import type { HouseEntrance } from './HouseEntrance';
-import type { Informer } from './Informer';
 import type { InviteCode } from './InviteCode';
-import type { ServiceApartment } from './ServiceApartment';
+import type { SmartHomeDevice } from './SmartHomeDevice';
 
 export type Apartment = {
     id?: number;
@@ -36,8 +35,7 @@ export type Apartment = {
     tenantsWhoMainThis?: Array<ApplicationUser> | null;
     tenantsWhoAddThisToCart?: Array<ApplicationUser> | null;
     inviteCodes?: Array<InviteCode> | null;
-    serviceApartments?: Array<ServiceApartment> | null;
-    informers?: Array<Informer> | null;
+    smartHomeDevices?: Array<SmartHomeDevice> | null;
     houseEntrance?: HouseEntrance;
     houseEntranceId?: number;
 };

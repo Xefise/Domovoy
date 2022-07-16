@@ -31,6 +31,8 @@ public class Apartment
     public List<ApplicationUser> TenantsWhoMainThis { get; set; }
     public List<ApplicationUser> TenantsWhoAddThisToCart { get; set; }
     public List<InviteCode> InviteCodes { get; set; }
+    
+    public List<SmartHomeDevice> SmartHomeDevices { get; set; }
 
     public HouseEntrance HouseEntrance { get; set; }
     public int HouseEntranceId { get; set; }
@@ -113,6 +115,8 @@ public class ApartmentDetails
     public ApplicationUserViewModel? Owner { get; set; }
     
     public List<ApplicationUserViewModel> TenantsWhoMainThis { get; set; }
+    
+    public List<SmartHomeDeviceGet> SmartHomeDevices { get; set; }
 }
 
 public class ApartmentCreate
