@@ -97,10 +97,35 @@
 			width: 400px;
 			height: 450px;
 			position: absolute;
+			padding: 20px;
+
 
 			@media screen and (max-width: 450px){
 				width: 90%;
 			}
+		}
+
+		.apartmentState{
+			background: rgba(223, 168, 116, 0.2);
+			border-radius: 4px;
+			color: #D58D49;
+			width: 150px;
+			text-align: center;
+		}
+
+		.apartment{
+			font-size: 18px;
+		}
+
+		.cost{
+			font-weight: bold;
+			text-align: right;
+		}
+
+		.flat_img{
+			width: 150px;
+			display: block;
+			margin: 20px auto 20px auto;
 		}
 	}
 	

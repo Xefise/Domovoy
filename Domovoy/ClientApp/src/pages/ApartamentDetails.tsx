@@ -59,15 +59,15 @@ function ApartamentDetails(props: Props) {
                     <p>Стоимость: <input value={apartmentObject.cost || 0} type={"number"} onChange={e => setApartmentObject({...apartmentObject, cost: parseInt(e.target.value)})}/></p>
                     
                     <p>Статус: <select value={apartmentObject.apartmentState} onChange={(e) => setApartmentObject({...apartmentObject, apartmentState: e.target.value as ApartmentState})}>
-                        <option value={ApartmentState.NOT_FOR_SELL}>NOT_FOR_SELL</option>
-                        <option value={ApartmentState.FOR_SELL}>FOR_SELL</option>
-                        <option value={ApartmentState.FOR_RENT}>FOR_RENT</option>
-                        <option value={ApartmentState.BOOKED}>BOOKED</option>
+                        <option value={ApartmentState.NOT_FOR_SELL}>Не продается</option>
+                        <option value={ApartmentState.FOR_SELL}>Продается</option>
+                        <option value={ApartmentState.FOR_RENT}>Сдается</option>
+                        <option value={ApartmentState.BOOKED}>Забронировано</option>
                     </select></p>
 
                     <p>Тип: <select value={apartmentObject.apartmentType} onChange={(e) => setApartmentObject({...apartmentObject, apartmentType: e.target.value as ApartmentType})}>
-                        <option value={ApartmentType.LIVING}>LIVING</option>
-                        <option value={ApartmentType.COMMERCIAL}>COMMERCIAL</option>
+                        <option value={ApartmentType.LIVING}>Жилая</option>
+                        <option value={ApartmentType.COMMERCIAL}>Комерческая</option>
                     </select></p>
                 </>
             }

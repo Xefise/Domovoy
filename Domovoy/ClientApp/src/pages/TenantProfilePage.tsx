@@ -23,6 +23,8 @@ import profileImage from '../images/profileImage.svg';
 import editIcon from '../images/editIcon.svg';
 import basketIcon from '../images/basketIcon.svg';
 import important from '../images/important.svg';
+import flat1 from '../images/flat1.svg';
+import flat2 from '../images/flat2.svg';
 
 export interface Props {
 
@@ -90,6 +92,23 @@ function TenantProfilePage(props: Props) {
                             <Row>
                                 {!editingApartment || editingApartment.id != a.id 
                                     ? <>
+                                        
+                                        <Container>
+
+                                            <Row>
+                                                
+                                                <Col>
+                                                    <img className="flat_img" src={flat1}/>
+                                                </Col>
+
+                                                <Col>
+                                                    <img className="flat_img" src={flat2}/>
+                                                </Col>
+
+                                            </Row>
+
+                                        </Container>
+
                                         <p>Характеристики:</p>
                                         <br/>
                                         <p>{a.area} м²</p>
@@ -161,6 +180,21 @@ function TenantProfilePage(props: Props) {
                                     })
                                 }} style={{cursor: "pointer"}} className="more_info">Удалить</p></Col>
                             </Row>
+                            <Container>
+
+                                <Row>
+                                                
+                                    <Col>
+                                        <img className="flat_img" src={flat1}/>
+                                    </Col>
+
+                                    <Col>
+                                        <img className="flat_img" src={flat2}/>
+                                    </Col>
+
+                                </Row>
+
+                            </Container>
                             <Row>
                                 {apartamentToAddressSting(a)}
                             </Row>
@@ -191,7 +225,7 @@ function TenantProfilePage(props: Props) {
 
         <Container className="fotter_container">
             <button className="solveProblem">Решить проблему в квартире &nbsp; <img src={important}/></button>
-            <button onClick={() => navigate('/logout')} style={{marginTop: 10}} className="solveProblem">Выйти &nbsp; <img src={important}/></button>
+            <button onClick={() => navigate('/logout')} style={{marginTop: 10}} className="solveProblem">Выйти</button>
         </Container>
         
         <br/>

@@ -18,7 +18,7 @@ import Carousel from 'react-bootstrap/Carousel';
 import Dropdown from 'react-bootstrap/Dropdown';
 import '../styles/IndexPage.scss';
 import profileImage from '../images/profileImage.svg';
-import lampImage from '../images/lampImage.svg';
+import houseImg from '../images/houseImg.svg';
 
 function TenantIndexPage() {
     const auth = useAuth()
@@ -71,7 +71,7 @@ function TenantIndexPage() {
             {smartHomeDevices?.map(d => <>
                 {d.actions?.map(a => <button className="smart_element" onClick={() => {
                     SmartHomeDevicesService.postApiSmarthomedevicesUse(d.id!, a.actionId!)
-                }}><img className="lampImage" src={lampImage}/>{a.name}</button>
+                }}><img className="houseImg" src={houseImg}/>{a.name}</button>
 
                 )}
                 </>
@@ -92,8 +92,8 @@ function TenantIndexPage() {
                       </Dropdown.Toggle>
 
                       <Dropdown.Menu className="dropdown_menu">
-                        <Dropdown.Item href="#/action-1">Юр. услуги</Dropdown.Item>
-                        <Dropdown.Item href="#/action-1">Страхование</Dropdown.Item>
+                        <Dropdown.Item href="#">Юр. услуги</Dropdown.Item>
+                        <Dropdown.Item href="#">Страхование</Dropdown.Item>
                       </Dropdown.Menu>
                     </Dropdown>
 
@@ -107,12 +107,27 @@ function TenantIndexPage() {
                       </Dropdown.Toggle>
 
                       <Dropdown.Menu className="dropdown_menu">
-                        <Dropdown.Item href="#/action-1">Уход за животными</Dropdown.Item>
-                        <Dropdown.Item href="#/action-1">Уборка</Dropdown.Item>
+                        <Dropdown.Item href="#">Уход за животными</Dropdown.Item>
+                        <Dropdown.Item href="#">Уборка</Dropdown.Item>
                       </Dropdown.Menu>
                     </Dropdown>
 
                 </Col>
+
+                <Col>
+
+                    <Dropdown className="GKHServices">
+                      <Dropdown.Toggle variant="success" id="dropdown-basic" className="dropdown_toggle gkh_services">
+                        <span className="filters_text">ЖКХ</span>
+                      </Dropdown.Toggle>
+
+                      <Dropdown.Menu className="dropdown_menu">
+                        <Dropdown.Item href="#">Оплатить комуналку</Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
+
+                </Col>
+
             </Row>
         </Container>
     </motion.div>

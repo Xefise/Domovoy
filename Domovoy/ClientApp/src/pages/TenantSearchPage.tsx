@@ -41,6 +41,9 @@ function TenantSearchPage(props: Props) {
     const [searchId, setSearchId] = useState(0)
     
     const search = () => {
+        let submitBtn = document.getElementById("dropdown_menu");
+        submitBtn.classList.remove('show');
+
         if (!loading) {
             setSearchId(searchId + 1)
             setResults([])
@@ -75,7 +78,7 @@ function TenantSearchPage(props: Props) {
                 <span className="filters_text">Фильтры</span>
               </Dropdown.Toggle>
 
-              <Dropdown.Menu className="dropdown_menu">
+              <Dropdown.Menu className="dropdown_menu" id="dropdown_menu">
                 <label>Город</label><br/><input value={filters.city || ''} onChange={e => setFilters({...filters, city: e.target.value})} placeholder={"Город"}/> <br/>
                 <label>Цена</label><br/><input className="from_to" value={filters.costMin || ''} onChange={e => setFilters({...filters, costMin: parseInt(e.target.value)})} placeholder={"От"} type={'number'}/>
                 <input className="from_to" value={filters.costMax || ''} onChange={e => setFilters({...filters, costMax: parseInt(e.target.value)})} placeholder={"До"} type={'number'}/> <br/>
