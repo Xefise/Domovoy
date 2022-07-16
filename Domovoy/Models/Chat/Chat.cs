@@ -2,6 +2,12 @@
 
 public class Chat
 {
+    public Chat(){}
+    public Chat(string? name, List<ApplicationUser> users)
+    {
+        Name = name;
+        Users = users;
+    }
     public int Id { get; set; }
 
     public string Name { get; set; }
