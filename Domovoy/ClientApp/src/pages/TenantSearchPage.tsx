@@ -17,8 +17,8 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import '../styles/SearchPage.scss';
 import '../styles/menu.css';
 
-import VectorLeft from '../images/VectorLeft.svg';
-import VectorRight from '../images/VectorRight.svg';
+import reject from '../images/reject.png';
+import add from '../images/add.png';
 import Card from "../components/Card";
 
 export interface Props {
@@ -105,8 +105,8 @@ function TenantSearchPage(props: Props) {
                 {results.length == 0 && <p>{changed ? "Больше нет результатов" : "Нет результатов"}</p>}
             </div>
             {results.length > 0 && <div className={"buttons"}>
-                <button onClick={() => removeFromList(results[0])}><img src={VectorLeft}/></button>
-                <button onClick={() => addToCart(results[0])}><img src={VectorRight}/></button>
+                <button className="card_choice last_item" onClick={() => removeFromList(results[0])}><img className="card_choice" src={reject}/></button>
+                <button className="card_choice last_item" onClick={() => addToCart(results[0])}><img className="card_choice" src={add}/></button>
             </div>}
 
 {/*            </form>*/}

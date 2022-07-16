@@ -19,6 +19,11 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import '../styles/IndexPage.scss';
 import profileImage from '../images/profileImage.svg';
 import houseImg from '../images/houseImg.svg';
+import flat3 from '../images/flat3.svg';
+import flat4 from '../images/flat4.svg';
+import flat5 from '../images/flat5.svg';
+import advert_img1 from '../images/advert_img1.png';
+import advert_img2 from '../images/advert_img2.png';
 
 function TenantIndexPage() {
     const auth = useAuth()
@@ -65,7 +70,19 @@ function TenantIndexPage() {
         </select>
         </Container>
 
-        <h3 className="text_blue_style smartHome"><b>Умный дом</b></h3>
+        <Container className="advert advert1">
+            <Row>
+                <Col xs={2}>
+                    <img className="advert_img" src={advert_img1}/>
+                </Col>
+                <Col xs={10}>
+                    <h4>Дорогой житель!</h4>
+                    <p>В ближайшее время вам предстоит оплатить счета за свет, воду</p>
+                </Col>
+            </Row>
+        </Container>
+
+        <h3 className="text_blue_style titles"><b>Умный дом</b></h3>
         <Container>
             <Row>
             {smartHomeDevices?.map(d => <>
@@ -80,7 +97,7 @@ function TenantIndexPage() {
             </Row>
         </Container>
 
-        <h3 className="text_blue_style smartHome"><b>Услуги</b></h3>
+        <h3 className="text_blue_style titles"><b>Услуги</b></h3>
 
         <Container>
             <Row>
@@ -130,6 +147,58 @@ function TenantIndexPage() {
 
             </Row>
         </Container>
+
+        <Container className="advert advert2">
+            <Row>
+                <Col xs={2}>
+                    <img className="advert_img" src={advert_img2}/>
+                </Col>
+                <Col xs={10}>
+                    <h4>Время убираться!</h4>
+                    <p>В среду ожидается уборка</p>
+                </Col>
+            </Row>
+        </Container>
+
+        <h3 className="text_blue_style titles"><b>Рекомендации</b></h3>
+        <Container className="last_item">
+            <Row>
+            
+            <Col xs={3} md={6} sm={12}  className="recommendation_element">
+                
+                <img src={flat3}/>
+                <b>ЖК «Все свои»</b>
+                <p>от 5 002 133 ₽</p>
+
+            </Col>
+
+            <Col xs={3} md={6} sm={12} className="recommendation_element">
+                
+                <img src={flat4}/>
+                <b>ЖК «Все свои»</b>
+                <p>от 5 002 133 ₽</p>
+
+            </Col>
+
+            <Col xs={3} md={6} sm={12} className="recommendation_element">
+                
+                <img src={flat5}/>
+                <b>ЖК «Все свои»</b>
+                <p>от 5 002 133 ₽</p>
+
+            </Col>
+
+            <Col xs={3} md={6} sm={12} className="recommendation_element">
+                
+                <img src={flat3}/>
+                <b>ЖК «Все свои»</b>
+                <p>от 5 002 133 ₽</p>
+
+            </Col>
+
+            </Row>
+        </Container>
+
     </motion.div>
 }
 
