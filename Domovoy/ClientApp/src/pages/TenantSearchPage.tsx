@@ -42,7 +42,7 @@ function TenantSearchPage(props: Props) {
     
     const search = () => {
         let submitBtn = document.getElementById("dropdown_menu");
-        submitBtn.classList.remove('show');
+        submitBtn?.classList.remove('show');
 
         if (!loading) {
             setSearchId(searchId + 1)
@@ -100,7 +100,7 @@ function TenantSearchPage(props: Props) {
 
             <div className={"cardsWrapper"}>
                 <AnimatePresence>
-                    {[...results].reverse().map((r, i) => <Card onSnap={d => removeFromList(r)} apartment={r} key={r.id! + searchId.toString()} drag={i == results.length - 1}/>)}
+                    {[...results].reverse().map((r, i) => <Card onSnap={d => d == "left" ? removeFromList(r) : addToCart(r)} apartment={r} key={r.id! + searchId.toString()} drag={i == results.length - 1}/>)}
                 </AnimatePresence>
                 {results.length == 0 && <p>{changed ? "Больше нет результатов" : "Нет результатов"}</p>}
             </div>

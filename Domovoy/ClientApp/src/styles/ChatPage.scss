@@ -1,0 +1,22 @@
+﻿.chatPage {
+  .list {
+    display: flex;
+    min-height: 90vh;
+    flex-direction: column;
+    align-items: center;
+
+    .item {
+      text-decoration: none;
+      color: black;
+      padding: 20px;
+      background: #dcdcdc;
+      border-radius: 20px;
+      margin-top: 10px;
+      min-width: 400px;
+
+      @media screen and (max-width: 420px){
+        min-width: 90%;
+      }
+    }
+  }
+}
