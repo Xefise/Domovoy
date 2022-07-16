@@ -28,7 +28,7 @@ function CompanyAdminIndexPage(props: Props) {
 
     useEffect(() => load(), [])
 
-    return <>
+    return <motion.div variants={upVariants} initial={'init'} animate={'show'} exit={'hide'}>
         <h3>Запросы</h3>
         <ul>
             {requests?.map(r => <li>
@@ -49,7 +49,7 @@ function CompanyAdminIndexPage(props: Props) {
                 }}>Отклонить</button>
             </li>)}
         </ul>
-    </>
+    </motion.div>
 }
 
 export default CompanyAdminIndexPage;
