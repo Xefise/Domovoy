@@ -11,6 +11,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Carousel from 'react-bootstrap/Carousel';
 import '../styles/menu.css';
+import '../styles/carousel.css';
 import '../styles/ProfilePage.scss';
 import profileImage from '../images/profileImage.svg';
 import editIcon from '../images/editIcon.svg';
@@ -139,37 +140,11 @@ function TenantProfilePage(props: Props) {
             }
         </Carousel>
 
-        <b className="text_blue_style my_flat">Ваша корзина</b>
-        <Carousel>
-        {cart.map(a =>
-      <Carousel.Item>
-        <div className="flatBlock">
-            <Container className="myflatsList">
-                <Row>
-                    <Col xs={11} md={11} sm={10}><p className="flat_status">Ищет квартиру</p></Col>
-                    <Col xs={1} md={1} sm={1}><p className="more_info">...</p></Col>
-                </Row>
-                <Row>
-                    {apartamentToAddressSting(a)} <button onClick={() => removeFromCart(a.id!)}>Удалить</button>
-                </Row>
-                <Row>
-
-                </Row>
-                <Row>
-                    <p>Характеристики:</p>
-                    <br/>
-                    <p>40 м²</p>
-                </Row>
-            </Container>
-        </div>
-        </Carousel.Item>
-        )}
-        </Carousel>
-
         <Container className="fotter_container">
             <button className="solveProblem">Решить проблему в квартире &nbsp; <img src={important}/></button>
             <button onClick={() => navigate('/logout')} style={{marginTop: 10}} className="solveProblem">Выйти &nbsp; <img src={important}/></button>
-        </Container>    
+        </Container>
+        
         <br/>
         <br/>
 
