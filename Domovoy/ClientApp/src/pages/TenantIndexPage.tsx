@@ -15,6 +15,9 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Carousel from 'react-bootstrap/Carousel';
+import '../styles/IndexPage.scss';
+import profileImage from '../images/profileImage.svg';
+import lampImage from '../images/lampImage.svg';
 
 function TenantIndexPage() {
     const auth = useAuth()
@@ -41,22 +44,39 @@ function TenantIndexPage() {
         }
     }, [selectedAparment])
     
-    return <motion.div variants={upVariants} initial={'init'} animate={'show'} exit={'hide'}>
-        Привет, {auth.user?.userName}! <br/>
-        Выбранная квартира: <select value={selectedAparment?.id} onChange={e => setSelectedAparment(apartments.find(a => a.id == parseInt(e.target.value)))}>
+    return <motion.div className="indexPage" variants={upVariants} initial={'init'} animate={'show'} exit={'hide'}>
+        <Container className="upper_container">
+            <Row>
+                <Col xs={9} md={9} sm={9}>
+                    <h1 className="text_blue_style"><b>Привет, {auth.user?.userName}!</b></h1> <br/>
+                    <p className="welcome">Добро пожаловать в  ДОМовой</p>
+                </Col>
+                <Col xs={3} md={3} sm={3}>
+                    <img className="profileImage" src={profileImage}/>
+                </Col>
+            </Row>
+        </Container>
+        <Container className="choose_flat">
+        Выбранная квартира <br/><select value={selectedAparment?.id} onChange={e => setSelectedAparment(apartments.find(a => a.id == parseInt(e.target.value)))}>
             {apartments.map(a => <option value={a.id}>
                 {apartamentToAddressSting(a)}
             </option>)}
         </select>
-        <h3>SmartHome</h3>
-        <ul>
-            {smartHomeDevices?.map(d => <li>
-                {d.smartHomeDeviceType == SmartHomeDeviceType.INTERCOM && "Домофон"}
-                {d.actions?.map(a => <button onClick={() => {
+        </Container>
+        <h3 className="text_blue_style smartHome"><b>Умный дом</b></h3>
+        <Container>
+            <Row>
+            {smartHomeDevices?.map(d => <>
+                {d.actions?.map(a => <button className="smart_element" onClick={() => {
                     SmartHomeDevicesService.postApiSmarthomedevicesUse(d.id!, a.actionId!)
-                }}>{a.name}</button>)}
-            </li>)}
-        </ul>
+                }}><img className="lampImage" src={lampImage}/>{a.name}</button>
+
+                )}
+                </>
+            )}
+
+            </Row>
+        </Container>
     </motion.div>
 }
 
