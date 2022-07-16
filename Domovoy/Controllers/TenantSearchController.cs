@@ -35,9 +35,9 @@ public class TenantSearchController : ControllerBase
                 (filters.ApartmentState != null ? a.ApartmentState == filters.ApartmentState : a.ApartmentState != ApartmentState.Booked && a.ApartmentState != ApartmentState.NotForSell) &&
                 (filters.ApartmentType != null ? a.ApartmentType == filters.ApartmentType : true) &&
                 a.Cost >= filters.CostMin &&
-                a.Cost <= filters.CostMax &&
+                (filters.CostMax != null && filters.CostMax != 0 ? a.Cost <= filters.CostMax : true) &&
                 a.RoomCount >= filters.RoomCountMin &&
-                a.RoomCount <= filters.RoomCountMax
+                (filters.RoomCountMax != null && filters.RoomCountMax != 0 ? a.RoomCount <= filters.RoomCountMax : true)
             )
         ).ToListAsync();
         
