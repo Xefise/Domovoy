@@ -11,6 +11,11 @@ import {
 } from "../api";
 import {apartamentToAddressSting} from "../addressToString";
 
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Carousel from 'react-bootstrap/Carousel';
+
 function TenantIndexPage() {
     const auth = useAuth()
     
