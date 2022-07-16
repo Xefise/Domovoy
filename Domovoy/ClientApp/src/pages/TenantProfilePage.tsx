@@ -57,6 +57,7 @@ function TenantProfilePage(props: Props) {
         </Container>
 
         <b className="text_blue_style my_flat">Мои квартиры</b>
+        {apartaments.map(a =>
         <div className="flatBlock">
             <Container className="myflatsList">
                 <Row>
@@ -64,12 +65,10 @@ function TenantProfilePage(props: Props) {
                     <Col xs={1} md={1} sm={1}><p className="more_info">...</p></Col>
                 </Row>
                 <Row>
-                    <p>Ул. фронтендеров, д.14, кв 80 </p>
+                    {apartamentToAddressSting(a)}
                 </Row>
                 <Row>
-                    {apartaments.map(a => <Col>
-                        {apartamentToAddressSting(a)}
-                    </Col>)}
+
                 </Row>
                 <Row>
                     <p>Характеристики:</p>
@@ -78,6 +77,7 @@ function TenantProfilePage(props: Props) {
                 </Row>
             </Container>
         </div>
+        )}
 
         <Container className="fotter_container">
             <img src={basketIcon} className="busket"/>
