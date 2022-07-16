@@ -1,0 +1,91 @@
+.searchPage {
+	.previousPage{
+		font-size: 25px;
+		margin-top: 20px;
+	}
+
+	.back{
+		font-size: 30px;
+	}
+
+	form{
+		margin-top: 40px;
+	}
+
+	input, select{
+		width: 100%;
+		border: 0px;
+		border-radius: 46px;
+		padding: 8px;
+		margin: 5px 0 5px 0;
+	}
+
+	.from_to{
+		width: 47%;
+		margin: 5px;
+	}
+
+	.dropdown_toggle{
+		width: 30%;
+		display: block;
+		text-align: right;
+		margin: 30px auto 0 auto;
+		background: #fff;
+		color: #828282;
+		border: 0px;
+	}
+
+	.filters_text{
+		position: relative;
+		right: 70%;
+	}
+
+	.dropdown_toggle:hover{
+		background: #fff;
+		color: #828282;
+		border: 0px;
+	}
+
+	.dropdown_menu{
+		width: 30%;
+		border: 0px;
+		background: #f6f6f6;
+		margin-top: 20px;
+		padding: 15px;
+		border-radius: 20px;
+	}
+
+	.btn-success{
+		background: #fff !important;
+		border: 0px !important;
+		color: #828282 !important;
+	}
+
+	.filter_btn{
+		background: linear-gradient(89.04deg, #9B51E0 -24.42%, #56C5F4 124.14%);
+		border-radius: 20px;
+		border: 0px;
+		color: #fff;
+		padding: 5px 50px 5px 50px;
+		display: block;
+		margin: 20px auto 0px auto;
+	}
+
+	@media screen and (max-width: 992px){
+	    .dropdown_toggle, .dropdown_menu{
+			width: 40%;
+		}
+	}
+
+	@media screen and (max-width: 768px){
+	    .dropdown_toggle, .dropdown_menu{
+			width: 60%;
+		}
+	}
+
+	@media screen and (max-width: 488px){
+	    .dropdown_toggle, .dropdown_menu{
+			width: 85%;
+		}
+	}
+}

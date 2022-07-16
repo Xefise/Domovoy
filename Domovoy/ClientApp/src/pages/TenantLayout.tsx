@@ -23,8 +23,6 @@ export interface Props {
 function TenantLayout(props: Props) {
     const location = useLocation()
     const Outlet = useOutlet()
-
-    console.log(location.pathname)
     
     return <motion.div variants={upVariants} initial={'init'} animate={'show'} exit={'hide'} style={{
         width: '100%',
