@@ -51,7 +51,7 @@ export type { SmartHomeDeviceGet } from './models/SmartHomeDeviceGet';
 export { SmartHomeDeviceType } from './models/SmartHomeDeviceType';
 
 export { AuthService } from './services/AuthService';
-export { ChatServiceService } from './services/ChatServiceService';
+export { ChatsService } from './services/ChatsService';
 export { ConstructionCompanyService } from './services/ConstructionCompanyService';
 export { SmartHomeDevicesService } from './services/SmartHomeDevicesService';
 export { TenantAppartamentsService } from './services/TenantAppartamentsService';

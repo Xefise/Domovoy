@@ -46,7 +46,7 @@ public class SmartHomeDevicesController: ControllerBase
     }
 
     [AllowAnonymous]
-    [HttpPost("updates/{deviceId}")]
+    [HttpGet("updates/{deviceId}")]
     public async Task<ActionResult<List<SmartHomeDeviceActionLogEntryDTO>>> GetUpdates(int deviceId)
     {
         var updates = await _db.SmartHomeDeviceActionLog.Where(e => e.SmartHomeDevice.Id == deviceId && e.Perfomed == false).ToListAsync();

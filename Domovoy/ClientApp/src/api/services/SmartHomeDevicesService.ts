@@ -54,11 +54,11 @@ actionId?: string,
      * @returns SmartHomeDeviceActionLogEntryDTO Success
      * @throws ApiError
      */
-    public static postApiSmarthomedevicesUpdates(
+    public static getApiSmarthomedevicesUpdates(
 deviceId: number,
 ): CancelablePromise<Array<SmartHomeDeviceActionLogEntryDTO>> {
         return __request(OpenAPI, {
-            method: 'POST',
+            method: 'GET',
             url: '/api/smarthomedevices/updates/{deviceId}',
             path: {
                 'deviceId': deviceId,
