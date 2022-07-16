@@ -1,4 +1,6 @@
-﻿namespace Domovoy.Models;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Domovoy.Models;
 
 public class ApartmentHouse
 {
@@ -9,6 +11,10 @@ public class ApartmentHouse
     public List<HouseEntrance> HouseEntrances { get; set; }
     public ResidentialComplex ResidentialComplex { get; set; }
     public int ResidentialComplexId { get; set; }
+
+    public int HouseChatId { get; set; }
+    [ForeignKey("HouseChatId")]
+    public Chat HouseChat { get; set; }
 }
 
 public class ApartmentHouseViewModel

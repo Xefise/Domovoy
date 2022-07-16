@@ -78,7 +78,7 @@ public class ConstructionCompanyController : ControllerBase
     [HttpPost("houses")]
     public async Task<ActionResult> CreateApartmentHouse(ApartmentHouseCreate apartmentHouseCreate)
     {
-        var house = _mapper.Map<ApartmentHouse>(apartmentHouseCreate);
+        ApartmentHouse house = _mapper.Map<ApartmentHouse>(apartmentHouseCreate);
 
         if (_db.ResidentialComplexes
                 .Where(c =>
@@ -88,6 +88,7 @@ public class ConstructionCompanyController : ControllerBase
             return BadRequest();
 
         _db.ApartmentHouses.Add(house);
+        _db.Chats.Add(new Chat(house));
         await _db.SaveChangesAsync();
 
         return Ok();

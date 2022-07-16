@@ -60,9 +60,12 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityR
             .WithMany(b => b.TenantsWhoMainThis);
         builder.Entity<ApplicationUser>()
             .HasMany(p => p.Chats)
-            .WithMany(p => p.Users);
+            .WithMany(b => b.Users);
         builder.Entity<ApplicationUser>()
             .HasMany(p => p.AdminChats)
-            .WithOne(p => p.Administrator);
+            .WithOne(b => b.Administrator);
+        builder.Entity<ApartmentHouse>()
+            .HasOne(p => p.HouseChat)
+            .WithOne(b => b.ApartmentHouse);
     }
 }

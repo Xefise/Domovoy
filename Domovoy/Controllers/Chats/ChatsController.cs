@@ -25,11 +25,22 @@ public class ChatsController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<Chat>>> GetChats()
+    public async IAsyncEnumerable<Chat> GetChats()
     {
-        return await _db.Chats
-            .Where(c => c.Users.Contains(HttpContext.GetUser()))
-            .ToListAsync();
+        ApplicationUser user = HttpContext.GetUser();
+        List<Apartment> apartments = _db.Apartments
+            .Where(a => a.Owner == user)
+            .Include(i => i.HouseEntrance.ApartmentHouse.HouseChat)
+            .ToList();
+
+        await foreach (var chat in _db.Chats)
+        {
+            foreach (var apartment in apartments)
+            {
+                if (chat.Users.Contains(user) || chat == apartment.HouseEntrance.ApartmentHouse.HouseChat)
+                    yield return chat;
+            }
+        }
     }
 
     [HttpPost ("add")]
@@ -43,6 +54,10 @@ public class ChatsController : ControllerBase
     [HttpGet ("{chatId}")]
     public async Task<ActionResult<List<Message>>> ShowChat(int chatId, [FromQuery] DateTime? since)
     {
+        bool access = await UserHasAccess(chatId, HttpContext);
+        if (access == false)
+            return Forbid();
+
         return await _db.Messages
             .Where(c => c.ChatId == chatId && (c.SentAt > since || since == null))
             .OrderByDescending(s => s.SentAt)
@@ -53,8 +68,23 @@ public class ChatsController : ControllerBase
     [HttpPost ("{chatId}/send")]
     public async Task<ActionResult> SentMessage(string text, int chatId)
     {
+        bool access = await UserHasAccess(chatId, HttpContext);
+        if (access == false)
+            return Forbid();
+
         await _db.Messages.AddAsync(new Message(text, _db.Chats.First(c => c.Id == chatId)));
         await _db.SaveChangesAsync();
         return Ok();
+    }
+
+    async Task<bool> UserHasAccess(int chatId, HttpContext HttpContext)
+    {
+        Chat chat = _db.Chats.FirstOrDefault(c => c.Id == chatId);
+        ApplicationUser user = HttpContext.GetUser();
+        if (chat != null &&
+            (chat.Users.Contains(user) ||
+             user.Apartments.Where(a => a.HouseEntrance.ApartmentHouse.Id == chat.ApartmentHouse.Id) != null))
+            return false;
+        else return true;
     }
 }

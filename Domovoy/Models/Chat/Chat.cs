@@ -8,11 +8,15 @@ public class Chat
         Name = name;
         Users = users;
     }
+    public Chat(ApartmentHouse house)
+    {
+        ApartmentHouse = house;
+        //ApartmentHouseId = house.Id;
+    }
     public int Id { get; set; }
 
     public string Name { get; set; }
 
-    public int? ApartmentHouseId { get; set; }
     public ApartmentHouse? ApartmentHouse { get; set; }
     public int? AdministratorId { get; set; }
     public ApplicationUser? Administrator { get; set; }

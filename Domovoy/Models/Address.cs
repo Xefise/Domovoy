@@ -14,4 +14,9 @@ public class Address
     public string? District { get; set; }
     // Корпус
     public int? Housing { get; set; }
+
+    public override string ToString()
+    {
+        return $"ул. {Street} {HouseNumber}";
+    }
 }
