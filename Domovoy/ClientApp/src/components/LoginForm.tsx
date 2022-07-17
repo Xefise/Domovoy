@@ -46,7 +46,7 @@ function LoginForm(props: Props) {
     return <>
         <form className="Form" onSubmit={login}>
         {errors && <div>{Object.entries(errors.errors).map((([f, e]) => e.map(e => <p>{e}</p>)))}</div>}
-            <Container> 
+            <Container className="no_padding">
                 <input className="inputData" onChange={setUsername} value={loginModel.username} placeholder={"Логин"} required/>
                 <img src={loginIcon} className="inputIcons"/>
                 <br/>
