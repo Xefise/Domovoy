@@ -3,6 +3,7 @@
 }
 
 .navWrapper {
+	pointer-events: none;
 	display: flex;
 	justify-content: center;
 	width: 100%;
@@ -12,6 +13,7 @@
 }
 
 nav{
+	pointer-events: all;
 	background: #fff;
 	width: 50%;
   	text-align: center;

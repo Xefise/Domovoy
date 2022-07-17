@@ -62,7 +62,6 @@ function ServiceProviderIndexPage(props: Props) {
             {requests?.userServicesEntries?.map(s => <li>
                 Название услуги: {s.service?.name} <br/>
                 <br/>
-                Квартира: {apartamentToAddressSting(s.apartment || {})} <br/>
                 Заказчик: {s.user?.firstName} {s.user?.lastName} {s.user?.email}<br/>
                 Данные: {s.data} <br/>
                 Статус: {s.completed ? "Выполнено" : "Не выполнено"} <br/>

@@ -19,7 +19,7 @@ export interface Props {
 
 function ApartamentPage(props: Props) {
     
-    return <motion.div className="ApartamentPage" variants={upVariants} initial={'init'} animate={'show'} exit={'hide'} className={'layout'}>
+    return <motion.div className="ApartamentPage layout" variants={upVariants} initial={'init'} animate={'show'} exit={'hide'}>
 
         <div className="apartament_photo">
             

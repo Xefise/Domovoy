@@ -40,14 +40,6 @@ public class ConstructionCompanyController : ControllerBase
                 .Where(e =>
                     e.ApartmentHouse.ResidentialComplex.Id == id &&
                     e.ApartmentHouse.ResidentialComplex.ConstructionCompany.Employees.Contains(HttpContext.GetUser()))
-                .Select(b => new
-                {
-                    b,
-                    Apartments = b.Apartments.Where(a =>
-                        search != null ? a.ApartmentNumber.ToString().Contains(search) : true)
-                })
-                .AsEnumerable()
-                .Select(x => x.b)
                 .ToList()
         );
     }
