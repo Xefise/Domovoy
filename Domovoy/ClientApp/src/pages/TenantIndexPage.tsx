@@ -4,10 +4,17 @@ import {upVariants} from "../animations";
 import {motion} from "framer-motion";
 import {
     ApartmentViewModel,
-    SmartHomeDevice, SmartHomeDeviceDTO,
+    ServiceProvidersService,
+    ServicesCollection,
+    SmartHomeDevice,
+    SmartHomeDeviceDTO,
     SmartHomeDevicesService,
     SmartHomeDeviceType,
-    TenantAppartamentsService, TenantCartService, TenantRecomendationsService
+    TenantAppartamentsService,
+    TenantCartService,
+    TenantRecomendationsService,
+    TenantRequestsService,
+    TenantServicesService
 } from "../api";
 import {apartamentToAddressSting} from "../addressToString";
 
@@ -39,6 +46,10 @@ function TenantIndexPage() {
     const [recomendations, setRecomendations] = useState<ApartmentViewModel[]>([])
     const [recomendationsLoadng, setRecomendationsLoadng] = useState(false)
     
+    const [services, setServices] = useState<ServicesCollection>()
+    
+    const [selectedService, setSelectedService] = useState<{type: "apartment" | "user" | "informer", name: string, id: number, data: string}>()
+    
     useEffect(() => {
         TenantAppartamentsService.getApiTenantappartaments().then(d => setApartments(d)).finally(() => setApartmentsLoading(false))
         TenantRecomendationsService.getApiTenantrecomendations().then(d => setRecomendations(d)).finally(() => setRecomendationsLoadng(false))
@@ -51,7 +62,9 @@ function TenantIndexPage() {
     useEffect(() => {
         if (selectedAparment) {
             setSmartHomeDevicesLoadng(true)
+            setSmartHomeDevices([])
             SmartHomeDevicesService.getApiSmarthomedevicesApartment(selectedAparment.id!).then(d => setSmartHomeDevices(d)).finally(() => setSmartHomeDevicesLoadng(false))
+            TenantServicesService.getApiTenantservices(selectedAparment.id!).then(d => setServices(d))
         }
     }, [selectedAparment])
     
@@ -92,7 +105,7 @@ function TenantIndexPage() {
             <Row>
                 {smartHomeDevicesLoadng && <div style={{height: 190}}/> }
                 {smartHomeDevices?.map(d => <>
-                        {d.actions?.map(a => <motion.button initial={{opacity: 0}} animate={{opacity: 1}} className="smart_element" onClick={() => {
+                        {d.actions?.map(a => <motion.button key={d.id! + (a.actionId || "")} initial={{opacity: 0}} animate={{opacity: 1}} className="smart_element" onClick={() => {
                                 SmartHomeDevicesService.postApiSmarthomedevicesUse(d.id!, a.actionId!)
                             }}><img className="houseImg" src={houseImg}/>{a.name}</motion.button>
                         )}
@@ -113,8 +126,9 @@ function TenantIndexPage() {
                       </Dropdown.Toggle>
 
                       <Dropdown.Menu className="dropdown_menu">
-                        <Dropdown.Item href="#">Юр. услуги</Dropdown.Item>
-                        <Dropdown.Item href="#">Страхование</Dropdown.Item>
+                          {services?.apartmentServices?.map(s => <Dropdown.Item onClick={() => {
+                              setSelectedService({id: s.id!, name: s.name!, data: "", type: "apartment"})
+                          }}>{s.name}</Dropdown.Item>)}
                       </Dropdown.Menu>
                     </Dropdown>
 
@@ -124,12 +138,13 @@ function TenantIndexPage() {
 
                     <Dropdown className="otherServices">
                       <Dropdown.Toggle variant="success" id="dropdown-basic" className="dropdown_toggle other_services">
-                        <span className="filters_text">Доп Услуги</span>
+                        <span className="filters_text">Услуги для пользователей</span>
                       </Dropdown.Toggle>
 
                       <Dropdown.Menu className="dropdown_menu">
-                        <Dropdown.Item href="#">Уход за животными</Dropdown.Item>
-                        <Dropdown.Item href="#">Уборка</Dropdown.Item>
+                          {services?.userServices?.map(s => <Dropdown.Item onClick={() => {
+                              setSelectedService({id: s.id!, name: s.name!, data: "", type: "user"})
+                          }}>{s.name}</Dropdown.Item>)}
                       </Dropdown.Menu>
                     </Dropdown>
 
@@ -143,7 +158,9 @@ function TenantIndexPage() {
                       </Dropdown.Toggle>
 
                       <Dropdown.Menu className="dropdown_menu">
-                        <Dropdown.Item href="#">Оплатить комуналку</Dropdown.Item>
+                          {services?.informerServices?.map(s => <Dropdown.Item onClick={() => {
+                              setSelectedService({id: s.id!, name: s.name!, data: "", type: "informer"})
+                          }}>{s.name}</Dropdown.Item>)}
                       </Dropdown.Menu>
                     </Dropdown>
 
@@ -177,6 +194,32 @@ function TenantIndexPage() {
             </Row>
         </Container>
 
+        {selectedService &&
+            <div className={"modalService"}>
+                <div className="content">
+                    <h3>{selectedService?.name}</h3>
+                    <input required placeholder={"Доп. Инофрмация"} value={selectedService.data} onChange={e => setSelectedService({...selectedService, data: e.target.value})}/>
+                    <button onClick={() => {
+                        const then = () => {
+                            setSelectedService(undefined)
+                        }
+                        
+                        switch (selectedService.type) {
+                            case "apartment":
+                                TenantServicesService.postApiTenantservicesRequestApartment(selectedAparment?.id!, selectedService?.id, selectedService.data).then(then)
+                                break;
+                            case "informer":
+                                TenantServicesService.postApiTenantservicesRequestInformer(selectedAparment?.id!, selectedService?.id, selectedService.data).then(then)
+                                break;
+                            case "user":
+                                TenantServicesService.postApiTenantservicesRequestUser(selectedService?.id, selectedService.data).then(then)
+                                break;
+                        }
+                    }}>Заказать</button>
+                    <button className={"close"} onClick={() => setSelectedService(undefined)}>Закрыть</button>
+                </div>
+            </div>
+        }
     </motion.div>
 }
 

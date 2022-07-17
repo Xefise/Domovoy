@@ -27,6 +27,8 @@ import ApartamentPage from "./pages/ApartamentPage";
 import OpenIntercomPage from "./pages/OpenIntercomPage";
 import AgentLayout from "./pages/AgentLayout";
 import AgentIndexPage from "./pages/AgentIndexPage";
+import ServiceProviderLayout from "./pages/ServiceProviderLayout";
+import ServiceProviderIndexPage from "./pages/ServiceProviderIndexPage";
 
 function App() {
     const location = useLocation();
@@ -47,7 +49,7 @@ function App() {
                         <TypeSwitch
                             tenant={<TenantLayout/>}
                             constructionCompanyAdmin={<CompanyAdminLayout/>}
-                            serviceProvider={<></>}
+                            serviceProvider={<ServiceProviderLayout/>}
                             agent={<AgentLayout/>}
                             nonAuntificated={<Navigate to={'login'}/>}/>}
                     >
@@ -55,7 +57,7 @@ function App() {
                             <TypeSwitch
                                 tenant={<TenantIndexPage/>}
                                 constructionCompanyAdmin={<CompanyAdminIndexPage/>}
-                                serviceProvider={<></>}
+                                serviceProvider={<ServiceProviderIndexPage/>}
                                 agent={<AgentIndexPage/>}
                                 nonAuntificated={<Navigate to={'login'}/>}/>
                         }>

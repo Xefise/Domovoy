@@ -25,7 +25,7 @@ function TypeSwitch(props: Props) {
                 element = props.constructionCompanyAdmin
                 break
             case ApplicationUserType.SERVICE_PROVIDER:
-                element = props.constructionCompanyAdmin
+                element = props.serviceProvider
                 break
             case ApplicationUserType.AGENT:
                 element = props.agent

@@ -38,6 +38,10 @@ public class ApplicationUser : IdentityUser<int>
 
     public List<Chat> Chats { get; set; }
     public List<Chat> AdminChats { get; set; }
+    
+    public List<UserService> UserServicesPrivided { get; set; }
+    public List<ApartmentService> ApartmentServicesPrivided { get; set; }
+    public List<InformerService> InformerServicesPrivided { get; set; }
 }
 
 public enum ApplicationUserType

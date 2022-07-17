@@ -4,9 +4,12 @@
 
 import type { Apartment } from './Apartment';
 import type { ApartmentRequest } from './ApartmentRequest';
+import type { ApartmentService } from './ApartmentService';
 import type { ApplicationUserType } from './ApplicationUserType';
 import type { Chat } from './Chat';
 import type { ConstructionCompany } from './ConstructionCompany';
+import type { InformerService } from './InformerService';
+import type { UserService } from './UserService';
 
 export type ApplicationUser = {
     type: ApplicationUserType;
@@ -29,6 +32,9 @@ export type ApplicationUser = {
     constructionCompany?: ConstructionCompany;
     chats?: Array<Chat> | null;
     adminChats?: Array<Chat> | null;
+    userServicesPrivided?: Array<UserService> | null;
+    apartmentServicesPrivided?: Array<ApartmentService> | null;
+    informerServicesPrivided?: Array<InformerService> | null;
     id?: number;
     userName?: string | null;
     normalizedUserName?: string | null;
