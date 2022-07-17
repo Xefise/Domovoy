@@ -56,7 +56,7 @@
 
 @media screen and (max-width: 654px){
     .layout{
-        width: 90%;
+        width: 95%;
     }
 }
 
@@ -65,6 +65,7 @@
         width: 90%;
         display: block;
         margin: auto;
+        margin-top: 10px;
         margin-bottom: 10px;
     }
 }
