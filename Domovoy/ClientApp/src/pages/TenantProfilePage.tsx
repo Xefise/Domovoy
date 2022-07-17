@@ -16,7 +16,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Carousel from 'react-bootstrap/Carousel';
-import '../styles/menu.css';
+import '../styles/menu.scss';
 import '../styles/carousel.css';
 import '../styles/ProfilePage.scss';
 import profileImage from '../images/profileImage.svg';
