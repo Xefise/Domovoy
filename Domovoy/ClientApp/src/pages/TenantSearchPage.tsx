@@ -15,7 +15,7 @@ import {apartamentToAddressSting} from "../addressToString";
 import Container from 'react-bootstrap/Container';
 import Dropdown from 'react-bootstrap/Dropdown';
 import '../styles/SearchPage.scss';
-import '../styles/menu.css';
+import '../styles/menu.scss';
 
 import reject from '../images/reject.png';
 import add from '../images/add.png';

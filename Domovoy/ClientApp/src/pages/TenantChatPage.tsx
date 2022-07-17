@@ -3,7 +3,7 @@ import {motion} from "framer-motion";
 import {Link, useLocation, useParams} from "react-router-dom";
 
 import Container from 'react-bootstrap/Container';
-import '../styles/menu.css';
+import '../styles/menu.scss';
 import '../styles/ChatPage.scss'
 
 export interface Props {
