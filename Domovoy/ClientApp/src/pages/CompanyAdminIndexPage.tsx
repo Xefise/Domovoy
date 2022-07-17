@@ -154,13 +154,13 @@ function CompanyAdminIndexPage(props: Props) {
                                             }}>Добавить домофон</button>
                                         </li>)}
                                     </ul>
-                                    <Link className="add_area_btn a" to={`create/apartment/${h.id}/${e.id}`}>Создать квартиру</Link>
+                                    <Link className="add_area_btn" to={`create/apartment/${h.id}/${e.id}`}>Создать квартиру</Link>
                                 </li>)}
                             </ul>
-                            <Link className="add_area_btn b" to={`create/entrance/${h.id}`}>Создать подъезд</Link>
+                            <Link className="add_area_btn" to={`create/entrance/${h.id}`}>Создать подъезд</Link>
                         </li>)}
                     </ul>
-                    <Link className="add_area_btn c" to={`create/house/${c.id}`}>Создать дом</Link>
+                    <Link className="add_area_btn" to={`create/house/${c.id}`}>Создать дом</Link>
                 </li>)}
                 </Col>
 
