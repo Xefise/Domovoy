@@ -12,6 +12,12 @@ import {AnimatePresence, motion} from "framer-motion";
 import {addressToString} from "../addressToString";
 import {Link, useLocation, useOutlet} from "react-router-dom";
 
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import '../styles/menu.css';
+import '../styles/AdminIndexPage.scss';
+
 export interface Props {
 
 }
@@ -73,12 +79,15 @@ function CompanyAdminIndexPage(props: Props) {
     }
 
     return <StorageContext.Provider value={{comapny, entances, reload, reloadHouse}}>
-        <motion.div variants={upVariants} initial={'init'} animate={'show'} exit={'hide'}>
-            <h1>Админка наша любимая</h1>
-            <ul>
+        <motion.div className="adminPanel" variants={upVariants} initial={'init'} animate={'show'} exit={'hide'}>
+            <h1>Админ-Панель</h1>
+            <ul className="JK_container">
+                <Container>
+                <Row>
+                <Col>
                 {comapny?.residentialComplexes?.map(c => <li key={c.id}>
-                    ЖК {c.name}
-                    <button onClick={() => {
+                    <p className="JK_name">ЖК {c.name}</p>
+                    <button className="deleteJK" onClick={() => {
                         ConstructionCompanyService
                             .deleteApiConstructioncompanyComplexes(c.id!)
                             .then(() => reload())
@@ -145,21 +154,28 @@ function CompanyAdminIndexPage(props: Props) {
                                             }}>Добавить домофон</button>
                                         </li>)}
                                     </ul>
-                                    <Link to={`create/apartment/${h.id}/${e.id}`}>Создать квартиру</Link>
+                                    <Link className="add_area_btn a" to={`create/apartment/${h.id}/${e.id}`}>Создать квартиру</Link>
                                 </li>)}
                             </ul>
-                            <Link to={`create/entrance/${h.id}`}>Создать подъезд</Link>
+                            <Link className="add_area_btn b" to={`create/entrance/${h.id}`}>Создать подъезд</Link>
                         </li>)}
                     </ul>
-                    <Link to={`create/house/${c.id}`}>Создать дом</Link>
+                    <Link className="add_area_btn c" to={`create/house/${c.id}`}>Создать дом</Link>
                 </li>)}
+                </Col>
+
+                <Col className="apartament_info">
+                    <AnimatePresence exitBeforeEnter>
+                        {Outlet && React.cloneElement(Outlet, {key: location.pathname})}
+                    </AnimatePresence>
+                </Col>
+
+                </Row>
+                </Container>
             </ul>
-            <Link to={'create/complex'}>Создать комплекс</Link> <br/>
-            <Link to={''}>Назад</Link>
+            <Link className="createNewComplex" to={'create/complex'}>+</Link> <br/>
+            {/*<Link to={''}>Назад</Link>*/}
             <br/>
-            <AnimatePresence exitBeforeEnter>
-                {Outlet && React.cloneElement(Outlet, {key: location.pathname})}
-            </AnimatePresence>
         </motion.div>
     </StorageContext.Provider>
 }

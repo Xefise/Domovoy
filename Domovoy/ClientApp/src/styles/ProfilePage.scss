@@ -18,7 +18,7 @@
 		margin: 20px auto 0px auto;
 		border-radius: 30px;
 		padding: 10px;
-		width: 50%;
+		width: 80%;
 	}
 
 	.profile_status{
@@ -58,7 +58,6 @@
 	}
 
 	.card_action{
-		text-align: left;
 		font-size: 16px;
 		background: #f6c380;
 		border-radius: 10px;
@@ -68,6 +67,11 @@
 		width: 150px;
 		display: block;
 		margin: -15px auto 15px auto;
+		border: 0px;
+	}
+
+	.save_btn{
+		margin: 15px auto 15px auto;
 	}
 
 	.solveProblem{
@@ -90,6 +94,8 @@
 		justify-content: center;
 		align-items: center;
 		gap: 10px;
+		width: 60%;
+		text-align: center;
 
 		@media screen and (max-width: 600px){
 			flex-direction: column;
@@ -152,4 +158,13 @@
 	border-radius: 10px;
 	border: 2px solid #c580f6;
 	outline: none;
+}
+
+input, select{
+	width: 100%;
+	border: 0px;
+	border-radius: 46px;
+	padding: 8px;
+	margin: 5px 0 5px 0;
+	background: #f9f9f9;
 }
