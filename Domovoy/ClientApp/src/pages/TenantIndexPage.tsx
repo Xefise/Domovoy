@@ -171,8 +171,8 @@ function TenantIndexPage() {
                     <img src={flat3}/>
                     <b>ЖК «{r.houseEntrance?.apartmentHouse?.residentialComplex?.name}»</b>
                     <p>{apartamentToAddressSting(r)}</p>
-                    <p>{r.cost} ₽</p>
-                    <p style={{cursor: "pointer"}} onClick={() => TenantCartService.postApiTenantcart(r.id!)}>Добавить в корзину</p>
+                    <p className="cost_area">{r.cost} ₽</p>
+                    <button className="add_area" onClick={() => TenantCartService.postApiTenantcart(r.id!)}>Добавить в корзину</button>
                 </Col>)}
             </Row>
         </Container>

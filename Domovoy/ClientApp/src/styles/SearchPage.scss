@@ -104,10 +104,9 @@
 			height: 450px;
 			position: absolute;
 			padding: 20px;
-			border: 0px;
+			border: 3px;
 			margin-top: 20px;
 			margin-bottom: 20px;
-
 
 			@media screen and (max-width: 450px){
 				width: 90%;
@@ -135,6 +134,31 @@
 			width: 150px;
 			display: block;
 			margin: 20px auto 20px auto;
+
+			@media screen and (max-width: 450px){
+				width: 100%;
+			}
+		}
+
+		.card_top_info{
+			display: block;
+			margin: 5px auto 5px auto;
+			width: 150px;	
+		}
+
+		.JK{
+			background: rgba(86, 204, 242, 0.1);
+			color: #5666e0;
+			text-align: center;
+			border-radius: 4px;
+		}
+
+		.builder{
+			background: rgba(76, 227, 100, 0.15);
+			border-radius: 4px;
+			color: #49d549;
+			width: 150px;
+			text-align: center;
 		}
 	}
 	
@@ -145,10 +169,6 @@
 		align-items: center;
 		gap: 350px;
 
-		@media screen and (max-width: 450px){
-			gap: 60%;
-		}
-		
 		button {
 			background: none;
 			border: none;
@@ -156,11 +176,27 @@
 	}
 
 	.card_choice{
-		margin-top: 10px;
-		width: 50px
+		width: 50px;
 	}
 
 	.last_item{
 		margin-bottom: 150px;
 	}
+
+	@media screen and (max-width: 450px){
+		.card_choice{
+			position: relative;
+		}
+
+		.reject_choice{
+			position: relative;
+			left: 50px;
+		}
+
+		.add_choice{
+			position: relative;
+			left: -60px;
+		}
+	}
+		
 }

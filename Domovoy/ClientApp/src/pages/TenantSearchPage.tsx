@@ -105,8 +105,8 @@ function TenantSearchPage(props: Props) {
                 {results.length == 0 && <p>{changed ? "Больше нет результатов" : "Нет результатов"}</p>}
             </div>
             {results.length > 0 && <div className={"buttons"}>
-                <button className="card_choice last_item" onClick={() => removeFromList(results[0])}><img className="card_choice" src={reject}/></button>
-                <button className="card_choice last_item" onClick={() => addToCart(results[0])}><img className="card_choice" src={add}/></button>
+                <button className="card_choice last_item reject_choice" onClick={() => removeFromList(results[0])}><img className="card_choice" src={reject}/></button>
+                <button className="card_choice last_item add_choice" onClick={() => addToCart(results[0])}><img className="card_choice" src={add}/></button>
             </div>}
 
 {/*            </form>*/}

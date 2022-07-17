@@ -15,8 +15,8 @@
 		color: black;
 		text-decoration: none;
 		position: relative;
-		top: 80px;
-		left: 30px;
+		top: 100px;
+		left: 0px;
 		background: #fff;
 		padding: 0px 5px 10px 5px;
 		border-radius: 10px;
@@ -29,7 +29,7 @@
 		text-decoration: none;
 		position: relative;
 		top: 80px;
-		right: 45px;
+		right: 0px;
 		background: #fff;
 		padding: 0px 5px 10px 5px;
 		border-radius: 10px;

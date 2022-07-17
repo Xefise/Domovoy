@@ -23,6 +23,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import TenantSearchPage from "./pages/TenantSearchPage";
 import TenantProfilePage from "./pages/TenantProfilePage";
 import TenantChatPage from "./pages/TenantChatPage";
+import ApartamentPage from "./pages/ApartamentPage";
 import OpenIntercomPage from "./pages/OpenIntercomPage";
 import AgentLayout from "./pages/AgentLayout";
 import AgentIndexPage from "./pages/AgentIndexPage";
@@ -67,6 +68,7 @@ function App() {
                         <Route path={"search"} element={<TenantSearchPage/>}/>
                         <Route path={"profile"} element={<TenantProfilePage/>}/>
                         <Route path={"chat"} element={<TenantChatPage/>}/>
+                        <Route path={"apartamentPage"} element={<ApartamentPage/>}/>
                     </Route>
                     <Route path="login" element={<LoginPage/>}/>
                     <Route path="logout" element={<LogoutPage/>}/>

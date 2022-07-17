@@ -24,7 +24,7 @@
 	.profile_status{
 		color: rgba(47, 128, 237, 1);
 		background: rgba(238, 247, 254, 1);
-		width: 40%;
+		width: 30%;
 		border-radius: 5px;
 		padding: 3px;
 		text-align: center;
@@ -57,10 +57,17 @@
 		margin: auto;
 	}
 
-	.more_info{
+	.card_action{
 		text-align: left;
 		font-size: 16px;
-		margin-top: -15px;
+		background: #f6c380;
+		border-radius: 10px;
+		padding: 5px;
+		text-align: center;
+		color: #fff;
+		width: 150px;
+		display: block;
+		margin: -15px auto 15px auto;
 	}
 
 	.solveProblem{
@@ -74,7 +81,7 @@
 	}
 
 	.fotter_container{
-		margin-bottom: 150px;
+		margin-bottom: 50px;
 	}
 	
 	.code_input {
@@ -130,4 +137,19 @@
 	    	width: 95%;
 	    }
 	}
+}
+
+.profilePage .code_input button {
+	border-radius: 10px;
+	border: 0px;
+	outline: none;
+	background: #c580f6;
+	color: white;
+	padding: 5px 15px 5px 15px;
+}
+
+.profilePage .code_input input{
+	border-radius: 10px;
+	border: 2px solid #c580f6;
+	outline: none;
 }

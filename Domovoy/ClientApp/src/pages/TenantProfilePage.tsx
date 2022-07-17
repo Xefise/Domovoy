@@ -67,7 +67,7 @@ function TenantProfilePage(props: Props) {
         <Container className="profileBlock">
             <img src={profileImage}/>
             <img src={editIcon} className="edit_profile"/>
-            {/*<p className="profile_status">Ищет квартиру</p>*/}
+            <p className="profile_status">Ищет квартиру</p>
             <b className="text_blue_style">{auth.user?.lastName} {auth.user?.firstName}</b>
         </Container>
 
@@ -79,7 +79,7 @@ function TenantProfilePage(props: Props) {
                         <Container className="myflatsList">
                             <Row>
                                 {/*<Col xs={11} md={11} sm={10}><p className="flat_status">Ищет квартиру</p></Col>*/}
-                                <Col xs={12} md={12} sm={12}><p className="more_info" style={{cursor: "pointer"}} onClick={() => {
+                                <Col xs={12} md={12} sm={12}><p className="card_action" style={{cursor: "pointer"}} onClick={() => {
                                     if (!editingApartment) setEditingApartment(a)
                                 }}>Редактировать</p></Col>
                             </Row>
@@ -172,13 +172,13 @@ function TenantProfilePage(props: Props) {
                             <Row>
                                 <Col xs={6} md={6} sm={12}><p onClick={() => {
                                     TenantRequestsService.postApiTenantrequests(a.id!, "Заказанно через корзину")
-                                }} style={{cursor: "pointer"}} className="more_info">Отправить запрос</p></Col>
+                                }} style={{cursor: "pointer"}} className="card_action">Отправить запрос</p></Col>
                                 <Col xs={1} md={1} sm={1}><p onClick={() => {
                                     TenantCartService.deleteApiTenantcart(a.id!).then(() => {
                                         setCartLoading(true)
                                         TenantCartService.getApiTenantcart().then(d => setCart(d)).finally(() => setCartLoading(false))
                                     })
-                                }} style={{cursor: "pointer"}} className="more_info">Удалить</p></Col>
+                                }} style={{cursor: "pointer"}} className="card_action">Удалить</p></Col>
                             </Row>
                             <Container>
 

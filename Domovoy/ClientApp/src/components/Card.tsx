@@ -28,10 +28,21 @@ function Card(props: Props) {
         if (info.offset.x > 150) setDirection("right")
 
     }} dragSnapToOrigin={!direction} drag={props.drag && !direction} className={"card"}>
-        <p className={"apartmentState"}>
-            {props.apartment.apartmentState == ApartmentState.FOR_SELL && "Продается"}
-            {props.apartment.apartmentState == ApartmentState.FOR_RENT && "Сдается"}
-        </p>
+
+        <Container fluid>
+            <Row>
+                <Col>
+                    <p className={"apartmentState card_top_info"}>
+                        {props.apartment.apartmentState == ApartmentState.FOR_SELL && "Продается"}
+                        {props.apartment.apartmentState == ApartmentState.FOR_RENT && "Сдается"}
+                    </p>
+                </Col>
+                <Col>
+                    <p className={"builder card_top_info"}>{props.apartment.houseEntrance?.apartmentHouse?.residentialComplex?.constructionCompany?.name}</p>
+                </Col>
+            </Row>
+        </Container>
+
         <Container>
 
             <Row>
@@ -49,10 +60,9 @@ function Card(props: Props) {
         </Container>
         <p className={"apartment"}>{apartamentToAddressSting(props.apartment)}</p>
         <p className={"cost"}>{props.apartment.cost} ₽</p>
-        <p className={""}>Этаж: {props.apartment.floor}</p>
-        <p className={""}>Площадь: {props.apartment.area} кв.м.</p>
-        <p className={""}>ЖК {props.apartment.houseEntrance?.apartmentHouse?.residentialComplex?.name}</p>
-        <p className={""}>Застройщик {props.apartment.houseEntrance?.apartmentHouse?.residentialComplex?.constructionCompany?.name}</p>
+        <p className={"JK"}>ЖК {props.apartment.houseEntrance?.apartmentHouse?.residentialComplex?.name}</p>
+        <p>Этаж: {props.apartment.floor}</p>
+        <p>Площадь: {props.apartment.area} кв.м.</p>
     </motion.div>
 }
 
