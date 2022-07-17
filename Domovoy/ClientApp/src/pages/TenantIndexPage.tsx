@@ -167,7 +167,7 @@ function TenantIndexPage() {
         <h3 className="text_blue_style titles"><b>Рекомендации</b></h3>
         <Container className="last_item">
             <Row>
-                {recomendations.map(r => <Col xs={3} md={6} sm={12} className="recommendation_element">
+                {recomendations.map(r => <Col xs={12} lg={3} md={6} sm={12} className="recommendation_element">
                     <img src={flat3}/>
                     <b>ЖК «{r.houseEntrance?.apartmentHouse?.residentialComplex?.name}»</b>
                     <p>{apartamentToAddressSting(r)}</p>

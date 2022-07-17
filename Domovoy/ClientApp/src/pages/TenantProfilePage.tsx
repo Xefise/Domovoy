@@ -116,10 +116,10 @@ function TenantProfilePage(props: Props) {
                                     : <>
                                         Стоимость: <input value={editingApartment.cost || 0} type={"number"} onChange={e => setEditingApartment({...editingApartment, cost: parseInt(e.target.value)})}/>
                                         <p>Статус: <select value={editingApartment.apartmentState} onChange={(e) => setEditingApartment({...editingApartment, apartmentState: e.target.value as ApartmentState})}>
-                                            <option value={ApartmentState.NOT_FOR_SELL}>NOT_FOR_SELL</option>
-                                            <option value={ApartmentState.FOR_SELL}>FOR_SELL</option>
-                                            <option value={ApartmentState.FOR_RENT}>FOR_RENT</option>
-                                            <option value={ApartmentState.BOOKED}>BOOKED</option>
+                                            <option value={ApartmentState.NOT_FOR_SELL}>Не для продажи</option>
+                                            <option value={ApartmentState.FOR_SELL}>Для продажи</option>
+                                            <option value={ApartmentState.FOR_RENT}>Для аренды</option>
+                                            <option value={ApartmentState.BOOKED}>Забронировано</option>
                                         </select></p>
                                         Описание: <input value={editingApartment.description || ''} onChange={e =>setEditingApartment({...editingApartment, description: e.target.value})}/>
                                         <button disabled={apartamentsLoading} onClick={() => {
