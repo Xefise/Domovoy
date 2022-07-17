@@ -21,6 +21,15 @@ body{
 	padding: 15px;
 	font-weight: bold;
 	margin-bottom: 50px;
+	transition: background-color 300ms;
+}
+
+.loginAccount:disabled {
+	background: #898989;
+}
+
+.loginAccount:hover:not(:disabled) {
+	background: #8e28ea;
 }
 
 .Form p{

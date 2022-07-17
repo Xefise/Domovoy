@@ -49,6 +49,10 @@ function Card(props: Props) {
         </Container>
         <p className={"apartment"}>{apartamentToAddressSting(props.apartment)}</p>
         <p className={"cost"}>{props.apartment.cost} ₽</p>
+        <p className={""}>Этаж: {props.apartment.floor}</p>
+        <p className={""}>Площадь: {props.apartment.area} кв.м.</p>
+        <p className={""}>ЖК {props.apartment.houseEntrance?.apartmentHouse?.residentialComplex?.name}</p>
+        <p className={""}>Застройщик {props.apartment.houseEntrance?.apartmentHouse?.residentialComplex?.constructionCompany?.name}</p>
     </motion.div>
 }
 

@@ -2,14 +2,17 @@
 	background: #F9F9F9;
 }
 
-nav{
-	z-index: 999;
-	background: #fff;
+.navWrapper {
+	display: flex;
+	justify-content: center;
+	width: 100%;
 	position: fixed;
 	top: 90%;
-	left: 50%;
-  	margin-right: -50%;
-  	transform: translate(-50%, -50%);
+	z-index: 999;
+}
+
+nav{
+	background: #fff;
 	width: 50%;
   	text-align: center;
   	padding: 10px;

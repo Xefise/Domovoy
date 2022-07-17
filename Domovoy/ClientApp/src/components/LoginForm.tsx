@@ -20,6 +20,7 @@ function LoginForm(props: Props) {
     const navigate = useNavigate()
     const [loginModel, setLoginModel] = useState<LoginModel>({password: "", username: ""});
     const [errors, setErrors] = useState<ValidationProblemDetails>();
+    const [loading, setLoading] = useState(false)
     
     const setUsername = (event: ChangeEvent<HTMLInputElement>) => {
         setLoginModel({...loginModel, username: event.target.value});
@@ -35,12 +36,16 @@ function LoginForm(props: Props) {
     
     const login = (event: FormEvent) => {
         event.preventDefault()
-        if (auth.token) auth.setToken(null)
-        AuthService.postApiAuthLogin(loginModel).then(response => {
-            auth.setToken(response.token);
-        }).catch(error => {
-            setErrors(JSON.parse(error.body));
-        });
+        if (!loading) {
+            setLoading(true)
+            if (auth.token) auth.setToken(null)
+            AuthService.postApiAuthLogin(loginModel).then(response => {
+                auth.setToken(response.token);
+            }).catch(error => {
+                setLoading(false)
+                setErrors(JSON.parse(error.body));
+            })
+        }
     }
     
     return <>
@@ -53,7 +58,7 @@ function LoginForm(props: Props) {
                 <input className="inputData" onChange={setPassword} value={loginModel.password} placeholder={"Пароль"} type={"password"} required autoComplete={"current-password"}/>
                 <img src={passwordIcon} className="inputIcons"/>
                 <br/>
-                <button type={"submit"} className="loginAccount">Войти</button>
+                <button disabled={loading} type={"submit"} className="loginAccount">Войти</button>
                 <p onClick={() => alert("Вспоминайте!")}>Забыли пароль?</p>
             </Container>
         </form>

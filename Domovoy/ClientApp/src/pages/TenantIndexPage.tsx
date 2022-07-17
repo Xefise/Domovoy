@@ -7,7 +7,7 @@ import {
     SmartHomeDevice, SmartHomeDeviceDTO,
     SmartHomeDevicesService,
     SmartHomeDeviceType,
-    TenantAppartamentsService
+    TenantAppartamentsService, TenantCartService, TenantRecomendationsService
 } from "../api";
 import {apartamentToAddressSting} from "../addressToString";
 
@@ -24,6 +24,7 @@ import flat4 from '../images/flat4.svg';
 import flat5 from '../images/flat5.svg';
 import advert_img1 from '../images/advert_img1.png';
 import advert_img2 from '../images/advert_img2.png';
+import {Spinner} from "react-bootstrap";
 
 function TenantIndexPage() {
     const auth = useAuth()
@@ -35,8 +36,12 @@ function TenantIndexPage() {
     const [smartHomeDevices, setSmartHomeDevices] = useState<SmartHomeDeviceDTO[]>()
     const [smartHomeDevicesLoadng, setSmartHomeDevicesLoadng] = useState(false)
     
+    const [recomendations, setRecomendations] = useState<ApartmentViewModel[]>([])
+    const [recomendationsLoadng, setRecomendationsLoadng] = useState(false)
+    
     useEffect(() => {
         TenantAppartamentsService.getApiTenantappartaments().then(d => setApartments(d)).finally(() => setApartmentsLoading(false))
+        TenantRecomendationsService.getApiTenantrecomendations().then(d => setRecomendations(d)).finally(() => setRecomendationsLoadng(false))
     }, [])
     
     useEffect(() => {
@@ -85,15 +90,14 @@ function TenantIndexPage() {
         <h3 className="text_blue_style titles"><b>Умный дом</b></h3>
         <Container>
             <Row>
-            {smartHomeDevices?.map(d => <>
-                {d.actions?.map(a => <button className="smart_element" onClick={() => {
-                    SmartHomeDevicesService.postApiSmarthomedevicesUse(d.id!, a.actionId!)
-                }}><img className="houseImg" src={houseImg}/>{a.name}</button>
-
+                {smartHomeDevicesLoadng && <div style={{height: 190}}/> }
+                {smartHomeDevices?.map(d => <>
+                        {d.actions?.map(a => <motion.button initial={{opacity: 0}} animate={{opacity: 1}} className="smart_element" onClick={() => {
+                                SmartHomeDevicesService.postApiSmarthomedevicesUse(d.id!, a.actionId!)
+                            }}><img className="houseImg" src={houseImg}/>{a.name}</motion.button>
+                        )}
+                    </>
                 )}
-                </>
-            )}
-
             </Row>
         </Container>
 
@@ -163,39 +167,13 @@ function TenantIndexPage() {
         <h3 className="text_blue_style titles"><b>Рекомендации</b></h3>
         <Container className="last_item">
             <Row>
-            
-            <Col xs={3} md={6} sm={12}  className="recommendation_element">
-                
-                <img src={flat3}/>
-                <b>ЖК «Все свои»</b>
-                <p>от 5 002 133 ₽</p>
-
-            </Col>
-
-            <Col xs={3} md={6} sm={12} className="recommendation_element">
-                
-                <img src={flat4}/>
-                <b>ЖК «Все свои»</b>
-                <p>от 5 002 133 ₽</p>
-
-            </Col>
-
-            <Col xs={3} md={6} sm={12} className="recommendation_element">
-                
-                <img src={flat5}/>
-                <b>ЖК «Все свои»</b>
-                <p>от 5 002 133 ₽</p>
-
-            </Col>
-
-            <Col xs={3} md={6} sm={12} className="recommendation_element">
-                
-                <img src={flat3}/>
-                <b>ЖК «Все свои»</b>
-                <p>от 5 002 133 ₽</p>
-
-            </Col>
-
+                {recomendations.map(r => <Col xs={3} md={6} sm={12} className="recommendation_element">
+                    <img src={flat3}/>
+                    <b>ЖК «{r.houseEntrance?.apartmentHouse?.residentialComplex?.name}»</b>
+                    <p>{apartamentToAddressSting(r)}</p>
+                    <p>{r.cost} ₽</p>
+                    <p style={{cursor: "pointer"}} onClick={() => TenantCartService.postApiTenantcart(r.id!)}>Добавить в корзину</p>
+                </Col>)}
             </Row>
         </Container>
 

@@ -39,17 +39,22 @@ requestBody?: Array<number>,
 
     /**
      * @param chatId 
+     * @param since 
      * @returns Message Success
      * @throws ApiError
      */
     public static getApiChats1(
 chatId: number,
+since?: string,
 ): CancelablePromise<Array<Message>> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/api/chats/{chatId}',
             path: {
                 'chatId': chatId,
+            },
+            query: {
+                'since': since,
             },
         });
     }

@@ -60,5 +60,6 @@ export { ConstructionCompanyService } from './services/ConstructionCompanyServic
 export { SmartHomeDevicesService } from './services/SmartHomeDevicesService';
 export { TenantAppartamentsService } from './services/TenantAppartamentsService';
 export { TenantCartService } from './services/TenantCartService';
+export { TenantRecomendationsService } from './services/TenantRecomendationsService';
 export { TenantRequestsService } from './services/TenantRequestsService';
 export { TenantSearchService } from './services/TenantSearchService';

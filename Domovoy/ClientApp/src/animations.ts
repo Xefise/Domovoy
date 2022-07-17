@@ -97,3 +97,34 @@ export const cardVariants: Variants = {
         }
     }
 }
+
+export const initialNav: Target = {
+    y: 300,
+    opacity: 0,
+}
+
+export const enterNav: Target = {
+    y: 0,
+    opacity: 1
+}
+
+export const exitNav: Target = {
+    y: 300,
+    opacity: 0
+}
+
+export const navVariants: Variants = {
+    "init": initialNav,
+    "show": {
+        ...enterNav, transition: {
+            duration: 1,
+            ...translition
+        }
+    },
+    "hide": {
+        ...exitNav, transition: {
+            duration: 1,
+            ...translition
+        }
+    }
+}

@@ -21,6 +21,7 @@ function LoginForm(props: Props) {
     const navigate = useNavigate()
     const [registerModel, setRegisterModel] = useState<RegisterModel>({email: "", password: "", username: "", fio: "", rePassword: ""});
     const [errors, setErrors] = useState<ValidationProblemDetails>();
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         if (auth.isAuthenticated) navigate("/", {replace: true})
@@ -48,16 +49,21 @@ function LoginForm(props: Props) {
     
     const register = (event: FormEvent) => {
         event.preventDefault()
-        if (auth.token) auth.setToken(null)
-        AuthService.postApiAuthRegister(registerModel).then(() => {
-            AuthService.postApiAuthLogin(registerModel).then(response => {
-                auth.setToken(response.token);
-            }).catch(error => {
+        if (!loading) {
+            setLoading(true)
+            if (auth.token) auth.setToken(null)
+            AuthService.postApiAuthRegister(registerModel).then(() => {
+                AuthService.postApiAuthLogin(registerModel).then(response => {
+                    auth.setToken(response.token);
+                }).catch(error => {
+                    setErrors(JSON.parse(error.body));
+                    setLoading(false)
+                });
+            }).catch((error) => {
                 setErrors(JSON.parse(error.body));
-            });
-        }).catch((error) => {
-            setErrors(JSON.parse(error.body));
-        })
+                setLoading(false)
+            })
+        }
     }
     
     return <form onSubmit={register}>
@@ -78,7 +84,7 @@ function LoginForm(props: Props) {
             <input className="inputData" onChange={setRePassword} value={registerModel.rePassword} placeholder={"Повторите пароль"} type={"password"} required autoComplete={"new-password"}/>
             <img src={passwordIcon} className="inputIcons"/>
             <br/>
-            <button type={"submit"} className="loginAccount">Зарегистрироваться</button>
+            <button disabled={loading} type={"submit"} className="loginAccount">Зарегистрироваться</button>
         </Container> 
     </form>
 }

@@ -5,6 +5,7 @@
 import type { Apartment } from './Apartment';
 import type { ApartmentRequest } from './ApartmentRequest';
 import type { ApplicationUserType } from './ApplicationUserType';
+import type { Chat } from './Chat';
 import type { ConstructionCompany } from './ConstructionCompany';
 
 export type ApplicationUser = {
@@ -26,6 +27,8 @@ export type ApplicationUser = {
     apartmentRequests?: Array<ApartmentRequest> | null;
     cart?: Array<Apartment> | null;
     constructionCompany?: ConstructionCompany;
+    chats?: Array<Chat> | null;
+    adminChats?: Array<Chat> | null;
     id?: number;
     userName?: string | null;
     normalizedUserName?: string | null;
