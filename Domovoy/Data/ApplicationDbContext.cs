@@ -21,6 +21,15 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityR
 
     public DbSet<Chat> Chats { get; set; } = null!;
     public DbSet<Message> Messages { get; set; } = null!;
+    
+    
+    public DbSet<ApartmentService> ApartmentServices { get; set; } = null!;
+    public DbSet<UserService> UserServices { get; set; } = null!;
+    public DbSet<InformerService> InformerServices { get; set; } = null!;
+    
+    public DbSet<ServiceEntry<ApartmentService>> ApartmentServiceEntries { get; set; } = null!;
+    public DbSet<ServiceEntry<UserService>> UserServiceEntries { get; set; } = null!;
+    public DbSet<ServiceEntry<InformerService>> InformerServiceEntries { get; set; } = null!;
 
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)

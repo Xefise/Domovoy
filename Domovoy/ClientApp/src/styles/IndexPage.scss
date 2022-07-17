@@ -190,6 +190,49 @@
 	    top: 50%;
 	    transform: translate(-25%, -50%)
 	}
+	
+	.modalService {
+		width: 100%;
+		height: 100vh;
+		z-index: 9999999;
+		position: fixed;
+		top: 0;
+		left: 0;
+		display: flex;
+		background: rgba(0, 0, 0, 0.24);
+		align-items: center;
+		justify-content: center;
+		
+		.content {
+			background: white;
+			border-radius: 10px;
+			width: 400px;
+			padding: 20px;
+			
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+			
+			button, input {
+				background-color: rgb(241, 241, 241);
+				border: solid transparent;
+				padding: 10px;
+				border-radius: 10px;
+				outline: none;
+				
+				&.close {
+					background-color: rgb(229, 97, 97);
+					color: white;
+				}
+			}
+
+			@media screen and (max-width: 420px){
+				.advert{
+					width: 90%;
+				}
+			}
+		}
+	}
 
 	@media screen and (max-width: 952px){
 	    .advert{
