@@ -10,6 +10,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import '../styles/LoginPage.css';
 import logoIcon from '../images/logo.png';
+import '../styles/Global.scss'
 
 export interface Props {
 
