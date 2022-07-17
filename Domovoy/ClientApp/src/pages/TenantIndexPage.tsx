@@ -81,7 +81,7 @@ function TenantIndexPage() {
             </Row>
         </Container>
         <Container className="choose_flat">
-        Выбранная квартира <br/><select value={selectedAparment?.id} onChange={e => setSelectedAparment(apartments.find(a => a.id == parseInt(e.target.value)))}>
+        Выбранная квартира <br/><select className="shadow" value={selectedAparment?.id} onChange={e => setSelectedAparment(apartments.find(a => a.id == parseInt(e.target.value)))}>
             {apartments.map(a => <option value={a.id}>
                 {apartamentToAddressSting(a)}
             </option>)}

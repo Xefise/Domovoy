@@ -1,5 +1,7 @@
 .carousel-inner{
+	box-shadow: 2px 5px 10px 2px rgb(0 0 0 / 10%);
 	border-radius: 30px;
+	 /*TODO Починить отступ!!!*/
 }
 
 .carousel-control-prev, .carousel-control-next{
