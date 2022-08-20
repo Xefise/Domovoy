@@ -9,6 +9,9 @@ public class ApartmentHouse
     public List<HouseEntrance> HouseEntrances { get; set; }
     public ResidentialComplex ResidentialComplex { get; set; }
     public int ResidentialComplexId { get; set; }
+
+    public int ChatId { get; set; }
+    public Chat Chat { get; set; }
 }
 
 public class ApartmentHouseViewModel
