@@ -3,6 +3,7 @@ using System;
 using Domovoy.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Domovoy.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220820112748_nsc")]
+    partial class nsc
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.7");
@@ -313,9 +315,6 @@ namespace Domovoy.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<int?>("AdministratorId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("ApartmentHouseId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")

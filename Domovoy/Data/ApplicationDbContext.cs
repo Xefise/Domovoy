@@ -73,5 +73,9 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityR
         builder.Entity<ApplicationUser>()
             .HasMany(p => p.AdminChats)
             .WithOne(p => p.Administrator);
+        builder.Entity<ApartmentHouse>()
+            .HasOne(a => a.Chat)
+            .WithOne(c => c.ApartmentHouse)
+            .HasForeignKey<ApartmentHouse>(k => k.ChatId);
     }
 }

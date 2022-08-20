@@ -27,9 +27,16 @@ public class ChatsController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<List<Chat>>> GetChats()
     {
-        return await _db.Chats
-            .Where(c => c.Users.Contains(HttpContext.GetUser()))
-            .ToListAsync();
+        ApplicationUser user = HttpContext.GetUser();
+        var chats = _db.Chats
+            .Where(c => c.Users.Contains(user));
+        var userApHouses =
+            _db.Apartments.Where(a => a.Owner == user).Select(a => a.HouseEntrance.ApartmentHouse);
+        var chats2 = _db.Chats
+            .Where(c => userApHouses.Contains(c.ApartmentHouse));
+
+        return await chats.Union(chats2).ToListAsync();
+
     }
 
     [HttpPost ("add")]
