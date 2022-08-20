@@ -9,7 +9,10 @@ public class ApartmentHouse
     public List<HouseEntrance> HouseEntrances { get; set; }
     public ResidentialComplex ResidentialComplex { get; set; }
     public int ResidentialComplexId { get; set; }
-    
+
+    public int ChatId { get; set; }
+    public Chat Chat { get; set; }
+
     public List<ApartmentService> ApartmentServices { get; set; }
     public List<InformerService> InformerServices { get; set; }
 }

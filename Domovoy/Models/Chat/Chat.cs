@@ -12,7 +12,6 @@ public class Chat
 
     public string Name { get; set; }
 
-    public int? ApartmentHouseId { get; set; }
     public ApartmentHouse? ApartmentHouse { get; set; }
     public int? AdministratorId { get; set; }
     public ApplicationUser? Administrator { get; set; }
