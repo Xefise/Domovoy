@@ -3,11 +3,13 @@
 public class Message
 {
     public Message(){}
-    public Message(string text, Chat chat)
+    public Message(string text, Chat chat, ApplicationUser author)
     {
         Text = text;
         ChatId = chat.Id;
         Chat = chat;
+        AuthorId = author.Id;
+        Author = author;
     }
     public int Id { get; set; }
 

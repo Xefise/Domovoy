@@ -3,10 +3,19 @@
 public class Chat
 {
     public Chat(){}
-    public Chat(string? name, List<ApplicationUser> users)
+    public Chat(string? name, List<ApplicationUser> users, ApplicationUser? administrator)
     {
         Name = name;
         Users = users;
+        Administrator = administrator;
+        AdministratorId = administrator.Id;
+    }
+
+    public Chat(ApartmentHouse apartmentHouse)
+    {
+        Name = apartmentHouse.ToString();
+        ApartmentHouse = apartmentHouse;
+        ApartmentHouseId = apartmentHouse.Id;
     }
     public int Id { get; set; }
 

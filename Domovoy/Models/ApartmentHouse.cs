@@ -15,6 +15,8 @@ public class ApartmentHouse
 
     public List<ApartmentService> ApartmentServices { get; set; }
     public List<InformerService> InformerServices { get; set; }
+
+    public override string ToString() => $"Дом {Address}";
 }
 
 public class ApartmentHouseViewModel

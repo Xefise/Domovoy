@@ -28,21 +28,22 @@ public class ChatsController : ControllerBase
     public async Task<ActionResult<List<Chat>>> GetChats()
     {
         ApplicationUser user = HttpContext.GetUser();
-        var chats = _db.Chats
+        var usersChats = _db.Chats
             .Where(c => c.Users.Contains(user));
+
         var userApHouses =
             _db.Apartments.Where(a => a.Owner == user).Select(a => a.HouseEntrance.ApartmentHouse);
-        var chats2 = _db.Chats
+        var housesChats = _db.Chats
             .Where(c => userApHouses.Contains(c.ApartmentHouse));
 
-        return await chats.Union(chats2).ToListAsync();
+        return await usersChats.Union(housesChats).ToListAsync();
 
     }
 
     [HttpPost ("add")]
     public async Task<ActionResult> AddChat(List<int> userIds)
     {
-        _db.Chats.Add(new Chat("", _db.Users.Where(c => userIds.Contains(c.Id)).ToList()));
+        _db.Chats.Add(new Chat("", _db.Users.Where(c => userIds.Contains(c.Id)).ToList(), HttpContext.GetUser()));
         await _db.SaveChangesAsync();
         return Ok();
     }
@@ -60,7 +61,7 @@ public class ChatsController : ControllerBase
     [HttpPost ("{chatId}/send")]
     public async Task<ActionResult> SentMessage(string text, int chatId)
     {
-        await _db.Messages.AddAsync(new Message(text, _db.Chats.First(c => c.Id == chatId)));
+        await _db.Messages.AddAsync(new Message(text, _db.Chats.First(c => c.Id == chatId), HttpContext.GetUser()));
         await _db.SaveChangesAsync();
         return Ok();
     }
